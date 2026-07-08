@@ -36,3 +36,4 @@ run_batch.sh
 docs/
 
 .venv/
+.codegraph/

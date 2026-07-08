@@ -71,25 +71,10 @@ ENV COPAW_RUNNING_IN_CONTAINER=1
 RUN npm install -g "openclaw@${OPENCLAW_VERSION}"
 
 # ── Python packages pre-installed for PawBench task scripts ──────────────────
+# Remove PEP 668 externally-managed marker to allow pip system-wide install
+# inside the container (Debian Bookworm / Python 3.11+ ships this by default).
+RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.12/EXTERNALLY-MANAGED 2>/dev/null || true
 RUN pip3 install --no-cache-dir --break-system-packages \
-    requests \
-    pyyaml \
-    pandas \
-    numpy \
-    matplotlib \
-    Pillow \
-    scikit-learn \
-    python-docx \
-    yfinance \
-    certifi \
-    fastapi \
-    uvicorn \
-    httpx \
-    openai \
-    oss2 \
-    pytest \
-    2>/dev/null || \
-    pip3 install --no-cache-dir \
     requests \
     pyyaml \
     pandas \
@@ -168,8 +153,7 @@ COPY pawbench/         /opt/copawbench/pawbench/
 COPY run_bench.py      /opt/copawbench/run_bench.py
 COPY requirements.txt  /opt/copawbench/requirements.txt
 RUN pip3 install --no-cache-dir --break-system-packages \
-    -r /opt/copawbench/requirements.txt || \
-    pip3 install --no-cache-dir -r /opt/copawbench/requirements.txt
+    -r /opt/copawbench/requirements.txt
 ENV PYTHONPATH=/opt/copawbench
 
 # ── Smoke-tests ───────────────────────────────────────────────────────────────

@@ -24,8 +24,6 @@ ARG OPENCLAW_VERSION=2026.4.24
 #                        pre-installing system Chromium avoids runtime download
 #   - X11 / Xvfb/XFCE4: required for gui_*_zh screenshot tasks
 #   - Chinese fonts    : correct rendering in GUI and screenshot tasks
-# 覆盖 APT 源（替换为国内镜像）
-COPY docker/debian.sources /etc/apt/sources.list.d/debian.sources
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         python3 python3-pip python3-venv \

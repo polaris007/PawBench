@@ -34,3 +34,5 @@ attribution/
 uv.lock
 run_batch.sh
 docs/
+
+.venv/

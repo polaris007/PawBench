@@ -75,6 +75,7 @@ RUN npm install -g "openclaw@${OPENCLAW_VERSION}"
 # inside the container (Debian Bookworm / Python 3.11+ ships this by default).
 RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.12/EXTERNALLY-MANAGED 2>/dev/null || true
 RUN pip3 install --no-cache-dir --break-system-packages \
+    -i https://mirrors.aliyun.com/pypi/simple/ \
     requests \
     pyyaml \
     pandas \
@@ -153,6 +154,7 @@ COPY pawbench/         /opt/copawbench/pawbench/
 COPY run_bench.py      /opt/copawbench/run_bench.py
 COPY requirements.txt  /opt/copawbench/requirements.txt
 RUN pip3 install --no-cache-dir --break-system-packages \
+    -i https://mirrors.aliyun.com/pypi/simple/ \
     -r /opt/copawbench/requirements.txt
 ENV PYTHONPATH=/opt/copawbench
 

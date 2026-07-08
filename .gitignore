@@ -17,7 +17,7 @@ site/pawbench-site.zip
 .githooks/*
 !.githooks/pre-commit
 
-.env
+!.env
 
 # raw evaluation runs (large, not source-of-truth — aggregated outputs land
 # in submissions/ via site/scripts/aggregate_results.py)

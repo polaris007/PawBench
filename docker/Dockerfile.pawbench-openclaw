@@ -133,16 +133,28 @@ RUN openclaw config set agents.defaults.model.primary qwen/qwen3.6-plus 2>/dev/n
 # The old "| head -5" killed the gateway after only 5 lines of output —
 # well before the "[gateway] ready" log line that signals completion of plugin
 # dep installation (~8 s).  This left the deps uninstalled, reproducing the race.
+#
+# The "ready" log line only means the HTTP/WS listener is up; plugin runtime
+# dependencies (acpx, amazon-bedrock, anthropic-vertex, browser, etc.) are
+# installed asynchronously after that and can take 30-90 s more.  Killing the
+# gateway on "ready" leaves them unfinished.  We wait until every staged
+# install has completed (staging count ≤ installed count) plus a 3 s safety
+# margin for the last plugin's final log flush.
 RUN bash -c '\
   openclaw gateway --no-daemon >/tmp/gw_warmup.log 2>&1 & \
   GW_PID=$! ; \
-  for i in $(seq 1 90); do \
-    grep -q "\[gateway\] ready" /tmp/gw_warmup.log 2>/dev/null && break ; \
-    sleep 1 ; \
-  done ; \
-  kill $GW_PID 2>/dev/null ; wait $GW_PID 2>/dev/null ; \
+  for i in $(seq 1 120); do \
+    if grep -q "\[gateway\] ready" /tmp/gw_warmup.log 2>/dev/null; then \
+      S=$(grep -c "staging" /tmp/gw_warmup.log 2>/dev/null || echo 0); \
+      I=$(grep -c "installed" /tmp/gw_warmup.log 2>/dev/null || echo 0); \
+      [ "$S" -gt 0 ] && [ "$S" -le "$I" ] && break; \
+    fi; \
+    sleep 1; \
+  done; \
+  sleep 3; \
+  kill $GW_PID 2>/dev/null; wait $GW_PID 2>/dev/null; \
   echo "=== gateway pre-warm result ===" ; \
-  grep -E "ready|error|fail|WARN" /tmp/gw_warmup.log | head -10 || true'
+  grep -E "ready|error|fail|WARN|installed" /tmp/gw_warmup.log | head -20 || true'
 # Pre-warm the CLI plugin bootstrap path via `agents add` (not `agents list`).
 # The openclaw CLI (agents add, agent --message) runs
 # ensureCliPluginRegistryLoaded independently of the gateway, but the full

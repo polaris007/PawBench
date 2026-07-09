@@ -153,6 +153,11 @@ class ModelConfigManager:
             if custom_base_url:
                 return custom_base_url
 
+        if provider == ProviderType.OPENAI:
+            openai_base_url = os.getenv("OPENAI_BASE_URL")
+            if openai_base_url:
+                return openai_base_url
+
         if provider == ProviderType.DASHSCOPE:
             # Allow override for China mainland or other regions
             dashscope_base_url = os.getenv("DASHSCOPE_BASE_URL")

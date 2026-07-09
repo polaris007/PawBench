@@ -138,13 +138,18 @@ class OpenClawAgent(ContainerAgent):
             if "/" in model_identifier else "openai"
         )
 
+        # Treat base_url from model_config (e.g. OPENAI_BASE_URL from env) as
+        # explicit so that openai/anthropic/google providers write it into
+        # openclaw.json instead of falling back to their built-in default URL.
+        explicit_base_url = bool(self.config.get("base_url") or model_config.base_url)
+
         # Seed openclaw.json before agents add (CLI reads it even without gateway).
         await self._configure_openclaw_json(
             environment,
             api_key=api_key,
             base_url=base_url,
             model_identifier=model_identifier,
-            explicit_base_url=bool(self.config.get("base_url")),
+            explicit_base_url=explicit_base_url,
         )
 
         # Kill any gateway BEFORE agents add / config patches.
@@ -171,7 +176,7 @@ class OpenClawAgent(ContainerAgent):
         await environment.execute_command(
             f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
             f"openclaw agents delete {shlex.quote(agent_id)} --force 2>/dev/null || true",
-            timeout=300,
+            timeout=600,
         )
         add_result = await environment.execute_command(
             f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
@@ -179,7 +184,7 @@ class OpenClawAgent(ContainerAgent):
             f"--model {shlex.quote(openclaw_model)} "
             f"--workspace {shlex.quote(AGENT_WORKSPACE)} "
             "--non-interactive",
-            timeout=300,
+            timeout=600,
         )
         if add_result.get("returncode", 1) != 0:
             import logging
@@ -249,7 +254,7 @@ class OpenClawAgent(ContainerAgent):
             api_key=api_key,
             base_url=base_url,
             model_identifier=model_identifier,
-            explicit_base_url=bool(self.config.get("base_url")),
+            explicit_base_url=bool(self.config.get("base_url") or model_config.base_url),
         )
 
         # Start exactly one gateway after all config is final.
@@ -856,8 +861,9 @@ class OpenClawAgent(ContainerAgent):
         openclaw_model = self._openclaw_model_id(model_identifier)
         env_prefix = self._make_key_env(provider_str, api_key)
         check_result = await environment.execute_command(
-            f"{env_prefix}openclaw agents list 2>&1 || true",
-            timeout=30,
+            f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
+            f"openclaw agents list 2>&1 || true",
+            timeout=600,
         )
         check_output = (check_result.get("stdout") or "") + (check_result.get("stderr") or "")
         if agent_id.lower() not in check_output.lower():
@@ -868,12 +874,12 @@ class OpenClawAgent(ContainerAgent):
             )
             await self._kill_gateway(environment)
             await environment.execute_command(
-                f"{env_prefix}"
+                f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
                 f"openclaw agents add {shlex.quote(agent_id)} "
                 f"--model {shlex.quote(openclaw_model)} "
                 f"--workspace {shlex.quote(AGENT_WORKSPACE)} "
                 "--non-interactive",
-                timeout=120,
+                timeout=600,
             )
             # Overwrite placeholder auth-profiles baked in by agents add.
             _provider_for_auth = self._openclaw_model_id(model_identifier).split("/")[0]
@@ -909,7 +915,7 @@ class OpenClawAgent(ContainerAgent):
                 api_key=api_key,
                 base_url=base_url,
                 model_identifier=model_identifier,
-                explicit_base_url=bool(self.config.get("base_url")),
+                explicit_base_url=bool(self.config.get("base_url") or model_config.base_url),
             )
             await self._start_gateway(
                 environment, api_key=api_key, provider_str=provider_str

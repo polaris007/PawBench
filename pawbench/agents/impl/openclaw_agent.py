@@ -169,12 +169,12 @@ class OpenClawAgent(ContainerAgent):
         # Timeouts here must exceed that warm-up cost; subsequent invocations
         # reuse the cached deps and complete in < 1 s.
         await environment.execute_command(
-            f"{env_prefix}"
+            f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
             f"openclaw agents delete {shlex.quote(agent_id)} --force 2>/dev/null || true",
             timeout=300,
         )
         add_result = await environment.execute_command(
-            f"{env_prefix}"
+            f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
             f"openclaw agents add {shlex.quote(agent_id)} "
             f"--model {shlex.quote(openclaw_model)} "
             f"--workspace {shlex.quote(AGENT_WORKSPACE)} "

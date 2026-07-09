@@ -37,3 +37,5 @@ docs/
 
 .venv/
 .codegraph/
+
+pawbench-openclaw_2.4.tar

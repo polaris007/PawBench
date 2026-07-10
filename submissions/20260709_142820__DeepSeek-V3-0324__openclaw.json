@@ -1,0 +1,51 @@
+{
+  "run": "20260709_142820",
+  "model": "DeepSeek-V3-0324",
+  "harness": "openclaw",
+  "overall": 0.0294,
+  "automated": 0.7272,
+  "judge": 0.5441,
+  "tasks": 150,
+  "tasks_total": 150,
+  "tasks_errored": 0,
+  "tasks_missing": 141,
+  "missing_metadata": 0,
+  "updated": "2026-07-09",
+  "by_complexity": {
+    "L3": 0.4893
+  },
+  "by_environment": {
+    "closed": 0.4893
+  },
+  "by_scenario": {
+    "Content_Creation/Design": 0.4601,
+    "Data_Analytics/Visualization": 0.265,
+    "Data_Analytics/Business_Intelligence": 0.9175
+  },
+  "by_scenario_top": {
+    "Content_Creation": 0.4601,
+    "Data_Analytics": 0.5913
+  },
+  "by_modality": {
+    "multimodal": 0.4893
+  },
+  "by_channel": {
+    "image": 0.4893
+  },
+  "by_capability": {
+    "Tool_Use": 0.4893,
+    "Code_Manipulation": 0.4893,
+    "Logic_Reasoning": 0.2863,
+    "Planning": 0.5913,
+    "Math_Computation": 0.9175
+  },
+  "by_source": {
+    "claweval": 0.4893
+  },
+  "by_category": {
+    "multimodal": 0.4893
+  },
+  "by_grading": {
+    "hybrid": 0.4893
+  }
+}

@@ -547,7 +547,35 @@ def main() -> int:
 
     written = 0
     for run_dir in runs:
-        for model_dir in sorted(p for p in run_dir.iterdir() if p.is_dir()):
+        # Support both layouts:
+        #   result/<run>/<model>/<harness>/            (legacy / direct)
+        #   result/<run>/<benchmark>/<model>/<harness>/ (run_bench.py adds an intermediate
+        #                                                benchmark-name dir, e.g. "pawbench")
+        first_level = sorted(p for p in run_dir.iterdir() if p.is_dir())
+        # If every first-level dir itself contains subdirs that look like harness
+        # directories (JSON files or T* dirs), treat first-level as model dirs.
+        # Otherwise assume a benchmark-name intermediate dir and use its contents.
+        has_summaries_or_tasks = False
+        for d in first_level:
+            subs = [s for s in d.iterdir() if s.is_dir()]
+            if any(s.name.startswith("T") for s in subs):
+                has_summaries_or_tasks = True
+                break
+            if not has_summaries_or_tasks:
+                for s in subs:
+                    if any(f.suffix == ".json" for f in s.iterdir() if f.is_file()):
+                        has_summaries_or_tasks = True
+                        break
+            if has_summaries_or_tasks:
+                break
+        model_candidates = first_level if has_summaries_or_tasks else []
+        if not has_summaries_or_tasks:
+            # Intermediate benchmark-name dir found; use its contents as model dirs
+            for d in first_level:
+                model_candidates.extend(
+                    sorted(p for p in d.iterdir() if p.is_dir())
+                )
+        for model_dir in model_candidates:
             for harness_dir in sorted(p for p in model_dir.iterdir() if p.is_dir()):
                 row = aggregate_pair(run_dir, model_dir, harness_dir, task_meta)
                 if not row:

@@ -1,0 +1,44 @@
+{
+  "run": "20260709_141906",
+  "model": "DeepSeek-V3-0324",
+  "harness": "openclaw",
+  "overall": 0.0066,
+  "automated": 1.0,
+  "judge": 0.95,
+  "tasks": 150,
+  "tasks_total": 150,
+  "tasks_errored": 0,
+  "tasks_missing": 149,
+  "missing_metadata": 0,
+  "updated": "2026-07-09",
+  "by_complexity": {
+    "L1": 0.99
+  },
+  "by_environment": {
+    "closed": 0.99
+  },
+  "by_scenario": {
+    "Content_Creation/Writing": 0.99
+  },
+  "by_scenario_top": {
+    "Content_Creation": 0.99
+  },
+  "by_modality": {
+    "text": 0.99
+  },
+  "by_capability": {
+    "Tool_Use": 0.99
+  },
+  "by_source": {
+    "pinchbench": 0.99
+  },
+  "by_category": {
+    "Content Creation": 0.99
+  },
+  "by_subcategory": {
+    "Writing": 0.99
+  },
+  "by_grading": {
+    "hybrid": 0.99
+  }
+}

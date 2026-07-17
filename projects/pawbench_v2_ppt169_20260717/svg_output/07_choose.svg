@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="ending">
+  <defs>
+    <style>text{font-family:"Microsoft YaHei",Arial,sans-serif}</style>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1280" height="4" fill="#1E3A8A"/>
+
+  <text x="60" y="80" font-size="40" font-weight="bold" fill="#1E3A8A">总结</text>
+  <rect x="60" y="96" width="80" height="3" fill="#2563EB"/>
+
+  <!-- Card 1: 唯一交叉评测 -->
+  <rect x="60" y="130" width="370" height="310" fill="#F2F5FA"/>
+  <rect x="60" y="130" width="370" height="4" fill="#1E3A8A"/>
+  <text x="90" y="175" font-size="48" font-weight="bold" fill="#1E3A8A">01</text>
+  <text x="90" y="215" font-size="22" font-weight="bold" fill="#1A1A2E">交叉评测矩阵</text>
+  <rect x="90" y="230" width="40" height="2" fill="#E2E8F0"/>
+  <text x="90" y="265" font-size="16" fill="#64748B">同时评估 Model、Harness 和</text>
+  <text x="90" y="290" font-size="16" fill="#64748B">Task 三个维度，回答的不只是</text>
+  <text x="90" y="315" font-size="16" fill="#64748B">"模型好不好"，更是"部署后</text>
+  <text x="90" y="340" font-size="16" fill="#64748B">的 Agent 好不好用"</text>
+  <text x="90" y="375" font-size="16" fill="#94A3B8">9 模型 × 3 Harness × 150 任务</text>
+  <text x="90" y="400" font-size="16" fill="#94A3B8">= 4,050 评测单元</text>
+
+  <!-- Card 2: 开源可扩展 -->
+  <rect x="455" y="130" width="370" height="310" fill="#F2F5FA"/>
+  <rect x="455" y="130" width="370" height="4" fill="#2563EB"/>
+  <text x="485" y="175" font-size="48" font-weight="bold" fill="#2563EB">02</text>
+  <text x="485" y="215" font-size="22" font-weight="bold" fill="#1A1A2E">灵活可扩展</text>
+  <rect x="485" y="230" width="40" height="2" fill="#E2E8F0"/>
+  <text x="485" y="265" font-size="16" fill="#64748B">Task、Judge、Runner 完全解耦</text>
+  <text x="485" y="290" font-size="16" fill="#64748B">可自定义评测任务和评分规则</text>
+  <text x="485" y="315" font-size="16" fill="#64748B">五维标签体系支持精细化</text>
+  <text x="485" y="340" font-size="16" fill="#64748B">切片分析，定位薄弱环节</text>
+  <text x="485" y="375" font-size="16" fill="#94A3B8">阿里通义实验室</text>
+  <text x="485" y="400" font-size="16" fill="#94A3B8">AgentScope 团队出品</text>
+
+  <!-- Card 3: 企业就绪 -->
+  <rect x="850" y="130" width="370" height="310" fill="#F2F5FA"/>
+  <rect x="850" y="130" width="370" height="4" fill="#10B981"/>
+  <text x="880" y="175" font-size="48" font-weight="bold" fill="#10B981">03</text>
+  <text x="880" y="215" font-size="22" font-weight="bold" fill="#1A1A2E">内网安全就绪</text>
+  <rect x="880" y="230" width="40" height="2" fill="#E2E8F0"/>
+  <text x="880" y="265" font-size="16" fill="#64748B">Docker 沙箱隔离运行</text>
+  <text x="880" y="290" font-size="16" fill="#64748B">完全私有化部署，数据不出网</text>
+  <text x="880" y="315" font-size="16" fill="#64748B">可集成 CI/CD，自动回归测试</text>
+  <text x="880" y="340" font-size="16" fill="#64748B">支持 OpenAI 兼容 API</text>
+  <text x="880" y="375" font-size="16" fill="#94A3B8">Python 3.11+ / Docker / Node.js</text>
+  <text x="880" y="400" font-size="16" fill="#94A3B8">Apache 2.0 开源协议</text>
+
+  <!-- Closing insight: broader industry perspective -->
+  <rect x="60" y="468" width="1160" height="2" fill="#E2E8F0"/>
+  <text x="60" y="508" font-size="20" font-weight="bold" fill="#1E3A8A">Agent 评测正处于关键转折期</text>
+  <text x="60" y="542" font-size="17" fill="#64748B">从手工 cherry-pick 案例判定，转向标准化、自动化、多维度的量化评测，是 Agent 从实验走向生产的前提。</text>
+  <text x="60" y="572" font-size="17" fill="#64748B">一个完整的评测体系需要同时覆盖模型能力、任务框架和运行环境三个独立变量，才能真正回答"我的 Agent 到底好不好用"。</text>
+  <text x="60" y="602" font-size="17" fill="#64748B">开源、可扩展、内网安全的评测基础设施，是推动 Agent 工程化的关键一环。</text>
+
+  <text x="1220" y="700" font-size="14" fill="#94A3B8" text-anchor="end">07 / 07</text>
+  <rect x="0" y="718" width="1280" height="2" fill="#E2E8F0"/>
+</svg>

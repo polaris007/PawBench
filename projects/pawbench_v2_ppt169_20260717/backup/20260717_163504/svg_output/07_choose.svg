@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="ending">
+  <defs>
+    <style>text{font-family:"Microsoft YaHei",Arial,sans-serif}</style>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1280" height="4" fill="#1E3A8A"/>
+
+  <text x="60" y="80" font-size="40" font-weight="bold" fill="#1E3A8A">总结</text>
+  <rect x="60" y="96" width="80" height="3" fill="#2563EB"/>
+
+  <!-- Card 1: 唯一交叉评测 -->
+  <rect x="60" y="130" width="370" height="260" fill="#F2F5FA"/>
+  <rect x="60" y="130" width="370" height="4" fill="#1E3A8A"/>
+  <text x="90" y="175" font-size="48" font-weight="bold" fill="#1E3A8A">01</text>
+  <text x="90" y="215" font-size="22" font-weight="bold" fill="#1A1A2E">唯一交叉评测平台</text>
+  <rect x="90" y="230" width="40" height="2" fill="#E2E8F0"/>
+  <text x="90" y="262" font-size="16" fill="#64748B">同时评估 Model + Harness + Task</text>
+  <text x="90" y="290" font-size="16" fill="#64748B">适合既自研 Agent 又调优模型的团队</text>
+  <text x="90" y="318" font-size="16" fill="#64748B">Harness 差距量化 — 发现部署瓶颈</text>
+  <text x="90" y="346" font-size="16" fill="#64748B">150 道标准化任务覆盖 7 种原子能力</text>
+
+  <!-- Card 2: 开源可扩展 -->
+  <rect x="455" y="130" width="370" height="260" fill="#F2F5FA"/>
+  <rect x="455" y="130" width="370" height="4" fill="#2563EB"/>
+  <text x="485" y="175" font-size="48" font-weight="bold" fill="#2563EB">02</text>
+  <text x="485" y="215" font-size="22" font-weight="bold" fill="#1A1A2E">开源生态 + 可扩展</text>
+  <rect x="485" y="230" width="40" height="2" fill="#E2E8F0"/>
+  <text x="485" y="262" font-size="16" fill="#64748B">基于 OpenJudge 评测引擎</text>
+  <text x="485" y="290" font-size="16" fill="#64748B">Task / Judge / Runner 完全解耦</text>
+  <text x="485" y="318" font-size="16" fill="#64748B">可自定义任务、Judge、Harness</text>
+  <text x="485" y="346" font-size="16" fill="#64748B">阿里通义实验室持续维护</text>
+
+  <!-- Card 3: 企业就绪 -->
+  <rect x="850" y="130" width="370" height="260" fill="#F2F5FA"/>
+  <rect x="850" y="130" width="370" height="4" fill="#10B981"/>
+  <text x="880" y="175" font-size="48" font-weight="bold" fill="#10B981">03</text>
+  <text x="880" y="215" font-size="22" font-weight="bold" fill="#1A1A2E">企业就绪</text>
+  <rect x="880" y="230" width="40" height="2" fill="#E2E8F0"/>
+  <text x="880" y="262" font-size="16" fill="#64748B">Docker 沙箱内网部署，数据不出网</text>
+  <text x="880" y="290" font-size="16" fill="#64748B">可集成到 CI/CD 流水线</text>
+  <text x="880" y="318" font-size="16" fill="#64748B">每次发布自动回归测试</text>
+  <text x="880" y="346" font-size="16" fill="#64748B">Python 3.11+ / Docker / Node.js 20+</text>
+
+  <!-- GitHub CTA -->
+  <rect x="60" y="420" width="1160" height="80" fill="#1E3A8A"/>
+  <text x="190" y="450" font-size="22" font-weight="bold" fill="#FFFFFF">开始使用</text>
+  <text x="190" y="478" font-size="16" fill="#93C5FD">github.com/agentscope-ai/PawBench</text>
+  <rect x="850" y="440" width="240" height="40" fill="#FFFFFF"/>
+  <text x="970" y="466" font-size="18" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Star on GitHub ★</text>
+
+  <!-- Bottom metadata -->
+  <rect x="60" y="530" width="1160" height="1" fill="#E2E8F0"/>
+  <text x="60" y="570" font-size="16" fill="#64748B">PawBench v1.0  ·  150 tasks  ·  6 datasets  ·  3 Harnesses  ·  7 capabilities</text>
+  <text x="60" y="598" font-size="16" fill="#64748B">阿里通义实验室 AgentScope 团队  ·  License: Apache 2.0</text>
+  <text x="1220" y="700" font-size="14" fill="#94A3B8" text-anchor="end">07 / 07</text>
+  <rect x="0" y="718" width="1280" height="2" fill="#E2E8F0"/>
+</svg>

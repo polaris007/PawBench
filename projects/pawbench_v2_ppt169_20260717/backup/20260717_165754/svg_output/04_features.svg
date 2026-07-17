@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <defs>
+    <style>text{font-family:"Microsoft YaHei",Arial,sans-serif}</style>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1280" height="4" fill="#1E3A8A"/>
+  <text x="60" y="36" font-size="14" fill="#94A3B8">04 / 07</text>
+  <text x="60" y="80" font-size="40" font-weight="bold" fill="#1E3A8A">平台能力与评测设计</text>
+  <rect x="60" y="96" width="80" height="3" fill="#2563EB"/>
+
+  <!-- Left: Core Formula -->
+  <rect x="60" y="120" width="560" height="110" fill="#F2F5FA"/>
+  <rect x="60" y="120" width="560" height="4" fill="#1E3A8A"/>
+  <text x="84" y="152" font-size="20" font-weight="bold" fill="#1E3A8A">核心设计理念</text>
+  <text x="84" y="190" font-size="24" font-weight="bold" fill="#1A1A2E">Agent 表现 = f(Model, Harness)</text>
+  <text x="84" y="218" font-size="15" fill="#64748B">Model 决定能力上限 · Harness 决定稳定落地 · 两者独立评测才能发现真实瓶颈</text>
+
+  <!-- Right: 3-step flow -->
+  <rect x="640" y="120" width="580" height="110" fill="#F2F5FA"/>
+  <rect x="640" y="120" width="580" height="4" fill="#10B981"/>
+  <text x="664" y="152" font-size="20" font-weight="bold" fill="#1E3A8A">三步入式评测流程</text>
+
+  <rect x="664" y="168" width="28" height="28" fill="#1E3A8A"/>
+  <text x="678" y="188" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="700" y="188" font-size="16" font-weight="bold" fill="#1A1A2E">选择模型与 Harness 组合</text>
+  <line x1="678" y1="200" x2="678" y2="212" stroke="#E2E8F0" stroke-width="1" opacity="0.5"/>
+
+  <rect x="830" y="168" width="28" height="28" fill="#1E3A8A"/>
+  <text x="844" y="188" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="878" y="188" font-size="16" font-weight="bold" fill="#1A1A2E">Docker 沙箱隔离运行</text>
+  <line x1="844" y1="200" x2="844" y2="212" stroke="#E2E8F0" stroke-width="1" opacity="0.5"/>
+
+  <rect x="1020" y="168" width="28" height="28" fill="#1E3A8A"/>
+  <text x="1034" y="188" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="1064" y="188" font-size="16" font-weight="bold" fill="#1A1A2E">自动 + LLM 双重评分</text>
+
+  <!-- Left: 7 Capabilities -->
+  <rect x="60" y="250" width="560" height="310" fill="#F2F5FA"/>
+  <rect x="60" y="250" width="560" height="4" fill="#2563EB"/>
+  <text x="84" y="282" font-size="20" font-weight="bold" fill="#1E3A8A">七维原子能力诊断</text>
+
+  <rect x="84" y="302" width="240" height="30" fill="#E8F0FE"/>
+  <text x="96" y="323" font-size="14" font-weight="bold" fill="#1E3A8A">Tool_Use</text>
+  <text x="340" y="323" font-size="14" fill="#64748B">工具调用与编排</text>
+
+  <rect x="84" y="338" width="240" height="30" fill="#FFFFFF"/>
+  <text x="96" y="359" font-size="14" font-weight="bold" fill="#1E3A8A">Skill_Use</text>
+  <text x="340" y="359" font-size="14" fill="#64748B">Skill 发现与执行</text>
+
+  <rect x="84" y="374" width="240" height="30" fill="#E8F0FE"/>
+  <text x="96" y="395" font-size="14" font-weight="bold" fill="#1E3A8A">Code_Manipulation</text>
+  <text x="340" y="395" font-size="14" fill="#64748B">代码操作与修复</text>
+
+  <rect x="84" y="410" width="240" height="30" fill="#FFFFFF"/>
+  <text x="96" y="431" font-size="14" font-weight="bold" fill="#1E3A8A">Logic_Reasoning</text>
+  <text x="340" y="431" font-size="14" fill="#64748B">逻辑推理</text>
+
+  <rect x="84" y="446" width="240" height="30" fill="#E8F0FE"/>
+  <text x="96" y="467" font-size="14" font-weight="bold" fill="#1E3A8A">Planning</text>
+  <text x="340" y="467" font-size="14" fill="#64748B">多步任务规划</text>
+
+  <rect x="84" y="482" width="240" height="30" fill="#FFFFFF"/>
+  <text x="96" y="503" font-size="14" font-weight="bold" fill="#1E3A8A">Math_Computation</text>
+  <text x="340" y="503" font-size="14" fill="#64748B">数学计算</text>
+
+  <rect x="84" y="518" width="240" height="30" fill="#E8F0FE"/>
+  <text x="96" y="539" font-size="14" font-weight="bold" fill="#1E3A8A">Self_Verification</text>
+  <text x="340" y="539" font-size="14" fill="#64748B">自我验证与纠错</text>
+
+  <!-- Right: Design highlights -->
+  <rect x="640" y="250" width="580" height="155" fill="#F2F5FA"/>
+  <rect x="640" y="250" width="580" height="4" fill="#1E3A8A"/>
+  <text x="664" y="282" font-size="20" font-weight="bold" fill="#1E3A8A">平台设计要点</text>
+
+  <text x="664" y="315" font-size="16" font-weight="bold" fill="#1A1A2E">评测策略</text>
+  <text x="664" y="338" font-size="15" fill="#64748B">Model × Harness × Task 三维交叉设计，独立衡量每个因素贡献</text>
+  <text x="664" y="368" font-size="15" fill="#64748B">每任务独立 Docker 容器，严格超时与重试，确保可复现</text>
+
+  <rect x="640" y="370" width="10" height="2" fill="#E2E8F0"/>
+
+  <text x="664" y="395" font-size="16" font-weight="bold" fill="#1A1A2E">评分模式</text>
+  <text x="664" y="415" font-size="15" fill="#64748B">automated（确定性断言检查）· llm_judge（语义评估）· hybrid（混合）</text>
+
+  <!-- Right bottom: Scenarios + Complexity -->
+  <rect x="640" y="425" width="580" height="135" fill="#F2F5FA"/>
+  <rect x="640" y="425" width="580" height="4" fill="#10B981"/>
+
+  <text x="664" y="458" font-size="18" font-weight="bold" fill="#1E3A8A">覆盖场景</text>
+  <text x="664" y="485" font-size="15" fill="#1A1A2E">办公协同 · 软件工程 · 数据分析 · 信息检索 · 自动化脚本</text>
+
+  <text x="664" y="520" font-size="18" font-weight="bold" fill="#1E3A8A">任务复杂度</text>
+  <text x="664" y="545" font-size="15" fill="#1A1A2E">L1（1-2步）· L2（3-5步）· L3（5+步含条件分支）— 适配不同评测需求</text>
+
+  <!-- Bottom: current coverage note -->
+  <rect x="60" y="580" width="1160" height="48" fill="#1E3A8A"/>
+  <text x="640" y="610" font-size="18" fill="#FFFFFF" text-anchor="middle">当前已评测 9 个模型 × 3 个 Harness × 150 道任务 = 4,050 个评测单元</text>
+
+  <rect x="60" y="700" width="1160" height="1" fill="#E2E8F0"/>
+</svg>

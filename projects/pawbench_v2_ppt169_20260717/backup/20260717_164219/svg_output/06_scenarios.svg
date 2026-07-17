@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <defs>
+    <style>text{font-family:"Microsoft YaHei",Arial,sans-serif}</style>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1280" height="4" fill="#1E3A8A"/>
+  <text x="60" y="36" font-size="14" fill="#94A3B8">06 / 07</text>
+  <text x="60" y="80" font-size="40" font-weight="bold" fill="#1E3A8A">应用场景与集成路径</text>
+  <rect x="60" y="96" width="80" height="3" fill="#2563EB"/>
+
+  <!-- Left: Scenarios -->
+  <text x="60" y="145" font-size="22" font-weight="bold" fill="#1E3A8A">典型应用场景</text>
+
+  <rect x="60" y="165" width="550" height="70" fill="#F2F5FA"/>
+  <rect x="60" y="165" width="4" height="70" fill="#1E3A8A"/>
+  <text x="82" y="192" font-size="19" font-weight="bold" fill="#1A1A2E">模型升级评估</text>
+  <text x="82" y="218" font-size="15" fill="#64748B">固定 Harness，横向跑新旧模型，看整体分和切片分变化</text>
+
+  <rect x="60" y="248" width="550" height="70" fill="#F2F5FA"/>
+  <rect x="60" y="248" width="4" height="70" fill="#1E3A8A"/>
+  <text x="82" y="275" font-size="19" font-weight="bold" fill="#1A1A2E">Agent 框架迭代</text>
+  <text x="82" y="301" font-size="15" fill="#64748B">固定模型，横向跑不同版本 Harness，验证改动未引入退化</text>
+
+  <rect x="60" y="331" width="550" height="70" fill="#F2F5FA"/>
+  <rect x="60" y="331" width="4" height="70" fill="#1E3A8A"/>
+  <text x="82" y="358" font-size="19" font-weight="bold" fill="#1A1A2E">自定义 Skill 验证</text>
+  <text x="82" y="384" font-size="15" fill="#64748B">新增业务 Skill 后，在相关切片上验证发现和执行效果</text>
+
+  <rect x="60" y="414" width="550" height="70" fill="#F2F5FA"/>
+  <rect x="60" y="414" width="4" height="70" fill="#1E3A8A"/>
+  <text x="82" y="441" font-size="19" font-weight="bold" fill="#1A1A2E">回归测试流水线</text>
+  <text x="82" y="467" font-size="15" fill="#64748B">集成到 CI 流程，每次 Agent / 模型发布自动触发评测</text>
+
+  <!-- Value mapping -->
+  <text x="60" y="525" font-size="22" font-weight="bold" fill="#1E3A8A">企业需求与 PawBench 能力适配</text>
+
+  <rect x="60" y="548" width="270" height="32" fill="#1E3A8A"/>
+  <text x="82" y="570" font-size="14" font-weight="bold" fill="#FFFFFF">需求</text>
+  <rect x="330" y="548" width="280" height="32" fill="#1E3A8A"/>
+  <text x="352" y="570" font-size="14" font-weight="bold" fill="#FFFFFF">PawBench 能力</text>
+
+  <rect x="60" y="580" width="270" height="22" fill="#F8FAFC"/>
+  <text x="72" y="596" font-size="13" fill="#64748B">内网私有化部署</text>
+  <rect x="330" y="580" width="280" height="22" fill="#F8FAFC"/>
+  <text x="342" y="596" font-size="13" fill="#10B981">✓ 开源 + Docker，数据不出内网</text>
+
+  <rect x="60" y="602" width="270" height="22" fill="#FFFFFF"/>
+  <text x="72" y="618" font-size="13" fill="#64748B">评测完整 Agent 系统</text>
+  <rect x="330" y="602" width="280" height="22" fill="#FFFFFF"/>
+  <text x="342" y="618" font-size="13" fill="#10B981">✓ Model × Harness × Task 全覆盖</text>
+
+  <rect x="60" y="624" width="270" height="22" fill="#F8FAFC"/>
+  <text x="72" y="640" font-size="13" fill="#64748B">自定义任务扩展</text>
+  <rect x="330" y="624" width="280" height="22" fill="#F8FAFC"/>
+  <text x="342" y="640" font-size="13" fill="#10B981">✓ OpenJudge 生态，灵活可扩展</text>
+
+  <rect x="60" y="646" width="270" height="22" fill="#FFFFFF"/>
+  <text x="72" y="662" font-size="13" fill="#64748B">Skill 能力评估</text>
+  <rect x="330" y="646" width="280" height="22" fill="#FFFFFF"/>
+  <text x="342" y="662" font-size="13" fill="#10B981">✓ 7 大原子能力含 Skill_Use，15 道专项任务</text>
+
+  <rect x="60" y="668" width="270" height="22" fill="#F8FAFC"/>
+  <text x="72" y="684" font-size="13" fill="#64748B">量化回归</text>
+  <rect x="330" y="668" width="280" height="22" fill="#F8FAFC"/>
+  <text x="342" y="684" font-size="13" fill="#10B981">✓ 标准化任务 + 自动评分，CI 可集成</text>
+
+  <!-- Right: 3-phase integration -->
+  <text x="660" y="145" font-size="22" font-weight="bold" fill="#1E3A8A">三阶段集成路径</text>
+
+  <rect x="660" y="170" width="560" height="105" fill="#F2F5FA"/>
+  <rect x="660" y="170" width="6" height="105" fill="#1E3A8A"/>
+  <text x="690" y="200" font-size="20" font-weight="bold" fill="#1E3A8A">Phase 1 — 部署环境</text>
+  <text x="690" y="230" font-size="16" fill="#64748B">⏱ 预计 2 周</text>
+  <text x="690" y="258" font-size="16" fill="#1A1A2E">Docker 部署，拉取 PawBench 仓库，配置 API 密钥，跑通全量 150 任务</text>
+
+  <rect x="660" y="290" width="560" height="105" fill="#F2F5FA"/>
+  <rect x="660" y="290" width="6" height="105" fill="#2563EB"/>
+  <text x="690" y="320" font-size="20" font-weight="bold" fill="#1E3A8A">Phase 2 — 适配内网</text>
+  <text x="690" y="350" font-size="16" fill="#64748B">⏱ 预计 2 周</text>
+  <text x="690" y="378" font-size="16" fill="#1A1A2E">改造依赖公网的任务为离线可运行，自定义 20-30 道业务相关任务</text>
+
+  <rect x="660" y="410" width="560" height="105" fill="#F2F5FA"/>
+  <rect x="660" y="410" width="6" height="105" fill="#10B981"/>
+  <text x="690" y="440" font-size="20" font-weight="bold" fill="#1E3A8A">Phase 3 — 持续优化</text>
+  <text x="690" y="470" font-size="16" fill="#64748B">♾ 持续进行</text>
+  <text x="690" y="498" font-size="16" fill="#1A1A2E">嵌入 Agent 迭代流程，每次发布自动评测，切片分析推动持续改进</text>
+
+  <!-- Timeline bar -->
+  <rect x="660" y="540" width="560" height="4" fill="#E2E8F0"/>
+  <rect x="660" y="540" width="180" height="4" fill="#1E3A8A"/>
+  <rect x="850" y="540" width="180" height="4" fill="#2563EB"/>
+  <rect x="1040" y="540" width="180" height="4" fill="#10B981"/>
+  <text x="660" y="565" font-size="14" fill="#64748B">Phase 1</text>
+  <text x="850" y="565" font-size="14" fill="#64748B">Phase 2</text>
+  <text x="1040" y="565" font-size="14" fill="#64748B">Phase 3</text>
+
+  <rect x="660" y="590" width="560" height="55" fill="#1E3A8A"/>
+  <text x="940" y="616" font-size="15" fill="#FFFFFF" text-anchor="middle">python run_bench.py --agents qwenpaw openclaw hermes</text>
+  <text x="940" y="638" font-size="14" fill="#93C5FD" text-anchor="middle">支持 OpenAI 兼容 API 和私有化模型接入</text>
+
+  <rect x="60" y="700" width="1160" height="1" fill="#E2E8F0"/>
+</svg>

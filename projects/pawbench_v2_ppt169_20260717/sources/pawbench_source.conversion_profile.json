@@ -1,0 +1,28 @@
+{
+  "schema": "ppt-master.source_to_md.profile.v1",
+  "converter": "ppt_to_md.py",
+  "conversion_type": "pptx",
+  "source": {
+    "path": "pawbench_intro_20260717_112821.pptx",
+    "name": "pawbench_intro_20260717_112821.pptx",
+    "suffix": ".pptx",
+    "kind": "file",
+    "exists": true,
+    "size_bytes": 35583
+  },
+  "outputs": {
+    "markdown": "pawbench_source.md",
+    "asset_dir": "",
+    "image_manifest": "",
+    "image_count": 0
+  },
+  "markdown": {
+    "line_count": 268,
+    "char_count": 2983,
+    "heading_count": 11,
+    "table_count": 0,
+    "image_ref_count": 0,
+    "link_count": 0
+  },
+  "warnings": []
+}

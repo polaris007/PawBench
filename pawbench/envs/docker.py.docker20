@@ -49,7 +49,7 @@ class DockerEnvironment(BaseEnvironment):
         subprocess.run(["docker", "rm", "-f", self.name], capture_output=True)
 
         cmd = ["docker", "run", "-d", "--name", self.name]
-        cmd.extend(["--security-opt", "seccomp=unconfined"])
+#        cmd.extend(["--security-opt", "seccomp=unconfined"])
 
         # Add volume mounts
         for host_path, container_path in self.volumes.items():

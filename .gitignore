@@ -33,10 +33,11 @@ task_analysis/
 attribution/
 uv.lock
 run_batch.sh
-docs/
 
 .venv/
 .codegraph/
+.codebuddy/
 
 slides/
+output/
 

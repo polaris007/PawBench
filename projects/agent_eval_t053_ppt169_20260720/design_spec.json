@@ -1,0 +1,23 @@
+{
+  "persona": "professional, data-dense, corporate minimal — Agent evaluation platform deck",
+  "density": "high",
+  "aspect": "16:9",
+  "canvas": { "width_px": 1280, "height_px": 720 },
+  "palette": {
+    "background": "#FFFFFF",
+    "background_alt": "#F2F5FA",
+    "text": "#1A1A2E",
+    "text_alt": "#1F497D",
+    "primary": "#1E3A8A",
+    "accent_blue": "#2563EB",
+    "accent_light": "#93C5FD",
+    "accent_soft": "#E2E8F0",
+    "accent_gray": "#64748B",
+    "good": "#10B981",
+    "bad": "#EF4444",
+    "soft_blue_bg": "#E8F0FE"
+  },
+  "font_pair": { "title": "Microsoft YaHei", "body": "Microsoft YaHei", "latin": "Arial" },
+  "sizes": { "title": 30, "body": 18, "small": 12 },
+  "style_notes": "Sharp edges, no gradients; deep-blue headers/bands; white cards with light-blue (#E8F0FE) or gray fills; green for strengths/checks, red for weaknesses; star ratings (★) for scores; consistent footer '0X / 07'."
+}

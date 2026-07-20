@@ -18,7 +18,7 @@
 
   <!-- Left: 痛点 -->
   <text x="90" y="205" font-size="24" font-weight="bold" fill="#1A1A2E">升级效果无法量化</text>
-  <text x="90" y="245" font-size="20" fill="#64748B">模型 / Agent 升级后效果好坏依赖 cherry-pick 案例判定</text>
+  <text x="90" y="245" font-size="20" fill="#64748B">模型 / Agent 升级后效果好坏，依赖人工挑选少量案例来判定</text>
   <text x="90" y="278" font-size="20" fill="#64748B">缺乏客观数据支撑，无法形成可靠的技术决策依据</text>
 
   <!-- Divider -->

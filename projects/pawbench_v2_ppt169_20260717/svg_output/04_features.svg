@@ -16,23 +16,24 @@
   <text x="84" y="218" font-size="15" fill="#64748B">Model 决定能力上限 · Harness 决定稳定落地 · 两者独立评测才能发现真实瓶颈</text>
 
   <!-- Right: 3-step flow -->
-  <rect x="640" y="120" width="580" height="110" fill="#F2F5FA"/>
+  <rect x="640" y="120" width="580" height="116" fill="#F2F5FA"/>
   <rect x="640" y="120" width="580" height="4" fill="#10B981"/>
-  <text x="664" y="152" font-size="20" font-weight="bold" fill="#1E3A8A">三步入式评测流程</text>
+  <text x="664" y="152" font-size="20" font-weight="bold" fill="#1E3A8A">三步评测流程</text>
 
-  <rect x="664" y="168" width="28" height="28" fill="#1E3A8A"/>
-  <text x="678" y="188" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
-  <text x="700" y="188" font-size="16" font-weight="bold" fill="#1A1A2E">选择模型与 Harness 组合</text>
-  <line x1="678" y1="200" x2="678" y2="212" stroke="#E2E8F0" stroke-width="1" opacity="0.5"/>
+  <rect x="739" y="164" width="28" height="28" fill="#1E3A8A"/>
+  <text x="753" y="184" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="753" y="210" font-size="14" font-weight="bold" fill="#1A1A2E" text-anchor="middle">选择模型与</text>
+  <text x="753" y="228" font-size="14" font-weight="bold" fill="#1A1A2E" text-anchor="middle">Harness 组合</text>
 
-  <rect x="830" y="168" width="28" height="28" fill="#1E3A8A"/>
-  <text x="844" y="188" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
-  <text x="878" y="188" font-size="16" font-weight="bold" fill="#1A1A2E">Docker 沙箱隔离运行</text>
-  <line x1="844" y1="200" x2="844" y2="212" stroke="#E2E8F0" stroke-width="1" opacity="0.5"/>
+  <rect x="918" y="164" width="28" height="28" fill="#1E3A8A"/>
+  <text x="932" y="184" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="932" y="210" font-size="14" font-weight="bold" fill="#1A1A2E" text-anchor="middle">Docker 沙箱</text>
+  <text x="932" y="228" font-size="14" font-weight="bold" fill="#1A1A2E" text-anchor="middle">隔离运行</text>
 
-  <rect x="1020" y="168" width="28" height="28" fill="#1E3A8A"/>
-  <text x="1034" y="188" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
-  <text x="1064" y="188" font-size="16" font-weight="bold" fill="#1A1A2E">自动 + LLM 双重评分</text>
+  <rect x="1097" y="164" width="28" height="28" fill="#1E3A8A"/>
+  <text x="1111" y="184" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="1111" y="210" font-size="14" font-weight="bold" fill="#1A1A2E" text-anchor="middle">自动 + LLM</text>
+  <text x="1111" y="228" font-size="14" font-weight="bold" fill="#1A1A2E" text-anchor="middle">双重评分</text>
 
   <!-- Left: 7 Capabilities -->
   <rect x="60" y="250" width="560" height="310" fill="#F2F5FA"/>

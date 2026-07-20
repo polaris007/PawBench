@@ -50,7 +50,7 @@
   <!-- Closing insight: broader industry perspective -->
   <rect x="60" y="468" width="1160" height="2" fill="#E2E8F0"/>
   <text x="60" y="508" font-size="20" font-weight="bold" fill="#1E3A8A">Agent 评测正处于关键转折期</text>
-  <text x="60" y="542" font-size="17" fill="#64748B">从手工 cherry-pick 案例判定，转向标准化、自动化、多维度的量化评测，是 Agent 从实验走向生产的前提。</text>
+  <text x="60" y="542" font-size="17" fill="#64748B">从手工挑选个别案例做主观判断，转向标准化、自动化、多维度的量化评测，是 Agent 从实验走向生产的前提。</text>
   <text x="60" y="572" font-size="17" fill="#64748B">一个完整的评测体系需要同时覆盖模型能力、任务框架和运行环境三个独立变量，才能真正回答"我的 Agent 到底好不好用"。</text>
   <text x="60" y="602" font-size="17" fill="#64748B">开源、可扩展、内网安全的评测基础设施，是推动 Agent 工程化的关键一环。</text>
 

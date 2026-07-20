@@ -6,21 +6,14 @@
   <rect x="0" y="0" width="1280" height="5" fill="#1E3A8A"/>
 
   <!-- Main title area -->
-  <text x="60" y="180" font-size="64" font-weight="bold" fill="#1E3A8A">Agent 评测新范式</text>
-  <rect x="60" y="210" width="120" height="4" fill="#2563EB"/>
+  <text x="60" y="250" font-size="64" font-weight="bold" fill="#1E3A8A">Agent 评测新范式</text>
+  <rect x="60" y="282" width="120" height="4" fill="#2563EB"/>
 
   <!-- Formula hero -->
-  <text x="60" y="300" font-size="52" font-weight="bold" fill="#1A1A2E">Agent 表现 = f(Model, Harness)</text>
+  <text x="60" y="375" font-size="52" font-weight="bold" fill="#1A1A2E">Agent 表现 = f(Model, Harness)</text>
 
   <!-- Subtitle -->
-  <text x="60" y="370" font-size="28" fill="#64748B">Model × Harness 交叉评测基准</text>
-
-  <!-- Separator -->
-  <rect x="60" y="415" width="80" height="1" fill="#E2E8F0"/>
-
-  <!-- Metadata -->
-  <text x="60" y="470" font-size="20" fill="#94A3B8">PawBench — 阿里通义实验室 AgentScope 团队</text>
-  <text x="60" y="500" font-size="20" fill="#94A3B8">2025</text>
+  <text x="60" y="440" font-size="28" fill="#64748B">Model × Harness 交叉评测基准</text>
 
   <!-- Bottom accent -->
   <rect x="0" y="716" width="1280" height="4" fill="#E2E8F0"/>

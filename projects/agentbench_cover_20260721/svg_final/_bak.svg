@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="cover">
+  <defs>
+    <style>text{font-family:"Microsoft YaHei",Arial,sans-serif}</style>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1280" height="5" fill="#1E3A8A"/>
+
+  <!-- Kicker -->
+  <text x="80" y="170" font-size="16" font-weight="bold" fill="#2563EB" letter-spacing="3">PAWBENCH · AGENT EVALUATION</text>
+
+  <!-- Main title -->
+  <text x="80" y="268" font-size="56" font-weight="bold" fill="#1E3A8A">基于 PawBench 的 Agent 评测</text>
+  <rect x="80" y="292" width="140" height="5" fill="#2563EB"/>
+
+  <!-- Formula hero -->
+  <text x="80" y="372" font-size="40" font-weight="bold" fill="#1A1A2E">Agent 表现 = f(Model, Harness)</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="426" font-size="26" fill="#64748B">Model × Harness × Task 三维交叉评测体系</text>
+
+  <!-- Feature line -->
+  <text x="80" y="474" font-size="18" fill="#64748B">150 道标准化任务 · 自动评分引擎 · Docker 内网隔离 · 七维原子能力诊断</text>
+
+  <!-- Right panel: three-axis cross evaluation -->
+  <rect x="860" y="196" width="340" height="324" rx="16" fill="#F2F5FA"/>
+  <text x="884" y="236" font-size="18" font-weight="bold" fill="#1E3A8A">三维交叉评测</text>
+
+  <rect x="884" y="262" width="292" height="56" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <circle cx="912" cy="290" r="6" fill="#1E3A8A"/>
+  <text x="930" y="296" font-size="16" fill="#1A1A2E">Model · 决定能力上限</text>
+
+  <rect x="884" y="334" width="292" height="56" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <circle cx="912" cy="362" r="6" fill="#2563EB"/>
+  <text x="930" y="368" font-size="16" fill="#1A1A2E">Harness · 决定稳定落地</text>
+
+  <rect x="884" y="406" width="292" height="56" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <circle cx="912" cy="434" r="6" fill="#10B981"/>
+  <text x="930" y="440" font-size="16" fill="#1A1A2E">Task · 决定任务场景</text>
+
+  <text x="884" y="492" font-size="13" fill="#64748B">三者独立评测，定位真实瓶颈</text>
+
+  <!-- Bottom band -->
+  <rect x="0" y="672" width="1280" height="48" fill="#F2F5FA"/>
+  <text x="80" y="702" font-size="14" fill="#94A3B8">PawBench · 阿里通义实验室 AgentScope 团队出品 · Apache 2.0 开源协议</text>
+  <text x="1200" y="702" font-size="14" fill="#94A3B8" text-anchor="end">封面</text>
+</svg>

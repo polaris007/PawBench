@@ -1134,7 +1134,6 @@ DEST={AGENT_WORKSPACE}
 mkdir -p "$DEST/output"
 for src_dir in /root/.openclaw/workspace ~/.openclaw/workspace; do
   [ -d "$src_dir" ] || continue
-  # skip if already pointing at AGENT_WORKSPACE (symlink or same inode)
   real_src=$(realpath "$src_dir" 2>/dev/null || echo "$src_dir")
   real_dst=$(realpath "$DEST" 2>/dev/null || echo "$DEST")
   [ "$real_src" = "$real_dst" ] && continue
@@ -1147,6 +1146,8 @@ for src_dir in /root/.openclaw/workspace ~/.openclaw/workspace; do
     [ ! -s "$dest" ] && [ -s "$f" ] && cp "$f" "$dest" 2>/dev/null || true
   done
 done
+# Copy openclaw.json for post-run config inspection
+cp /root/.openclaw/openclaw.json "$DEST/openclaw.json" 2>/dev/null || true
 """
         await environment.execute_command(_SYNC_CMD, timeout=30)
 

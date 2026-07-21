@@ -1,0 +1,5582 @@
+{
+  "schema": "template_fill_pptx_library.v1",
+  "source_pptx": "D:\\workplace\\github\\PawBench\\docs\\PPT\\Agent评测.pptx",
+  "slide_count": 7,
+  "canvas_px": {
+    "width": 1280,
+    "height": 720
+  },
+  "slides": [
+    {
+      "slide_index": 1,
+      "page_type": "cover_candidate",
+      "text_summary": "01 / 07\n为什么需要 Agent 评测\n两大核心痛点驱动 Agent 评测需求，PawBench 提供标准化解法\n升级效果无法量化\n模型 / Agent 升级后效果好坏，依赖人工挑选少量案例来判定\n缺乏客观数据支撑，无法形成可靠的技术决策依据\n→ PawBench 解法\n150 道标准化任务 + 自动评分引擎\n跑完即出分，版本间可横向对比，数据说话\n现有方案局限\n通用 LLM 榜单不评估工具调用与 Agent 行为\n学术 Benchmark 依赖公网服务，无法满足内网部署要求\n→ PawBench 解法\n开源 + Docker 沙箱隔离，完全私有化部署\n数据不出网，安全可控，零外部依赖\n需要一个标准化、可复现、内网可用的 Agent 评测方案\nPawBench 带来的价值\n量化升级效果\n每次 Agent / LLM 升级后跑一遍，数据说话\n精准定位短板\n切片分析可定位具体能力和场景的退化\n内网安全运行\nDocker 隔离，任务数据可改造为离线",
+      "slots": [
+        {
+          "slot_id": "s01_sh2",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s01_sh3",
+          "role": "title_candidate",
+          "text": "01 / 07",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 24,
+            "width": 44,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh4",
+          "role": "title_candidate",
+          "text": "为什么需要 Agent 评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 58,
+            "y": 46,
+            "width": 469,
+            "height": 62
+          },
+          "text_metrics": {
+            "font_size_px": 40.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh6",
+          "role": "title_candidate",
+          "text": "两大核心痛点驱动 Agent 评测需求，PawBench 提供标准化解法",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 116,
+            "width": 669,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh9",
+          "role": "label_candidate",
+          "text": "升级效果无法量化",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 185,
+            "width": 216,
+            "height": 37
+          },
+          "text_metrics": {
+            "font_size_px": 24.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh10",
+          "role": "label_candidate",
+          "text": "模型 / Agent 升级后效果好坏，依赖人工挑选少量案例来判定",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 228,
+            "width": 585,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh11",
+          "role": "label_candidate",
+          "text": "缺乏客观数据支撑，无法形成可靠的技术决策依据",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 261,
+            "width": 468,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh13",
+          "role": "label_candidate",
+          "text": "→ PawBench 解法",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 677,
+            "y": 190,
+            "width": 159,
+            "height": 28
+          },
+          "text_metrics": {
+            "font_size_px": 18.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh14",
+          "role": "label_candidate",
+          "text": "150 道标准化任务 + 自动评分引擎",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 677,
+            "y": 228,
+            "width": 322,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh15",
+          "role": "label_candidate",
+          "text": "跑完即出分，版本间可横向对比，数据说话",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 677,
+            "y": 261,
+            "width": 404,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh18",
+          "role": "label_candidate",
+          "text": "现有方案局限",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 350,
+            "width": 162,
+            "height": 37
+          },
+          "text_metrics": {
+            "font_size_px": 24.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh19",
+          "role": "label_candidate",
+          "text": "通用 LLM 榜单不评估工具调用与 Agent 行为",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 393,
+            "width": 433,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh20",
+          "role": "label_candidate",
+          "text": "学术 Benchmark 依赖公网服务，无法满足内网部署要求",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 426,
+            "width": 530,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh22",
+          "role": "label_candidate",
+          "text": "→ PawBench 解法",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 677,
+            "y": 355,
+            "width": 159,
+            "height": 28
+          },
+          "text_metrics": {
+            "font_size_px": 18.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh23",
+          "role": "label_candidate",
+          "text": "开源 + Docker 沙箱隔离，完全私有化部署",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 677,
+            "y": 393,
+            "width": 403,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh24",
+          "role": "label_candidate",
+          "text": "数据不出网，安全可控，零外部依赖",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 677,
+            "y": 426,
+            "width": 341,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh26",
+          "role": "label_candidate",
+          "text": "需要一个标准化、可复现、内网可用的 Agent 评测方案",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 352,
+            "y": 510,
+            "width": 576,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh27",
+          "role": "label_candidate",
+          "text": "PawBench 带来的价值",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 560,
+            "width": 270,
+            "height": 37
+          },
+          "text_metrics": {
+            "font_size_px": 24.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh29",
+          "role": "label_candidate",
+          "text": "量化升级效果",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 79,
+            "y": 620,
+            "width": 135,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh30",
+          "role": "label_candidate",
+          "text": "每次 Agent / LLM 升级后跑一遍，数据说话",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 79,
+            "y": 651,
+            "width": 361,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh32",
+          "role": "label_candidate",
+          "text": "精准定位短板",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 459,
+            "y": 620,
+            "width": 135,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh33",
+          "role": "label_candidate",
+          "text": "切片分析可定位具体能力和场景的退化",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 459,
+            "y": 651,
+            "width": 309,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh35",
+          "role": "label_candidate",
+          "text": "内网安全运行",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 839,
+            "y": 620,
+            "width": 135,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s01_sh36",
+          "role": "label_candidate",
+          "text": "Docker 隔离，任务数据可改造为离线",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 839,
+            "y": 651,
+            "width": 304,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        }
+      ],
+      "tables": [],
+      "charts": [],
+      "diagrams": []
+    },
+    {
+      "slide_index": 2,
+      "page_type": "chapter_candidate",
+      "text_summary": "02 / 07\n主流 Agent 评测方案对比\n工具\n定位\n评测对象\n关键维度评分\n优势\n劣势\n最佳场景\nPawBench\nAgent 评测平台\nModel + Harness + Task\n完整Agent ★★★★★\n内网部署 ★★★★★\n扩展能力 ★★★★★\n资料生态 ★★★★\nTask/Judge/Runner 解耦，支持多 Agent\n框架接入；Model×Harness 交叉评测\n唯一方案\n社区规模发展中\n企业Agent评测\nWildClawBench\nAgent 交互评测\nAgent System\n完整Agent ★★★★★\n内网部署 ★★★★\n扩展能力 ★★★★\n资料生态 ★★★\n真实 Linux 桌面交互，覆盖 200+\n软件品类；环境复杂度高\n环境依赖重，内网部署门槛高\n桌面Agent研究\nSkillsBench\nSkill 评测\nAgent Skill\n完整Agent ★★★\n内网部署 ★★★★\n扩展能力 ★★★\n资料生态 ★★★\n专注 Skill 能力评测，任务设计\n精巧；适合验证单一 Skill 效果\n不测完整 Agent 流程\nSkill 评估\nPinchBe",
+      "slots": [
+        {
+          "slot_id": "s02_sh2",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s02_sh3",
+          "role": "title_candidate",
+          "text": "02 / 07",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 24,
+            "width": 44,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh4",
+          "role": "title_candidate",
+          "text": "主流 Agent 评测方案对比",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 58,
+            "y": 46,
+            "width": 514,
+            "height": 62
+          },
+          "text_metrics": {
+            "font_size_px": 40.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh7",
+          "role": "title_candidate",
+          "text": "工具",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 124,
+            "width": 30,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh8",
+          "role": "title_candidate",
+          "text": "定位",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 163,
+            "y": 124,
+            "width": 30,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh9",
+          "role": "title_candidate",
+          "text": "评测对象",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 297,
+            "y": 124,
+            "width": 59,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh10",
+          "role": "title_candidate",
+          "text": "关键维度评分",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 449,
+            "y": 124,
+            "width": 88,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh11",
+          "role": "title_candidate",
+          "text": "优势",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 609,
+            "y": 124,
+            "width": 30,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh12",
+          "role": "title_candidate",
+          "text": "劣势",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 907,
+            "y": 124,
+            "width": 30,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh13",
+          "role": "title_candidate",
+          "text": "最佳场景",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1129,
+            "y": 124,
+            "width": 59,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh15",
+          "role": "label_candidate",
+          "text": "PawBench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 162,
+            "width": 69,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh16",
+          "role": "label_candidate",
+          "text": "Agent 评测平台",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 163,
+            "width": 92,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh17",
+          "role": "label_candidate",
+          "text": "Model + Harness + Task",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 163,
+            "width": 143,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh18",
+          "role": "title_candidate",
+          "text": "完整Agent ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 146,
+            "width": 109,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh19",
+          "role": "title_candidate",
+          "text": "内网部署 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 158,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh20",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 172,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh21",
+          "role": "label_candidate",
+          "text": "资料生态 ★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 184,
+            "width": 89,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh22",
+          "role": "title_candidate",
+          "text": "Task/Judge/Runner 解耦，支持多 Agent",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 157,
+            "width": 220,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh23",
+          "role": "label_candidate",
+          "text": "框架接入；Model×Harness 交叉评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 174,
+            "width": 193,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh24",
+          "role": "label_candidate",
+          "text": "唯一方案",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 191,
+            "width": 47,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh25",
+          "role": "label_candidate",
+          "text": "社区规模发展中",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 164,
+            "width": 82,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh26",
+          "role": "label_candidate",
+          "text": "企业Agent评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 164,
+            "width": 80,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh28",
+          "role": "label_candidate",
+          "text": "WildClawBench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 222,
+            "width": 96,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh29",
+          "role": "label_candidate",
+          "text": "Agent 交互评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 223,
+            "width": 92,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh30",
+          "role": "label_candidate",
+          "text": "Agent System",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 223,
+            "width": 85,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh31",
+          "role": "label_candidate",
+          "text": "完整Agent ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 206,
+            "width": 109,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh32",
+          "role": "label_candidate",
+          "text": "内网部署 ★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 218,
+            "width": 89,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh33",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 232,
+            "width": 89,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh34",
+          "role": "label_candidate",
+          "text": "资料生态 ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 244,
+            "width": 78,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh35",
+          "role": "label_candidate",
+          "text": "真实 Linux 桌面交互，覆盖 200+",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 217,
+            "width": 172,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh36",
+          "role": "label_candidate",
+          "text": "软件品类；环境复杂度高",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 234,
+            "width": 128,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh37",
+          "role": "label_candidate",
+          "text": "环境依赖重，内网部署门槛高",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 224,
+            "width": 152,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh38",
+          "role": "label_candidate",
+          "text": "桌面Agent研究",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 224,
+            "width": 80,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh40",
+          "role": "label_candidate",
+          "text": "SkillsBench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 282,
+            "width": 75,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh41",
+          "role": "label_candidate",
+          "text": "Skill 评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 283,
+            "width": 56,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh42",
+          "role": "label_candidate",
+          "text": "Agent Skill",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 283,
+            "width": 66,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh43",
+          "role": "label_candidate",
+          "text": "完整Agent ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 266,
+            "width": 87,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh44",
+          "role": "label_candidate",
+          "text": "内网部署 ★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 278,
+            "width": 89,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh45",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 292,
+            "width": 78,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh46",
+          "role": "label_candidate",
+          "text": "资料生态 ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 304,
+            "width": 78,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh47",
+          "role": "label_candidate",
+          "text": "专注 Skill 能力评测，任务设计",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 277,
+            "width": 160,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh48",
+          "role": "label_candidate",
+          "text": "精巧；适合验证单一 Skill 效果",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 294,
+            "width": 160,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh49",
+          "role": "label_candidate",
+          "text": "不测完整 Agent 流程",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 284,
+            "width": 111,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh50",
+          "role": "label_candidate",
+          "text": "Skill 评估",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 284,
+            "width": 51,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh52",
+          "role": "label_candidate",
+          "text": "PinchBench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 342,
+            "width": 75,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh53",
+          "role": "label_candidate",
+          "text": "多模态Agent评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 343,
+            "width": 101,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh54",
+          "role": "label_candidate",
+          "text": "Agent+Multimodal",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 343,
+            "width": 109,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh55",
+          "role": "label_candidate",
+          "text": "完整Agent ★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 326,
+            "width": 98,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh56",
+          "role": "label_candidate",
+          "text": "内网部署 ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 338,
+            "width": 78,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh57",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 352,
+            "width": 78,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh58",
+          "role": "label_candidate",
+          "text": "资料生态 ★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 364,
+            "width": 68,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh59",
+          "role": "label_candidate",
+          "text": "覆盖多模态 Agent 场景",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 337,
+            "width": 122,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh60",
+          "role": "label_candidate",
+          "text": "任务含公网依赖",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 354,
+            "width": 82,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh61",
+          "role": "label_candidate",
+          "text": "任务规模较小",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 344,
+            "width": 71,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh62",
+          "role": "label_candidate",
+          "text": "多模态Agent",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 344,
+            "width": 68,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh64",
+          "role": "label_candidate",
+          "text": "AgentBench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 402,
+            "width": 78,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh65",
+          "role": "label_candidate",
+          "text": "Agent Benchmark",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 403,
+            "width": 106,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh66",
+          "role": "label_candidate",
+          "text": "Agent System",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 403,
+            "width": 85,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh67",
+          "role": "label_candidate",
+          "text": "完整Agent ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 386,
+            "width": 109,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh68",
+          "role": "label_candidate",
+          "text": "内网部署 ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 398,
+            "width": 78,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh69",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 412,
+            "width": 89,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh70",
+          "role": "label_candidate",
+          "text": "资料生态 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 424,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh71",
+          "role": "label_candidate",
+          "text": "学术影响力大，8 大类环境覆盖",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 397,
+            "width": 162,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh72",
+          "role": "label_candidate",
+          "text": "广；部分环境依赖公网 API",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 414,
+            "width": 144,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh73",
+          "role": "label_candidate",
+          "text": "部分环境依赖公网 API",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 404,
+            "width": 120,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh74",
+          "role": "label_candidate",
+          "text": "学术研究",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 404,
+            "width": 47,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh76",
+          "role": "label_candidate",
+          "text": "GAIA",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 462,
+            "width": 30,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh77",
+          "role": "label_candidate",
+          "text": "通用AI评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 463,
+            "width": 66,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh78",
+          "role": "label_candidate",
+          "text": "LLM + Agent",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 463,
+            "width": 76,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh79",
+          "role": "label_candidate",
+          "text": "完整Agent ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 446,
+            "width": 87,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh80",
+          "role": "label_candidate",
+          "text": "内网部署 ★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 458,
+            "width": 68,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh81",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 472,
+            "width": 68,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh82",
+          "role": "label_candidate",
+          "text": "资料生态 ★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 484,
+            "width": 89,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh83",
+          "role": "label_candidate",
+          "text": "Meta 出品，概念验证式任务",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 457,
+            "width": 150,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh84",
+          "role": "label_candidate",
+          "text": "设计；公开 Leaderboard",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 474,
+            "width": 133,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh85",
+          "role": "label_candidate",
+          "text": "依赖公网，不能内网部署",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 464,
+            "width": 128,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh86",
+          "role": "label_candidate",
+          "text": "通用Agent评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 464,
+            "width": 80,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh88",
+          "role": "label_candidate",
+          "text": "SWE-bench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 522,
+            "width": 74,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh89",
+          "role": "label_candidate",
+          "text": "代码修复评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 523,
+            "width": 77,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh90",
+          "role": "label_candidate",
+          "text": "Coding Agent",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 523,
+            "width": 79,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh91",
+          "role": "label_candidate",
+          "text": "完整Agent ★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 506,
+            "width": 77,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh92",
+          "role": "label_candidate",
+          "text": "内网部署 ★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 518,
+            "width": 89,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh93",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 532,
+            "width": 68,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh94",
+          "role": "label_candidate",
+          "text": "资料生态 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 544,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh95",
+          "role": "label_candidate",
+          "text": "Coding Agent 事实标准",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 517,
+            "width": 123,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh96",
+          "role": "label_candidate",
+          "text": "社区活跃度最高",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 534,
+            "width": 82,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh97",
+          "role": "label_candidate",
+          "text": "只覆盖代码修复场景",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 524,
+            "width": 105,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh98",
+          "role": "label_candidate",
+          "text": "代码Agent",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 524,
+            "width": 57,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh100",
+          "role": "label_candidate",
+          "text": "DeepEval",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 582,
+            "width": 59,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh101",
+          "role": "label_candidate",
+          "text": "评测框架",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 583,
+            "width": 52,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh102",
+          "role": "label_candidate",
+          "text": "LLM / RAG / Agent",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 583,
+            "width": 114,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh103",
+          "role": "label_candidate",
+          "text": "完整Agent ★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 566,
+            "width": 87,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh104",
+          "role": "label_candidate",
+          "text": "内网部署 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 578,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh105",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 592,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh106",
+          "role": "label_candidate",
+          "text": "资料生态 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 604,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh107",
+          "role": "label_candidate",
+          "text": "框架成熟，CI 集成完善",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 577,
+            "width": 125,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh108",
+          "role": "label_candidate",
+          "text": "企业使用广泛",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 594,
+            "width": 71,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh109",
+          "role": "label_candidate",
+          "text": "不提供 Agent 任务体系",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 584,
+            "width": 122,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh110",
+          "role": "label_candidate",
+          "text": "企业质量回归",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 584,
+            "width": 71,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh112",
+          "role": "label_candidate",
+          "text": "Promptfoo",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 642,
+            "width": 73,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh113",
+          "role": "label_candidate",
+          "text": "Prompt 评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 164,
+            "y": 643,
+            "width": 75,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh114",
+          "role": "label_candidate",
+          "text": "Prompt + Model",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 298,
+            "y": 643,
+            "width": 95,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh115",
+          "role": "label_candidate",
+          "text": "完整Agent ★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 626,
+            "width": 77,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh116",
+          "role": "label_candidate",
+          "text": "内网部署 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 638,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh117",
+          "role": "label_candidate",
+          "text": "扩展能力 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 652,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh118",
+          "role": "label_candidate",
+          "text": "资料生态 ★★★★★",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 444,
+            "y": 664,
+            "width": 100,
+            "height": 16
+          },
+          "text_metrics": {
+            "font_size_px": 10.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh119",
+          "role": "label_candidate",
+          "text": "轻量成熟，Prompt/模型 A/B 测试",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 637,
+            "width": 182,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh120",
+          "role": "label_candidate",
+          "text": "快速迭代友好",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 608,
+            "y": 654,
+            "width": 71,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh121",
+          "role": "label_candidate",
+          "text": "不适合作 Agent 评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 912,
+            "y": 644,
+            "width": 111,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh122",
+          "role": "label_candidate",
+          "text": "Prompt 调优",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1130,
+            "y": 644,
+            "width": 69,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh123",
+          "role": "label_candidate",
+          "text": "评分说明：",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 60,
+            "y": 688,
+            "width": 65,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh124",
+          "role": "label_candidate",
+          "text": "★★★★★ 优",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 160,
+            "y": 688,
+            "width": 81,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh125",
+          "role": "label_candidate",
+          "text": "★★★★ 良",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 260,
+            "y": 688,
+            "width": 68,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh126",
+          "role": "label_candidate",
+          "text": "★★ 弱",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 350,
+            "y": 688,
+            "width": 43,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh127",
+          "role": "label_candidate",
+          "text": "| 内网部署 = 内网可运行 + 公网依赖度的综合评价",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 440,
+            "y": 688,
+            "width": 280,
+            "height": 18
+          },
+          "text_metrics": {
+            "font_size_px": 12.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s02_sh128",
+          "role": "label_candidate",
+          "text": "数据来源：各项目公开文档及 GitHub 仓库，截至 2025 年 7 月。PawBench 底层复用 OpenJudge 评测引擎。",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 60,
+            "y": 705,
+            "width": 568,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 10.93,
+            "paragraph_count": 1
+          }
+        }
+      ],
+      "tables": [],
+      "charts": [],
+      "diagrams": []
+    },
+    {
+      "slide_index": 3,
+      "page_type": "content_candidate",
+      "text_summary": "03 / 07\nPawBench能力与评测设计\n核心设计理念\nAgent 表现 = f(Model, Harness)\nModel 决定能力上限 · Harness 决定稳定落地 · 两者独立评测才能发现真实瓶颈\n三步评测流程\n1\n选择模型与\nHarness 组合\n2\nDocker 沙箱\n隔离运行\n3\n自动 + LLM\n双重评分\n七维原子能力诊断\nTool_Use\n工具调用与编排\nSkill_Use\nSkill 发现与执行\nCode_Manipulation\n代码操作与修复\nLogic_Reasoning\n逻辑推理\nPlanning\n多步任务规划\nMath_Computation\n数学计算\nSelf_Verification\n自我验证与纠错\n平台设计要点\n评测策略\nModel × Harness × Task 三维交叉设计，独立衡量每个因素贡献\n每任务独立 Docker 容器，严格超时与重试，确保可复现\n评分模式\nautomated（确定性断言检查）· llm_judge（语义评估）· hybrid（混合）\n覆盖场景\n办公协同 · 软件工程 · 数据分析 · 信息检索 · 自动化脚本\n",
+      "slots": [
+        {
+          "slot_id": "s03_sh2",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s03_sh3",
+          "role": "title_candidate",
+          "text": "03 / 07",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 24,
+            "width": 44,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh4",
+          "role": "title_candidate",
+          "text": "PawBench能力与评测设计",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 58,
+            "y": 46,
+            "width": 476,
+            "height": 48
+          },
+          "text_metrics": {
+            "font_size_px": 40.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh8",
+          "role": "title_candidate",
+          "text": "核心设计理念",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 83,
+            "y": 135,
+            "width": 135,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh9",
+          "role": "label_candidate",
+          "text": "Agent 表现 = f(Model, Harness)",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 83,
+            "y": 170,
+            "width": 413,
+            "height": 37
+          },
+          "text_metrics": {
+            "font_size_px": 24.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh10",
+          "role": "label_candidate",
+          "text": "Model 决定能力上限 · Harness 决定稳定落地 · 两者独立评测才能发现真实瓶颈",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 83,
+            "y": 205,
+            "width": 568,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh13",
+          "role": "title_candidate",
+          "text": "三步评测流程",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 135,
+            "width": 135,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh15",
+          "role": "label_candidate",
+          "text": "1",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 748,
+            "y": 171,
+            "width": 10,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh16",
+          "role": "label_candidate",
+          "text": "选择模型与",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 713,
+            "y": 198,
+            "width": 79,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh17",
+          "role": "label_candidate",
+          "text": "Harness 组合",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 704,
+            "y": 216,
+            "width": 98,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh19",
+          "role": "label_candidate",
+          "text": "2",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 927,
+            "y": 171,
+            "width": 10,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh20",
+          "role": "label_candidate",
+          "text": "Docker 沙箱",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 887,
+            "y": 198,
+            "width": 89,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh21",
+          "role": "label_candidate",
+          "text": "隔离运行",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 900,
+            "y": 216,
+            "width": 63,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh23",
+          "role": "label_candidate",
+          "text": "3",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1106,
+            "y": 171,
+            "width": 10,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh24",
+          "role": "label_candidate",
+          "text": "自动 + LLM",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1069,
+            "y": 198,
+            "width": 83,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh25",
+          "role": "label_candidate",
+          "text": "双重评分",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1079,
+            "y": 216,
+            "width": 63,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh28",
+          "role": "label_candidate",
+          "text": "七维原子能力诊断",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 83,
+            "y": 265,
+            "width": 180,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh30",
+          "role": "label_candidate",
+          "text": "Tool_Use",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 95,
+            "y": 311,
+            "width": 67,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh31",
+          "role": "label_candidate",
+          "text": "工具调用与编排",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 339,
+            "y": 311,
+            "width": 105,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh33",
+          "role": "label_candidate",
+          "text": "Skill_Use",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 95,
+            "y": 347,
+            "width": 67,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh34",
+          "role": "label_candidate",
+          "text": "Skill 发现与执行",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 339,
+            "y": 347,
+            "width": 111,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh36",
+          "role": "label_candidate",
+          "text": "Code_Manipulation",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 95,
+            "y": 383,
+            "width": 139,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh37",
+          "role": "label_candidate",
+          "text": "代码操作与修复",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 339,
+            "y": 383,
+            "width": 105,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh39",
+          "role": "label_candidate",
+          "text": "Logic_Reasoning",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 95,
+            "y": 419,
+            "width": 123,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh40",
+          "role": "label_candidate",
+          "text": "逻辑推理",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 339,
+            "y": 419,
+            "width": 60,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh42",
+          "role": "label_candidate",
+          "text": "Planning",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 95,
+            "y": 455,
+            "width": 62,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh43",
+          "role": "label_candidate",
+          "text": "多步任务规划",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 339,
+            "y": 455,
+            "width": 90,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh45",
+          "role": "label_candidate",
+          "text": "Math_Computation",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 95,
+            "y": 491,
+            "width": 142,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh46",
+          "role": "label_candidate",
+          "text": "数学计算",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 339,
+            "y": 491,
+            "width": 60,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh48",
+          "role": "label_candidate",
+          "text": "Self_Verification",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 95,
+            "y": 527,
+            "width": 132,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh49",
+          "role": "label_candidate",
+          "text": "自我验证与纠错",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 339,
+            "y": 527,
+            "width": 105,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh52",
+          "role": "label_candidate",
+          "text": "平台设计要点",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 265,
+            "width": 135,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh53",
+          "role": "label_candidate",
+          "text": "评测策略",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 301,
+            "width": 73,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh54",
+          "role": "label_candidate",
+          "text": "Model × Harness × Task 三维交叉设计，独立衡量每个因素贡献",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 325,
+            "width": 455,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh55",
+          "role": "label_candidate",
+          "text": "每任务独立 Docker 容器，严格超时与重试，确保可复现",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 355,
+            "width": 399,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh57",
+          "role": "label_candidate",
+          "text": "评分模式",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 381,
+            "width": 73,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh58",
+          "role": "label_candidate",
+          "text": "automated（确定性断言检查）· llm_judge（语义评估）· hybrid（混合）",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 402,
+            "width": 528,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh61",
+          "role": "label_candidate",
+          "text": "覆盖场景",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 443,
+            "width": 82,
+            "height": 28
+          },
+          "text_metrics": {
+            "font_size_px": 18.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh62",
+          "role": "label_candidate",
+          "text": "办公协同 · 软件工程 · 数据分析 · 信息检索 · 自动化脚本",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 472,
+            "width": 406,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh63",
+          "role": "label_candidate",
+          "text": "任务复杂度",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 505,
+            "width": 102,
+            "height": 28
+          },
+          "text_metrics": {
+            "font_size_px": 18.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh64",
+          "role": "label_candidate",
+          "text": "L1（1-2步）· L2（3-5步）· L3（5+步含条件分支）— 适配不同评测需求",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 663,
+            "y": 532,
+            "width": 541,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s03_sh66",
+          "role": "label_candidate",
+          "text": "当前已评测 9 个模型 × 3 个 Harness × 150 道任务 = 4,050 个评测单元",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 335,
+            "y": 595,
+            "width": 609,
+            "height": 28
+          },
+          "text_metrics": {
+            "font_size_px": 18.0,
+            "paragraph_count": 1
+          }
+        }
+      ],
+      "tables": [],
+      "charts": [],
+      "diagrams": []
+    },
+    {
+      "slide_index": 4,
+      "page_type": "content_candidate",
+      "text_summary": "04 / 07\nPawBench评测任务体系\n150 道任务 × 6 个源数据集 × 五维标签体系，支持精细化评测分析\n任务来源\n来源\n数量\n主要覆盖领域\n自建任务\n21\n自动化、信息检索、安全对齐\nclaweval\n52\n办公协同、数据分析、内容创作\nqwenclawbench\n29\n自动化、软件工程、安全对齐\npinchbench\n23\n办公流程、软件工程、信息检索\nskillsbench\n15\n长程 Skill、领域自动化\nwildclawbench\n10\n办公流程、安全对齐\n五维标签体系\n应用场景 scenario\nOffice / Software_Engineering / Data_Analysis\nInformation_Retrieval / Automation\n原子能力 capabilities\nLogic / Math / Code / Tool / Skill / Plan / Verify\n复杂度 complexity\nL1（1-2步） / L2（3-5步） / L3（5+含分支）\n输入模态 modality\ntext / multimodal（image,",
+      "slots": [
+        {
+          "slot_id": "s04_sh2",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s04_sh3",
+          "role": "title_candidate",
+          "text": "04 / 07",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 24,
+            "width": 44,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh4",
+          "role": "title_candidate",
+          "text": "PawBench评测任务体系",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 58,
+            "y": 46,
+            "width": 436,
+            "height": 48
+          },
+          "text_metrics": {
+            "font_size_px": 40.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh6",
+          "role": "title_candidate",
+          "text": "150 道任务 × 6 个源数据集 × 五维标签体系，支持精细化评测分析",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 120,
+            "width": 742,
+            "height": 37
+          },
+          "text_metrics": {
+            "font_size_px": 24.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh7",
+          "role": "label_candidate",
+          "text": "任务来源",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 176,
+            "width": 100,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh9",
+          "role": "label_candidate",
+          "text": "来源",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 74,
+            "y": 225,
+            "width": 32,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh10",
+          "role": "label_candidate",
+          "text": "数量",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 199,
+            "y": 225,
+            "width": 32,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh11",
+          "role": "label_candidate",
+          "text": "主要覆盖领域",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 299,
+            "y": 225,
+            "width": 95,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh13",
+          "role": "label_candidate",
+          "text": "自建任务",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 74,
+            "y": 254,
+            "width": 68,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh14",
+          "role": "label_candidate",
+          "text": "21",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 199,
+            "y": 254,
+            "width": 19,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh15",
+          "role": "label_candidate",
+          "text": "自动化、信息检索、安全对齐",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 299,
+            "y": 255,
+            "width": 194,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh17",
+          "role": "label_candidate",
+          "text": "claweval",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 74,
+            "y": 282,
+            "width": 66,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh18",
+          "role": "label_candidate",
+          "text": "52",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 199,
+            "y": 282,
+            "width": 19,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh19",
+          "role": "label_candidate",
+          "text": "办公协同、数据分析、内容创作",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 299,
+            "y": 283,
+            "width": 209,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh21",
+          "role": "label_candidate",
+          "text": "qwenclawbench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 74,
+            "y": 310,
+            "width": 117,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh22",
+          "role": "label_candidate",
+          "text": "29",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 199,
+            "y": 310,
+            "width": 19,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh23",
+          "role": "label_candidate",
+          "text": "自动化、软件工程、安全对齐",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 299,
+            "y": 311,
+            "width": 194,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh25",
+          "role": "label_candidate",
+          "text": "pinchbench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 74,
+            "y": 338,
+            "width": 84,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh26",
+          "role": "label_candidate",
+          "text": "23",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 199,
+            "y": 338,
+            "width": 19,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh27",
+          "role": "label_candidate",
+          "text": "办公流程、软件工程、信息检索",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 299,
+            "y": 339,
+            "width": 209,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh29",
+          "role": "label_candidate",
+          "text": "skillsbench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 74,
+            "y": 366,
+            "width": 85,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh30",
+          "role": "label_candidate",
+          "text": "15",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 199,
+            "y": 366,
+            "width": 19,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh31",
+          "role": "label_candidate",
+          "text": "长程 Skill、领域自动化",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 299,
+            "y": 367,
+            "width": 156,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh33",
+          "role": "label_candidate",
+          "text": "wildclawbench",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 74,
+            "y": 394,
+            "width": 109,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh34",
+          "role": "label_candidate",
+          "text": "10",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 199,
+            "y": 394,
+            "width": 19,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh35",
+          "role": "label_candidate",
+          "text": "办公流程、安全对齐",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 299,
+            "y": 395,
+            "width": 135,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh39",
+          "role": "label_candidate",
+          "text": "五维标签体系",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 205,
+            "width": 135,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh40",
+          "role": "label_candidate",
+          "text": "应用场景 scenario",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 234,
+            "width": 152,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh41",
+          "role": "label_candidate",
+          "text": "Office / Software_Engineering / Data_Analysis",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 255,
+            "width": 321,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh42",
+          "role": "label_candidate",
+          "text": "Information_Retrieval / Automation",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 273,
+            "width": 243,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh43",
+          "role": "label_candidate",
+          "text": "原子能力 capabilities",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 294,
+            "width": 178,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh44",
+          "role": "label_candidate",
+          "text": "Logic / Math / Code / Tool / Skill / Plan / Verify",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 315,
+            "width": 323,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh45",
+          "role": "label_candidate",
+          "text": "复杂度 complexity",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 336,
+            "width": 153,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh46",
+          "role": "label_candidate",
+          "text": "L1（1-2步） / L2（3-5步） / L3（5+含分支）",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 357,
+            "width": 308,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh47",
+          "role": "label_candidate",
+          "text": "输入模态 modality",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 378,
+            "width": 151,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh48",
+          "role": "label_candidate",
+          "text": "text / multimodal（image, audio, video）",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 399,
+            "width": 277,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh49",
+          "role": "label_candidate",
+          "text": "运行环境 environment",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 420,
+            "width": 185,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh50",
+          "role": "label_candidate",
+          "text": "closed（离线复现） / open（需联公网）",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 834,
+            "y": 441,
+            "width": 256,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh51",
+          "role": "label_candidate",
+          "text": "五维标签如何赋能评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 451,
+            "width": 247,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh54",
+          "role": "label_candidate",
+          "text": "按场景分类对比",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 511,
+            "width": 134,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh55",
+          "role": "label_candidate",
+          "text": "只在办公协同场景下对比模型表现，",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 539,
+            "width": 254,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh56",
+          "role": "label_candidate",
+          "text": "排除其他场景噪声，结论更聚焦",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 561,
+            "width": 223,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh59",
+          "role": "label_candidate",
+          "text": "按能力定向诊断",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 461,
+            "y": 511,
+            "width": 134,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh60",
+          "role": "label_candidate",
+          "text": "单独筛选 Tool_Use 或 Planning 任务，",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 461,
+            "y": 539,
+            "width": 277,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh61",
+          "role": "label_candidate",
+          "text": "精准定位模型在特定能力上的短板",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 461,
+            "y": 561,
+            "width": 239,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh64",
+          "role": "label_candidate",
+          "text": "按复杂度分层评估",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 841,
+            "y": 511,
+            "width": 153,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh65",
+          "role": "label_candidate",
+          "text": "对比 L1/L2/L3 不同复杂度下的表现差异，",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 841,
+            "y": 539,
+            "width": 319,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh66",
+          "role": "label_candidate",
+          "text": "识别模型在多步推理中的退化点",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 841,
+            "y": 561,
+            "width": 223,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s04_sh68",
+          "role": "label_candidate",
+          "text": "每道任务 5 维标签可任意组合筛选，灵活构建定制化的评测维度和对比视图",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 339,
+            "y": 627,
+            "width": 601,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        }
+      ],
+      "tables": [],
+      "charts": [],
+      "diagrams": []
+    },
+    {
+      "slide_index": 5,
+      "page_type": "content_candidate",
+      "text_summary": "05 / 07\n任务执行与评分实战 · 以 T053 为例\n用一个真实任务卡，看清 PawBench「执行 → 采集 → 评分 → 汇总」的完整评测链路\n任务 T053   ｜  来源 pinchbench   ｜  类型 内容创作·写作   ｜  复杂度 L1   ｜  环境 closed   ｜  评分 hybrid（自动 0.6 + LLM 0.4）\n指令：撰写一篇约 500 词《远程办公对软件开发者的好处》博客，并保存为 blog_post.md  （纯文本、无外部依赖）\n▶\n▶\n▶\n① 沙箱执行\n② 结果采集\n③ 双重评分 · hybrid\n④ 汇总得分\nAgent 在 Docker 容器中隔离运行，独立执行任务\n· 纯文本创作，无需联网\n· 无外部依赖 / 无预置文件\n· environment = closed（可离线复现）\n· 超时 300s 内产出 blog_post.md\nharness 采集运行产物与过程：\n· OpenClaw session → 归一化为 transcript 事件流\n(message / toolCall / toolResult)\n· 新生",
+      "slots": [
+        {
+          "slot_id": "s05_sh2",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh3",
+          "role": "title_candidate",
+          "text": "05 / 07",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 21,
+            "width": 120,
+            "height": 21
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh4",
+          "role": "title_candidate",
+          "text": "任务执行与评分实战 · 以 T053 为例",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 58,
+            "y": 44,
+            "width": 1133,
+            "height": 53
+          },
+          "text_metrics": {
+            "font_size_px": 40.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh5",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 96,
+            "width": 80,
+            "height": 3
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh6",
+          "role": "title_candidate",
+          "text": "用一个真实任务卡，看清 PawBench「执行 → 采集 → 评分 → 汇总」的完整评测链路",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 107,
+            "width": 1160,
+            "height": 27
+          },
+          "text_metrics": {
+            "font_size_px": 18.67,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh7",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 139,
+            "width": 1160,
+            "height": 77
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh8",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 139,
+            "width": 5,
+            "height": 77
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh9",
+          "role": "label_candidate",
+          "text": "任务 T053   ｜  来源 pinchbench   ｜  类型 内容创作·写作   ｜  复杂度 L1   ｜  环境 closed   ｜  评分 hybrid（自动 0.6 + LLM 0.4）",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 80,
+            "y": 148,
+            "width": 1133,
+            "height": 27
+          },
+          "text_metrics": {
+            "font_size_px": 16.67,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh10",
+          "role": "body_candidate",
+          "text": "指令：撰写一篇约 500 词《远程办公对软件开发者的好处》博客，并保存为 blog_post.md  （纯文本、无外部依赖）",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 80,
+            "y": 179,
+            "width": 1133,
+            "height": 29
+          },
+          "text_metrics": {
+            "font_size_px": 14.67,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh11",
+          "role": "label_candidate",
+          "text": "▶",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 337,
+            "y": 381,
+            "width": 27,
+            "height": 32
+          },
+          "text_metrics": {
+            "font_size_px": 17.33,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh12",
+          "role": "label_candidate",
+          "text": "▶",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 632,
+            "y": 381,
+            "width": 27,
+            "height": 32
+          },
+          "text_metrics": {
+            "font_size_px": 17.33,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh13",
+          "role": "label_candidate",
+          "text": "▶",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 927,
+            "y": 381,
+            "width": 27,
+            "height": 32
+          },
+          "text_metrics": {
+            "font_size_px": 17.33,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh14",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 235,
+            "width": 276,
+            "height": 333
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh15",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 235,
+            "width": 276,
+            "height": 35
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh16",
+          "role": "label_candidate",
+          "text": "① 沙箱执行",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 60,
+            "y": 240,
+            "width": 276,
+            "height": 27
+          },
+          "text_metrics": {
+            "font_size_px": 16.67,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh17",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 355,
+            "y": 235,
+            "width": 276,
+            "height": 333
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh18",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 355,
+            "y": 235,
+            "width": 276,
+            "height": 35
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh19",
+          "role": "label_candidate",
+          "text": "② 结果采集",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 355,
+            "y": 240,
+            "width": 276,
+            "height": 27
+          },
+          "text_metrics": {
+            "font_size_px": 16.67,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh20",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 649,
+            "y": 235,
+            "width": 276,
+            "height": 333
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh21",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 649,
+            "y": 235,
+            "width": 276,
+            "height": 35
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh22",
+          "role": "label_candidate",
+          "text": "③ 双重评分 · hybrid",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 649,
+            "y": 240,
+            "width": 276,
+            "height": 27
+          },
+          "text_metrics": {
+            "font_size_px": 16.67,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh23",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 944,
+            "y": 235,
+            "width": 276,
+            "height": 333
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh24",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 944,
+            "y": 235,
+            "width": 276,
+            "height": 35
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh25",
+          "role": "label_candidate",
+          "text": "④ 汇总得分",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 944,
+            "y": 240,
+            "width": 276,
+            "height": 27
+          },
+          "text_metrics": {
+            "font_size_px": 16.67,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s05_sh26",
+          "role": "body_candidate",
+          "text": "Agent 在 Docker 容器中隔离运行，独立执行任务\n· 纯文本创作，无需联网\n· 无外部依赖 / 无预置文件\n· environment = closed（可离线复现）\n· 超时 300s 内产出 blog_post.md",
+          "paragraph_count": 5,
+          "geometry": {
+            "x": 73,
+            "y": 280,
+            "width": 249,
+            "height": 267
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 5
+          }
+        },
+        {
+          "slot_id": "s05_sh27",
+          "role": "body_candidate",
+          "text": "harness 采集运行产物与过程：\n· OpenClaw session → 归一化为 transcript 事件流\n(message / toolCall / toolResult)\n· 新生成文件内容注入 transcript\n· 产物落盘 workspace_path\n评分只读这两个输入，对框架中立",
+          "paragraph_count": 6,
+          "geometry": {
+            "x": 368,
+            "y": 280,
+            "width": 249,
+            "height": 267
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 6
+          }
+        },
+        {
+          "slot_id": "s05_sh28",
+          "role": "body_candidate",
+          "text": "自动检查  权重 0.6\n· 文件 blog_post.md 是否存在\n· 词数 450–550 → 1.0（区间打分）\n· 标题 + 段落结构（≥3 段）\n· remote / developer 关键词命中\nLLM 评判  权重 0.4\n· 质量30 · 结构25 · 写作20\n· 词数15 · 完成度10（Rubric）",
+          "paragraph_count": 8,
+          "geometry": {
+            "x": 663,
+            "y": 280,
+            "width": 249,
+            "height": 280
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 8
+          }
+        },
+        {
+          "slot_id": "s05_sh29",
+          "role": "body_candidate",
+          "text": "最终得分\nscore = 0.6 × 自动分\n+ 0.4 × LLM 分\n混合惩罚机制\n· 自动分 < 0.75 时\n→ LLM 分被置 0\n· 防止跳过任务 / 空文件刷分\n(API 真实失败时豁免)",
+          "paragraph_count": 8,
+          "geometry": {
+            "x": 957,
+            "y": 280,
+            "width": 249,
+            "height": 280
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 8
+          }
+        },
+        {
+          "slot_id": "s05_sh30",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 587,
+            "width": 1160,
+            "height": 45
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s05_sh31",
+          "role": "body_candidate",
+          "text": "一张任务卡 = Prompt + Expected Behavior + 自动检查(代码) + LLM评分细则　｜　评分仅依赖 transcript 与 workspace_path，对 Agent 框架保持中立",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 73,
+            "y": 587,
+            "width": 1133,
+            "height": 45
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        }
+      ],
+      "tables": [],
+      "charts": [],
+      "diagrams": []
+    },
+    {
+      "slide_index": 6,
+      "page_type": "content_candidate",
+      "text_summary": "06 / 07\nPawBench应用场景与集成方式\n典型应用场景\n模型升级评估\n固定 Harness，横向跑新旧模型，看整体分和切片分变化\nAgent 框架迭代\n固定模型，横向跑不同版本 Harness，验证改动未引入退化\n自定义 Skill 验证\n新增业务 Skill 后，在相关切片上验证发现和执行效果\n回归测试流水线\n集成到 CI 流程，每次 Agent / 模型发布自动触发评测\n企业需求与能力适配\n需求\nPawBench 能力\n内网私有化部署\n✓ 开源 + Docker，数据不出内网\n评测完整 Agent 系统\n✓ Model × Harness × Task 全覆盖\n自定义任务扩展\n✓ OpenJudge 生态，灵活可扩展\nSkill 能力评估\n✓ 7 大原子能力含 Skill_Use，15 道专项任务\n量化回归\n✓ 标准化任务 + 自动评分，CI 可集成\n集成方式\n环境部署\nDocker 一键部署，拉取 PawBench 仓库，配置模型 API 密钥\n完成后即可跑通全量 150 道标准化任务，获得基线评测结果\n内网适配\n含公网依赖的任务改造为离线可运行，自定义业务相关任务\n支",
+      "slots": [
+        {
+          "slot_id": "s06_sh2",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s06_sh3",
+          "role": "title_candidate",
+          "text": "06 / 07",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 24,
+            "width": 44,
+            "height": 17
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh4",
+          "role": "title_candidate",
+          "text": "PawBench应用场景与集成方式",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 58,
+            "y": 46,
+            "width": 557,
+            "height": 48
+          },
+          "text_metrics": {
+            "font_size_px": 40.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh6",
+          "role": "title_candidate",
+          "text": "典型应用场景",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 126,
+            "width": 149,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh9",
+          "role": "label_candidate",
+          "text": "模型升级评估",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 176,
+            "width": 128,
+            "height": 29
+          },
+          "text_metrics": {
+            "font_size_px": 18.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh10",
+          "role": "label_candidate",
+          "text": "固定 Harness，横向跑新旧模型，看整体分和切片分变化",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 205,
+            "width": 403,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh13",
+          "role": "label_candidate",
+          "text": "Agent 框架迭代",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 259,
+            "width": 152,
+            "height": 29
+          },
+          "text_metrics": {
+            "font_size_px": 18.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh14",
+          "role": "label_candidate",
+          "text": "固定模型，横向跑不同版本 Harness，验证改动未引入退化",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 288,
+            "width": 418,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh17",
+          "role": "label_candidate",
+          "text": "自定义 Skill 验证",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 342,
+            "width": 163,
+            "height": 29
+          },
+          "text_metrics": {
+            "font_size_px": 18.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh18",
+          "role": "label_candidate",
+          "text": "新增业务 Skill 后，在相关切片上验证发现和执行效果",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 371,
+            "width": 379,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh21",
+          "role": "label_candidate",
+          "text": "回归测试流水线",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 425,
+            "width": 149,
+            "height": 29
+          },
+          "text_metrics": {
+            "font_size_px": 18.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh22",
+          "role": "label_candidate",
+          "text": "集成到 CI 流程，每次 Agent / 模型发布自动触发评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 454,
+            "width": 385,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh23",
+          "role": "label_candidate",
+          "text": "企业需求与能力适配",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 506,
+            "width": 222,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh25",
+          "role": "label_candidate",
+          "text": "需求",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 81,
+            "y": 558,
+            "width": 32,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh27",
+          "role": "label_candidate",
+          "text": "PawBench 能力",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 351,
+            "y": 558,
+            "width": 110,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh29",
+          "role": "label_candidate",
+          "text": "内网私有化部署",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 585,
+            "width": 98,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh31",
+          "role": "label_candidate",
+          "text": "✓ 开源 + Docker，数据不出内网",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 341,
+            "y": 585,
+            "width": 207,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh33",
+          "role": "label_candidate",
+          "text": "评测完整 Agent 系统",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 607,
+            "width": 132,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh35",
+          "role": "label_candidate",
+          "text": "✓ Model × Harness × Task 全覆盖",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 341,
+            "y": 607,
+            "width": 220,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh37",
+          "role": "label_candidate",
+          "text": "自定义任务扩展",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 629,
+            "width": 98,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh39",
+          "role": "label_candidate",
+          "text": "✓ OpenJudge 生态，灵活可扩展",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 341,
+            "y": 629,
+            "width": 208,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh41",
+          "role": "label_candidate",
+          "text": "Skill 能力评估",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 651,
+            "width": 89,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh43",
+          "role": "label_candidate",
+          "text": "✓ 7 大原子能力含 Skill_Use，15 道专项任务",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 341,
+            "y": 651,
+            "width": 283,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh45",
+          "role": "label_candidate",
+          "text": "量化回归",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 71,
+            "y": 673,
+            "width": 56,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh47",
+          "role": "label_candidate",
+          "text": "✓ 标准化任务 + 自动评分，CI 可集成",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 341,
+            "y": 673,
+            "width": 244,
+            "height": 20
+          },
+          "text_metrics": {
+            "font_size_px": 13.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh48",
+          "role": "title_candidate",
+          "text": "集成方式",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 659,
+            "y": 126,
+            "width": 100,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh51",
+          "role": "label_candidate",
+          "text": "环境部署",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 183,
+            "width": 91,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh52",
+          "role": "label_candidate",
+          "text": "Docker 一键部署，拉取 PawBench 仓库，配置模型 API 密钥",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 216,
+            "width": 465,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh53",
+          "role": "label_candidate",
+          "text": "完成后即可跑通全量 150 道标准化任务，获得基线评测结果",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 241,
+            "width": 446,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh56",
+          "role": "label_candidate",
+          "text": "内网适配",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 313,
+            "width": 91,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh57",
+          "role": "label_candidate",
+          "text": "含公网依赖的任务改造为离线可运行，自定义业务相关任务",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 346,
+            "width": 442,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh58",
+          "role": "label_candidate",
+          "text": "支持基于 OpenJudge 自定义 Task / Judge / Runner，灵活扩展",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 371,
+            "width": 492,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh61",
+          "role": "label_candidate",
+          "text": "持续迭代",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 443,
+            "width": 91,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh62",
+          "role": "label_candidate",
+          "text": "嵌入 Agent 开发迭代流程，每次发布自动评测",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 476,
+            "width": 350,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh63",
+          "role": "label_candidate",
+          "text": "利用五维标签切片分析，精准定位能力变化，推动持续改进",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 501,
+            "width": 442,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh66",
+          "role": "label_candidate",
+          "text": "技术特点",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 585,
+            "width": 68,
+            "height": 23
+          },
+          "text_metrics": {
+            "font_size_px": 14.93,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh67",
+          "role": "label_candidate",
+          "text": "支持 OpenAI 兼容 API 和私有化模型接入，纯 Python 实现，无专有依赖",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 610,
+            "width": 485,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s06_sh68",
+          "role": "label_candidate",
+          "text": "Task / Judge / Runner 解耦设计，各组件可独立定制和替换",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 689,
+            "y": 630,
+            "width": 404,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        }
+      ],
+      "tables": [],
+      "charts": [],
+      "diagrams": []
+    },
+    {
+      "slide_index": 7,
+      "page_type": "ending_candidate",
+      "text_summary": "总结\n01\n交叉评测矩阵\n同时评估 Model、Harness 和\nTask 三个维度，回答的不只是\n\"模型好不好\"，更是\"部署后\n的 Agent 好不好用\"\n9 模型 × 3 Harness × 150 任务\n= 4,050 评测单元\n02\n灵活可扩展\nTask、Judge、Runner 完全解耦\n可自定义评测任务和评分规则\n五维标签体系支持精细化\n切片分析，定位薄弱环节\n阿里通义实验室\nAgentScope 团队出品\n03\n内网安全就绪\nDocker 沙箱隔离运行\n完全私有化部署，数据不出网\n可集成 CI/CD，自动回归测试\n支持 OpenAI 兼容 API\nPython 3.11+ / Docker / Node.js\nApache 2.0 开源协议\nAgent 评测正处于关键转折期\n从手工挑选个别案例做主观判断，转向标准化、自动化、多维度的量化评测，是 Agent 从实验走向生产的前提。\n一个完整的评测体系需要同时覆盖模型能力、任务框架和运行环境三个独立变量，才能真正回答\"我的 Agent 到底好不好用\"。\n开源、可扩展、内网安全的评测基础设施，是推动 Agent 工程化的关键",
+      "slots": [
+        {
+          "slot_id": "s07_sh2",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh3",
+          "role": "title_candidate",
+          "text": "总结",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 58,
+            "y": 46,
+            "width": 92,
+            "height": 62
+          },
+          "text_metrics": {
+            "font_size_px": 40.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh4",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 96,
+            "width": 80,
+            "height": 3
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh5",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 130,
+            "width": 370,
+            "height": 310
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh6",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 130,
+            "width": 370,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh7",
+          "role": "title_candidate",
+          "text": "01",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 88,
+            "y": 134,
+            "width": 63,
+            "height": 74
+          },
+          "text_metrics": {
+            "font_size_px": 48.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh8",
+          "role": "label_candidate",
+          "text": "交叉评测矩阵",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 196,
+            "width": 149,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh9",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 90,
+            "y": 230,
+            "width": 40,
+            "height": 2
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh10",
+          "role": "label_candidate",
+          "text": "同时评估 Model、Harness 和",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 251,
+            "width": 226,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh11",
+          "role": "label_candidate",
+          "text": "Task 三个维度，回答的不只是",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 276,
+            "width": 233,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh12",
+          "role": "label_candidate",
+          "text": "\"模型好不好\"，更是\"部署后",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 301,
+            "width": 216,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh13",
+          "role": "label_candidate",
+          "text": "的 Agent 好不好用\"",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 326,
+            "width": 154,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh14",
+          "role": "label_candidate",
+          "text": "9 模型 × 3 Harness × 150 任务",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 361,
+            "width": 237,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh15",
+          "role": "label_candidate",
+          "text": "= 4,050 评测单元",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 89,
+            "y": 386,
+            "width": 135,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh16",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 455,
+            "y": 130,
+            "width": 370,
+            "height": 310
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh17",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 455,
+            "y": 130,
+            "width": 370,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh18",
+          "role": "title_candidate",
+          "text": "02",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 483,
+            "y": 134,
+            "width": 63,
+            "height": 74
+          },
+          "text_metrics": {
+            "font_size_px": 48.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh19",
+          "role": "label_candidate",
+          "text": "灵活可扩展",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 484,
+            "y": 196,
+            "width": 124,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh20",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 485,
+            "y": 230,
+            "width": 40,
+            "height": 2
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh21",
+          "role": "label_candidate",
+          "text": "Task、Judge、Runner 完全解耦",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 484,
+            "y": 251,
+            "width": 251,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh22",
+          "role": "label_candidate",
+          "text": "可自定义评测任务和评分规则",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 484,
+            "y": 276,
+            "width": 222,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh23",
+          "role": "label_candidate",
+          "text": "五维标签体系支持精细化",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 484,
+            "y": 301,
+            "width": 188,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh24",
+          "role": "label_candidate",
+          "text": "切片分析，定位薄弱环节",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 484,
+            "y": 326,
+            "width": 188,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh25",
+          "role": "label_candidate",
+          "text": "阿里通义实验室",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 484,
+            "y": 361,
+            "width": 120,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh26",
+          "role": "label_candidate",
+          "text": "AgentScope 团队出品",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 484,
+            "y": 386,
+            "width": 169,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh27",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 850,
+            "y": 130,
+            "width": 370,
+            "height": 310
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh28",
+          "role": "title_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 850,
+            "y": 130,
+            "width": 370,
+            "height": 4
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh29",
+          "role": "title_candidate",
+          "text": "03",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 878,
+            "y": 134,
+            "width": 63,
+            "height": 74
+          },
+          "text_metrics": {
+            "font_size_px": 48.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh30",
+          "role": "label_candidate",
+          "text": "内网安全就绪",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 879,
+            "y": 196,
+            "width": 149,
+            "height": 34
+          },
+          "text_metrics": {
+            "font_size_px": 22.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh31",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 880,
+            "y": 230,
+            "width": 40,
+            "height": 2
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh32",
+          "role": "label_candidate",
+          "text": "Docker 沙箱隔离运行",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 879,
+            "y": 251,
+            "width": 166,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh33",
+          "role": "label_candidate",
+          "text": "完全私有化部署，数据不出网",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 879,
+            "y": 276,
+            "width": 222,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh34",
+          "role": "label_candidate",
+          "text": "可集成 CI/CD，自动回归测试",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 879,
+            "y": 301,
+            "width": 231,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh35",
+          "role": "label_candidate",
+          "text": "支持 OpenAI 兼容 API",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 879,
+            "y": 326,
+            "width": 169,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh36",
+          "role": "label_candidate",
+          "text": "Python 3.11+ / Docker / Node.js",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 879,
+            "y": 361,
+            "width": 267,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh37",
+          "role": "label_candidate",
+          "text": "Apache 2.0 开源协议",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 879,
+            "y": 386,
+            "width": 165,
+            "height": 25
+          },
+          "text_metrics": {
+            "font_size_px": 16.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh38",
+          "role": "label_candidate",
+          "text": "",
+          "paragraph_count": 0,
+          "geometry": {
+            "x": 60,
+            "y": 468,
+            "width": 1160,
+            "height": 2
+          },
+          "text_metrics": {
+            "font_size_px": null,
+            "paragraph_count": 0
+          }
+        },
+        {
+          "slot_id": "s07_sh39",
+          "role": "label_candidate",
+          "text": "Agent 评测正处于关键转折期",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 491,
+            "width": 295,
+            "height": 31
+          },
+          "text_metrics": {
+            "font_size_px": 20.0,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh40",
+          "role": "label_candidate",
+          "text": "从手工挑选个别案例做主观判断，转向标准化、自动化、多维度的量化评测，是 Agent 从实验走向生产的前提。",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 528,
+            "width": 904,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh41",
+          "role": "label_candidate",
+          "text": "一个完整的评测体系需要同时覆盖模型能力、任务框架和运行环境三个独立变量，才能真正回答\"我的 Agent 到底好不好用\"。",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 558,
+            "width": 1016,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh42",
+          "role": "label_candidate",
+          "text": "开源、可扩展、内网安全的评测基础设施，是推动 Agent 工程化的关键一环。",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 59,
+            "y": 588,
+            "width": 630,
+            "height": 26
+          },
+          "text_metrics": {
+            "font_size_px": 17.07,
+            "paragraph_count": 1
+          }
+        },
+        {
+          "slot_id": "s07_sh43",
+          "role": "label_candidate",
+          "text": "08 / 08",
+          "paragraph_count": 1,
+          "geometry": {
+            "x": 1170,
+            "y": 688,
+            "width": 51,
+            "height": 22
+          },
+          "text_metrics": {
+            "font_size_px": 14.0,
+            "paragraph_count": 1
+          }
+        }
+      ],
+      "tables": [],
+      "charts": [],
+      "diagrams": []
+    }
+  ],
+  "plan_contract": {
+    "schema": "template_fill_pptx_plan.v1",
+    "slides": [
+      {
+        "source_slide": 1,
+        "purpose": "封面 / 章节 / 内容 / 结尾",
+        "replacements": [
+          {
+            "slot_id": "s01_sh2",
+            "text": "替换后的文字"
+          }
+        ],
+        "table_edits": [
+          {
+            "table_id": "s01_tbl3",
+            "cells": [
+              {
+                "row": 0,
+                "col": 0,
+                "text": "替换后的单元格"
+              }
+            ]
+          }
+        ],
+        "chart_edits": [
+          {
+            "chart_id": "s01_ch4",
+            "categories": [
+              "A",
+              "B"
+            ],
+            "series": [
+              {
+                "name": "系列1",
+                "values": [
+                  1,
+                  2
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

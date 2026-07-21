@@ -1,0 +1,145 @@
+{
+  "source": "D:\\workplace\\github\\PawBench\\docs\\PPT\\Agent评测.pptx",
+  "slide_count": 7,
+  "canvas": {
+    "width_px": 1280,
+    "height_px": 720,
+    "aspect": 1.7778
+  },
+  "theme": {
+    "palette": {
+      "background": "#FFFFFF",
+      "background_alt": "#F2F5FA",
+      "text": "#1A1A2E",
+      "text_alt": "#1F497D",
+      "hyperlink": "#2563EB",
+      "accent1": "#1E3A8A",
+      "accent2": "#2563EB",
+      "accent3": "#93C5FD",
+      "accent4": "#E2E8F0",
+      "accent5": "#64748B",
+      "accent6": "#94A3B8",
+      "primary": "#1E3A8A"
+    },
+    "fonts": {
+      "title": {
+        "latin": "Arial",
+        "ea": "Microsoft YaHei",
+        "cs": "Arial"
+      },
+      "body": {
+        "latin": "Arial",
+        "ea": "Microsoft YaHei",
+        "cs": "Arial"
+      }
+    },
+    "sizes": {
+      "title": 30.0,
+      "body": 18.0,
+      "body_levels": [
+        18.0,
+        17.0,
+        16.0,
+        14.5,
+        13.5,
+        12.5,
+        11.0,
+        10.0,
+        9.0
+      ]
+    }
+  },
+  "observed": {
+    "fonts": {
+      "latin": [
+        {
+          "value": "Segoe UI",
+          "count": 379
+        },
+        {
+          "value": "Consolas",
+          "count": 4
+        }
+      ],
+      "ea": [
+        {
+          "value": "Microsoft YaHei",
+          "count": 314
+        },
+        {
+          "value": "Segoe UI",
+          "count": 68
+        }
+      ]
+    },
+    "sizes_pt": [
+      {
+        "value": 10.5,
+        "count": 70
+      },
+      {
+        "value": 12.0,
+        "count": 45
+      },
+      {
+        "value": 8.2,
+        "count": 38
+      },
+      {
+        "value": 7.5,
+        "count": 36
+      },
+      {
+        "value": 9.8,
+        "count": 34
+      },
+      {
+        "value": 11.2,
+        "count": 32
+      },
+      {
+        "value": 9.0,
+        "count": 24
+      },
+      {
+        "value": 15.0,
+        "count": 20
+      }
+    ],
+    "colors": [
+      {
+        "value": "#FFFFFF",
+        "count": 41
+      },
+      {
+        "value": "#10B981",
+        "count": 29
+      },
+      {
+        "value": "#1A1A2E",
+        "count": 22
+      },
+      {
+        "value": "#1E3A8A",
+        "count": 19
+      },
+      {
+        "value": "#E8F0FE",
+        "count": 13
+      },
+      {
+        "value": "#EF4444",
+        "count": 13
+      },
+      {
+        "value": "#2563EB",
+        "count": 8
+      },
+      {
+        "value": "#F8FAFC",
+        "count": 7
+      }
+    ]
+  },
+  "layout_sizes_pt": []
+}

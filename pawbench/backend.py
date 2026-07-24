@@ -331,6 +331,18 @@ class PawBenchBackend(BenchmarkBackend):
             # Let the agent sync any agent-internal dirs into the standard workspace.
             await agent.post_run_collect(env)
 
+            # ── Backup /tmp/openclaw into the workspace before docker cp ──────────
+            # This ensures the OpenClaw runtime directory is preserved alongside the
+            # task workspace for post-run diagnostics and debugging.
+            await env.execute_command(
+                "if [ -d /tmp/openclaw ]; then "
+                "mkdir -p /app/working/workspaces/default/openclaw_backup && "
+                "cp -a /tmp/openclaw/. /app/working/workspaces/default/openclaw_backup/ && "
+                'echo "[backend] /tmp/openclaw backed up to workspace/openclaw_backup"; '
+                "fi",
+                timeout=30,
+            )
+
             local_workspace = Path(tempfile.mkdtemp(prefix=f"pawbench_{task.task_id}_"))
             print(f"[backend] Collecting workspace: _use_local={_use_local} env_type={type(env).__name__}", flush=True)
             if _use_local:

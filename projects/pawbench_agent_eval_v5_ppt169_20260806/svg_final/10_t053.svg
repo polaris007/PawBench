@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <g id="bg"><rect width="1280" height="720" fill="#FFFFFF"/></g>
+  <g id="section-marker">
+    <rect x="0" y="0" width="12" height="720" fill="#1E3A8A"/>
+    <text x="40" y="80" font-family="Microsoft YaHei, Arial, sans-serif" font-size="64" font-weight="700" fill="#1E3A8A" opacity="0.15">10</text>
+  </g>
+  <g id="header">
+    <rect x="80" y="60" width="60" height="3" fill="#1E3A8A"/>
+    <text x="80" y="100" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" font-weight="700" fill="#1A1A2E">任务执行与评分实战 · 以 T053 为例</text>
+  </g>
+  <g id="lead">
+    <text x="80" y="140" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#64748B">借 T053 看清 PawBench「执行 → 采集 → 评分 → 汇总」评测链路 — 同样适用于其它日常任务</text>
+  </g>
+  <g id="task-card">
+    <rect x="80" y="160" width="1120" height="64" fill="#F2F5FA"/>
+    <rect x="80" y="160" width="4" height="64" fill="#1E3A8A"/>
+    <text x="110" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">任务 T053</text>
+    <text x="300" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">来源 pinchbench ｜ 类型 内容创作·写作 ｜ 复杂度 L1 ｜ 环境 closed ｜ 评分 hybrid（自动 0.6 + LLM 0.4）</text>
+    <text x="110" y="214" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">指令：撰写约 500 词《远程办公对软件开发者的好处》博客并保存为 blog_post.md（纯文本、无外部依赖）</text>
+  </g>
+  <g id="step-1">
+    <rect x="80" y="250" width="268" height="210" fill="#FFFFFF"/>
+    <rect x="80" y="250" width="4" height="210" fill="#1E3A8A"/>
+    <text x="110" y="280" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">① 沙箱执行</text>
+    <text x="110" y="316" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">Agent 在 Docker 容器中隔离运行，独立执行任务</text>
+    <text x="110" y="344" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 纯文本创作，无需联网</text>
+    <text x="110" y="368" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 无外部依赖 / 无预置文件</text>
+    <text x="110" y="392" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· environment = closed（可离线复现）</text>
+    <text x="110" y="416" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 超时 300s 内产出 blog_post.md</text>
+  </g>
+  <g id="step-2">
+    <rect x="372" y="250" width="268" height="210" fill="#FFFFFF"/>
+    <rect x="372" y="250" width="4" height="210" fill="#1E3A8A"/>
+    <text x="402" y="280" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">② 结果采集</text>
+    <text x="402" y="316" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">harness 采集运行产物与过程：</text>
+    <text x="402" y="344" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· OpenClaw session → 归一化为</text>
+    <text x="402" y="368" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">  transcript 事件流（message / toolCall / toolResult）</text>
+    <text x="402" y="392" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 新生成文件内容注入 transcript</text>
+    <text x="402" y="416" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 产物落盘 workspace_path</text>
+  </g>
+  <g id="step-3">
+    <rect x="664" y="250" width="268" height="210" fill="#FFFFFF"/>
+    <rect x="664" y="250" width="4" height="210" fill="#1E3A8A"/>
+    <text x="694" y="280" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">③ 双重评分 · hybrid</text>
+    <text x="694" y="316" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#1E3A8A">自动检查 权重 0.6</text>
+    <text x="694" y="340" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 文件 blog_post.md 是否存在</text>
+    <text x="694" y="362" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 词数 450-550 → 1.0（区间打分）</text>
+    <text x="694" y="384" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 标题 + 段落结构（≥3 段）</text>
+    <text x="694" y="406" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· remote / developer 关键词命中</text>
+    <text x="694" y="430" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#1E3A8A">LLM 评判 权重 0.4</text>
+    <text x="694" y="452" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 质量30 结构25 写作20 词数15 完成度10</text>
+  </g>
+  <g id="step-4">
+    <rect x="956" y="250" width="244" height="210" fill="#FFFFFF"/>
+    <rect x="956" y="250" width="4" height="210" fill="#1E3A8A"/>
+    <text x="986" y="280" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">④ 汇总得分</text>
+    <text x="986" y="316" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">score = 0.6 × 自动分</text>
+    <text x="986" y="340" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">+ 0.4 × LLM 分</text>
+    <rect x="986" y="356" width="180" height="1" fill="#E2E8F0"/>
+    <text x="986" y="382" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#EF4444">混合惩罚机制</text>
+    <text x="986" y="406" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 自动分 &lt; 0.75 时 → LLM 分清零</text>
+    <text x="986" y="430" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">· 防止跳过任务 / 空文件刷分</text>
+    <text x="986" y="452" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">（API 真实失败时豁免）</text>
+  </g>
+  <g id="conclusion">
+    <rect x="80" y="486" width="1120" height="88" fill="#1E3A8A" opacity="0.08"/>
+    <text x="110" y="516" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">一张任务卡 = Prompt + Expected Behavior + 自动检查（代码）+ LLM 评分细则</text>
+    <text x="110" y="548" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">评分仅依赖 transcript 与 workspace_path，对 Agent 框架保持中立 — 多路径达成同样产物皆可得分</text>
+  </g>
+  <g id="footer">
+    <text x="1200" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">10 / 13</text>
+  </g>
+</svg>

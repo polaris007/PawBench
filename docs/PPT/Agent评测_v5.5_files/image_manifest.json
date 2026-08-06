@@ -1,0 +1,41 @@
+[
+  {
+    "index": 1,
+    "filename": "image1.png",
+    "original_filename": "image1.png",
+    "asset_kind": "bitmap",
+    "svg_renderable": true,
+    "pptx_native_supported": true,
+    "source_kind": "pptx_picture",
+    "source_ext": ".png",
+    "source_target": "ppt/media/image1.png",
+    "content_type": "image/png",
+    "display_left_emu": 677103,
+    "display_top_emu": 1429600,
+    "display_width_emu": 9354792,
+    "display_height_emu": 4374307,
+    "display_width_in": 10.2305,
+    "display_height_in": 4.7838,
+    "display_ratio": 2.138577,
+    "pixel_width": 1713,
+    "pixel_height": 801,
+    "pixel_ratio": 2.138577,
+    "occurrences": [
+      {
+        "slide_index": 8,
+        "shape_name": "Picture 2",
+        "display_left_emu": 677103,
+        "display_top_emu": 1429600,
+        "display_width_emu": 9354792,
+        "display_height_emu": 4374307,
+        "display_width_in": 10.2305,
+        "display_height_in": 4.7838,
+        "display_ratio": 2.138577
+      }
+    ],
+    "usage_count": 1,
+    "display_ratio_variants": [
+      2.138577
+    ]
+  }
+]

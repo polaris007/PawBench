@@ -1,0 +1,28 @@
+{
+  "schema": "ppt-master.source_to_md.profile.v1",
+  "converter": "ppt_to_md.py",
+  "conversion_type": "pptx",
+  "source": {
+    "path": "Agent评测_v5.5.pptx",
+    "name": "Agent评测_v5.5.pptx",
+    "suffix": ".pptx",
+    "kind": "file",
+    "exists": true,
+    "size_bytes": 225783
+  },
+  "outputs": {
+    "markdown": "Agent评测_v5.5.md",
+    "asset_dir": "Agent评测_v5.5_files",
+    "image_manifest": "Agent评测_v5.5_files/image_manifest.json",
+    "image_count": 1
+  },
+  "markdown": {
+    "line_count": 898,
+    "char_count": 8938,
+    "heading_count": 14,
+    "table_count": 1,
+    "image_ref_count": 1,
+    "link_count": 0
+  },
+  "warnings": []
+}

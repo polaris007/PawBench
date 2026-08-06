@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <g id="bg"><rect width="1280" height="720" fill="#FFFFFF"/></g>
+  <g id="section-marker">
+    <rect x="0" y="0" width="12" height="720" fill="#1E3A8A"/>
+    <text x="40" y="80" font-family="Microsoft YaHei, Arial, sans-serif" font-size="64" font-weight="700" fill="#1E3A8A" opacity="0.15">03</text>
+  </g>
+  <g id="header">
+    <rect x="80" y="60" width="60" height="3" fill="#1E3A8A"/>
+    <text x="80" y="100" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" font-weight="700" fill="#1A1A2E">主流 Agent 评测方案对比</text>
+  </g>
+  <g id="table">
+    <rect x="80" y="128" width="1120" height="38" fill="#1E3A8A"/>
+    <text x="112" y="153" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">工具</text>
+    <text x="272" y="153" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">定位</text>
+    <text x="472" y="153" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">评测对象</text>
+    <text x="652" y="153" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">完整Agent</text>
+    <text x="792" y="153" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">内网部署</text>
+    <text x="932" y="153" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">扩展能力</text>
+    <text x="1052" y="153" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">资料生态</text>
+    <rect x="80" y="166" width="1120" height="46" fill="#F2F5FA"/>
+    <text x="112" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">PawBench</text>
+    <text x="272" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Agent 评测平台</text>
+    <text x="472" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Model + Harness + Task</text>
+    <text x="652" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="792" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="932" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="1052" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★★</text>
+    <rect x="80" y="212" width="1120" height="46" fill="#FFFFFF"/>
+    <text x="112" y="241" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1A1A2E">WildClawBench</text>
+    <text x="272" y="241" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Agent 交互评测</text>
+    <text x="472" y="241" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Agent System</text>
+    <text x="652" y="241" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="792" y="241" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★★</text>
+    <text x="932" y="241" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★★</text>
+    <text x="1052" y="241" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <rect x="80" y="258" width="1120" height="46" fill="#F2F5FA"/>
+    <text x="112" y="287" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1A1A2E">SkillsBench</text>
+    <text x="272" y="287" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Skill 评测</text>
+    <text x="472" y="287" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Agent Skill</text>
+    <text x="652" y="287" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <text x="792" y="287" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★★</text>
+    <text x="932" y="287" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <text x="1052" y="287" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <rect x="80" y="304" width="1120" height="46" fill="#FFFFFF"/>
+    <text x="112" y="333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1A1A2E">PinchBench</text>
+    <text x="272" y="333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">多模态Agent评测</text>
+    <text x="472" y="333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Agent + Multimodal</text>
+    <text x="652" y="333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★★</text>
+    <text x="792" y="333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <text x="932" y="333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <text x="1052" y="333" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★</text>
+    <rect x="80" y="350" width="1120" height="46" fill="#F2F5FA"/>
+    <text x="112" y="379" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1A1A2E">AgentBench</text>
+    <text x="272" y="379" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Agent Benchmark</text>
+    <text x="472" y="379" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Agent System</text>
+    <text x="652" y="379" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="792" y="379" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <text x="932" y="379" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★★</text>
+    <text x="1052" y="379" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <rect x="80" y="396" width="1120" height="46" fill="#FFFFFF"/>
+    <text x="112" y="425" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1A1A2E">GAIA</text>
+    <text x="272" y="425" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">通用AI评测</text>
+    <text x="472" y="425" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">LLM + Agent</text>
+    <text x="652" y="425" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <text x="792" y="425" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★</text>
+    <text x="932" y="425" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★</text>
+    <text x="1052" y="425" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★★</text>
+    <rect x="80" y="442" width="1120" height="46" fill="#F2F5FA"/>
+    <text x="112" y="471" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1A1A2E">SWE-bench</text>
+    <text x="272" y="471" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">代码修复评测</text>
+    <text x="472" y="471" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Coding Agent</text>
+    <text x="652" y="471" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★</text>
+    <text x="792" y="471" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★★</text>
+    <text x="932" y="471" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★</text>
+    <text x="1052" y="471" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <rect x="80" y="488" width="1120" height="46" fill="#FFFFFF"/>
+    <text x="112" y="517" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1A1A2E">DeepEval</text>
+    <text x="272" y="517" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">评测框架</text>
+    <text x="472" y="517" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">LLM / RAG / Agent</text>
+    <text x="652" y="517" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★★</text>
+    <text x="792" y="517" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="932" y="517" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="1052" y="517" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <rect x="80" y="534" width="1120" height="46" fill="#F2F5FA"/>
+    <text x="112" y="563" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1A1A2E">Promptfoo</text>
+    <text x="272" y="563" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Prompt 评测</text>
+    <text x="472" y="563" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">Prompt + Model</text>
+    <text x="652" y="563" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">★★</text>
+    <text x="792" y="563" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="932" y="563" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+    <text x="1052" y="563" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">★★★★★</text>
+  </g>
+  <g id="highlight">
+    <rect x="80" y="604" width="1120" height="52" fill="#1E3A8A" opacity="0.08"/>
+    <text x="112" y="638" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">评分说明：★★★★★ 优 · ★★★★ 良 · ★★★ 中 · ★★ 弱 ｜ 内网部署 = 内网可运行 + 公网依赖度综合</text>
+  </g>
+  <g id="footer">
+    <text x="1200" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">03 / 13</text>
+  </g>
+</svg>

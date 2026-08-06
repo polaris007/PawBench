@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <g id="bg"><rect width="1280" height="720" fill="#FFFFFF"/></g>
+  <g id="section-marker">
+    <rect x="0" y="0" width="12" height="720" fill="#1E3A8A"/>
+    <text x="40" y="80" font-family="Microsoft YaHei, Arial, sans-serif" font-size="64" font-weight="700" fill="#1E3A8A" opacity="0.15">07</text>
+  </g>
+  <g id="header">
+    <rect x="80" y="60" width="60" height="3" fill="#1E3A8A"/>
+    <text x="80" y="100" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" font-weight="700" fill="#1A1A2E">PawBench 能力与评测设计</text>
+  </g>
+  <g id="lead">
+    <text x="80" y="140" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#64748B">核心设计理念：Agent 表现 = f(Model, Harness) — Model 决定能力上限 · Harness 决定稳定落地</text>
+  </g>
+  <g id="flow">
+    <rect x="80" y="160" width="300" height="110" fill="#F2F5FA"/>
+    <rect x="80" y="160" width="4" height="110" fill="#1E3A8A"/>
+    <text x="110" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">1 选择组合</text>
+    <text x="110" y="230" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">模型与 Harness 组合</text>
+    <rect x="396" y="205" width="40" height="4" fill="#2563EB"/>
+    <rect x="436" y="160" width="300" height="110" fill="#F2F5FA"/>
+    <rect x="436" y="160" width="4" height="110" fill="#1E3A8A"/>
+    <text x="466" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">2 Docker 隔离运行</text>
+    <text x="466" y="230" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">沙箱隔离，严格超时与重试</text>
+    <rect x="752" y="205" width="40" height="4" fill="#2563EB"/>
+    <rect x="792" y="160" width="428" height="110" fill="#F2F5FA"/>
+    <rect x="792" y="160" width="4" height="110" fill="#1E3A8A"/>
+    <text x="822" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">3 自动 + LLM 双重评分</text>
+    <text x="822" y="230" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">automated · llm_judge · hybrid 三种模式</text>
+  </g>
+  <g id="caps-title">
+    <rect x="80" y="300" width="4" height="28" fill="#1E3A8A"/>
+    <text x="100" y="322" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">七种原子能力诊断</text>
+  </g>
+  <g id="caps-1">
+    <rect x="80" y="340" width="178" height="86" fill="#F2F5FA"/>
+    <text x="100" y="370" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">Tool_Use</text>
+    <text x="100" y="396" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">工具调用与编排</text>
+  </g>
+  <g id="caps-2">
+    <rect x="274" y="340" width="178" height="86" fill="#F2F5FA"/>
+    <text x="294" y="370" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">Skill_Use</text>
+    <text x="294" y="396" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">Skill 发现与执行</text>
+  </g>
+  <g id="caps-3">
+    <rect x="468" y="340" width="178" height="86" fill="#F2F5FA"/>
+    <text x="488" y="370" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">Code_Manipulation</text>
+    <text x="488" y="396" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">代码操作与修复</text>
+  </g>
+  <g id="caps-4">
+    <rect x="662" y="340" width="178" height="86" fill="#F2F5FA"/>
+    <text x="682" y="370" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">Logic_Reasoning</text>
+    <text x="682" y="396" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">逻辑推理</text>
+  </g>
+  <g id="caps-5">
+    <rect x="856" y="340" width="178" height="86" fill="#F2F5FA"/>
+    <text x="876" y="370" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">Planning</text>
+    <text x="876" y="396" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">多步任务规划</text>
+  </g>
+  <g id="caps-6">
+    <rect x="1050" y="340" width="170" height="86" fill="#F2F5FA"/>
+    <text x="1070" y="370" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">Math_Computation</text>
+    <text x="1070" y="396" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">数学计算</text>
+  </g>
+  <g id="caps-7">
+    <rect x="80" y="446" width="364" height="86" fill="#F2F5FA"/>
+    <text x="100" y="476" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">Self_Verification</text>
+    <text x="100" y="502" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">自我验证与纠错</text>
+  </g>
+  <g id="mode-1">
+    <rect x="468" y="446" width="364" height="86" fill="#F2F5FA"/>
+    <rect x="468" y="446" width="4" height="86" fill="#2563EB"/>
+    <text x="498" y="476" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">评分模式</text>
+    <text x="498" y="502" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">automated（确定性断言）· llm_judge（语义）· hybrid（混合）</text>
+  </g>
+  <g id="mode-2">
+    <rect x="856" y="446" width="364" height="86" fill="#F2F5FA"/>
+    <rect x="856" y="446" width="4" height="86" fill="#2563EB"/>
+    <text x="886" y="476" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">覆盖场景 · 复杂度</text>
+    <text x="886" y="502" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">办公协同 / 软件工程 / 数据分析 · L1-L3 复杂度</text>
+  </g>
+  <g id="conclusion">
+    <rect x="80" y="556" width="1140" height="56" fill="#1E3A8A" opacity="0.08"/>
+    <text x="110" y="592" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">Model × Harness × Task 三维交叉设计 — 9 模型 × 3 Harness × 150 任务 = 4,050 评测单元</text>
+  </g>
+  <g id="footer">
+    <text x="1200" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">07 / 14</text>
+  </g>
+</svg>

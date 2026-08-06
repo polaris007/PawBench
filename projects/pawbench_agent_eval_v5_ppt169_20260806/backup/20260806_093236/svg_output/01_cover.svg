@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="cover">
+  <g id="bg"><rect width="1280" height="720" fill="#FFFFFF"/></g>
+  <g id="hero">
+    <rect x="80" y="150" width="6" height="120" fill="#1E3A8A"/>
+    <text x="120" y="180" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#2563EB">PawBench · Agent 评测平台</text>
+    <text x="120" y="255" font-family="Microsoft YaHei, Arial, sans-serif" font-size="64" font-weight="700" fill="#1A1A2E">基于 PawBench 的 Agent 评测</text>
+    <text x="120" y="320" font-family="Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="400" fill="#64748B">三维交叉评测 · Model × Harness × Task</text>
+    <text x="120" y="360" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">Agent 表现 = f(Model, Harness) — 三者独立评测，定位真实瓶颈</text>
+  </g>
+  <g id="info-line">
+    <rect x="120" y="450" width="1040" height="1" fill="#E2E8F0"/>
+    <text x="120" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">150 道标准化任务</text>
+    <text x="420" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">自动评分引擎</text>
+    <text x="700" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">Docker 内网隔离</text>
+    <text x="980" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">七维原子能力诊断</text>
+  </g>
+  <g id="footer">
+    <text x="120" y="660" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">阿里通义实验室 AgentScope 团队 · 2025</text>
+  </g>
+</svg>

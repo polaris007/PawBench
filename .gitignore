@@ -38,6 +38,7 @@ run_batch.sh
 .codegraph/
 .codebuddy/
 
+~*.pptx
 slides/
 output/
 

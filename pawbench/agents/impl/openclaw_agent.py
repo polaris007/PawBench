@@ -1152,11 +1152,13 @@ cp /root/.openclaw/openclaw.json "$DEST/openclaw.json" 2>/dev/null || true
         await environment.execute_command(_SYNC_CMD, timeout=30)
 
     async def teardown(self, environment: BaseEnvironment) -> None:
-        agent_id = self._agent_id()
-        await environment.execute_command(
-            f"openclaw agents delete {shlex.quote(agent_id)} --force 2>/dev/null || true",
-            timeout=60,
-        )
+        # 当 PAWBENCH_KEEP_CONTAINER=1 时保留 agent 数据，方便事后排查
+        if not os.environ.get("PAWBENCH_KEEP_CONTAINER"):
+            agent_id = self._agent_id()
+            await environment.execute_command(
+                f"openclaw agents delete {shlex.quote(agent_id)} --force 2>/dev/null || true",
+                timeout=60,
+            )
         await environment.execute_command(
             "rm -f /tmp/openclaw_output.txt /tmp/patch_openclaw.py",
             timeout=10,

@@ -400,10 +400,17 @@ class PawBenchBackend(BenchmarkBackend):
             docker_images_save_dir = agent_config.get("docker_images_save_dir")
             if not _use_local and docker_images_save_dir and getattr(env, "container_id", None):
                 _save_docker_image(container_name, task.task_id, Path(docker_images_save_dir))
-            try:
-                await env.stop()
-            except Exception:
-                pass
+            if not _use_local and os.environ.get("PAWBENCH_KEEP_CONTAINER"):
+                print(
+                    f"  [backend] PAWBENCH_KEEP_CONTAINER is set — keeping container "
+                    f"'{container_name}' running for inspection.\n"
+                    f"           docker exec -it {container_name} bash"
+                )
+            else:
+                try:
+                    await env.stop()
+                except Exception:
+                    pass
 
         transcript = agent.extract_transcript(local_workspace, stdout_output)
 

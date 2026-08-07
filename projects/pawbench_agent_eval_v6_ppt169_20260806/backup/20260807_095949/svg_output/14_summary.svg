@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="ending">
+  <g id="bg"><rect width="1280" height="720" fill="#FFFFFF"/></g>
+  <g id="header">
+    <rect x="80" y="60" width="60" height="3" fill="#1E3A8A"/>
+    <text x="80" y="100" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" font-weight="700" fill="#1A1A2E">总结</text>
+  </g>
+  <g id="pillar-1">
+    <rect x="80" y="140" width="364" height="180" fill="#F2F5FA"/>
+    <rect x="80" y="140" width="4" height="180" fill="#1E3A8A"/>
+    <text x="110" y="175" font-family="Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="700" fill="#1E3A8A">01</text>
+    <text x="170" y="180" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">交叉评测矩阵</text>
+    <text x="110" y="228" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">同时评估 Model、Harness 和 Task</text>
+    <text x="110" y="252" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">三个维度，回答的不只是</text>
+    <text x="110" y="276" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">「模型好不好」，更是「部署后的 Agent 好不好用」</text>
+    <text x="110" y="306" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#2563EB">9 模型 × 3 Harness × 150 任务</text>
+  </g>
+  <g id="pillar-2">
+    <rect x="468" y="140" width="364" height="180" fill="#F2F5FA"/>
+    <rect x="468" y="140" width="4" height="180" fill="#1E3A8A"/>
+    <text x="498" y="175" font-family="Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="700" fill="#1E3A8A">02</text>
+    <text x="558" y="180" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">灵活可扩展</text>
+    <text x="498" y="228" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">Task、Judge、Runner 完全解耦</text>
+    <text x="498" y="252" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">可自定义评测任务和评分规则</text>
+    <text x="498" y="276" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">五维标签体系支持精细化切片分析</text>
+    <text x="498" y="306" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#2563EB">阿里通义实验室 AgentScope · Apache 2.0</text>
+  </g>
+  <g id="pillar-3">
+    <rect x="856" y="140" width="364" height="180" fill="#F2F5FA"/>
+    <rect x="856" y="140" width="4" height="180" fill="#1E3A8A"/>
+    <text x="886" y="175" font-family="Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="700" fill="#1E3A8A">03</text>
+    <text x="946" y="180" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">内网安全就绪</text>
+    <text x="886" y="228" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">Docker 沙箱隔离运行，数据不出网</text>
+    <text x="886" y="252" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">完全私有化部署，可集成 CI/CD 回归</text>
+    <text x="886" y="276" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">支持 OpenAI 兼容 API</text>
+    <text x="886" y="306" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#2563EB">Python 3.11+ / Docker / Node.js</text>
+  </g>
+  <g id="closing">
+    <rect x="80" y="360" width="1140" height="150" fill="#1E3A8A" opacity="0.06"/>
+    <text x="110" y="405" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">Agent 评测正处于关键转折期</text>
+    <text x="110" y="445" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#1A1A2E">从手工挑选个别案例做主观判断，转向标准化、自动化、多维度量化评测，是 Agent 从实验走向生产的前提。</text>
+    <text x="110" y="475" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#1A1A2E">一个完整的评测体系需同时覆盖模型能力、任务框架和运行环境三个独立变量，才能真正回答「我的 Agent 到底好不好用」。</text>
+  </g>
+  <g id="footer">
+    <text x="1200" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">14 / 14</text>
+  </g>
+</svg>

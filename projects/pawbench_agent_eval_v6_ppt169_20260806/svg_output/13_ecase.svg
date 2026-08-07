@@ -15,58 +15,55 @@
     <rect x="80" y="150" width="4" height="28" fill="#1E3A8A"/>
     <text x="100" y="172" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">评测结果 · 得分对比</text>
   </g>
+  <g id="why-title">
+    <rect x="660" y="150" width="4" height="28" fill="#2563EB"/>
+    <text x="680" y="172" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">根因分析 · 为什么 5.28 分数更低</text>
+  </g>
   <g id="card-414">
-    <rect x="80" y="186" width="310" height="150" fill="#F2F5FA"/>
-    <rect x="80" y="186" width="4" height="150" fill="#10B981"/>
+    <rect x="80" y="186" width="540" height="120" fill="#F2F5FA"/>
+    <rect x="80" y="186" width="4" height="120" fill="#10B981"/>
     <text x="110" y="216" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">OpenClaw 4.14</text>
-    <text x="110" y="248" font-family="Microsoft YaHei, Arial, sans-serif" font-size="40" font-weight="700" fill="#10B981">68.1</text>
-    <text x="180" y="248" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">/ 66.0 / 70.3</text>
-    <text x="110" y="280" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">三次任务平均分 0.6774</text>
-    <text x="110" y="306" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">错误后可恢复：107 次</text>
+    <text x="110" y="256" font-family="Microsoft YaHei, Arial, sans-serif" font-size="40" font-weight="700" fill="#10B981">68.1</text>
+    <text x="210" y="256" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">/ 66.0 / 70.3</text>
+    <text x="330" y="230" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">三次任务平均分 0.6774</text>
+    <text x="330" y="256" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#10B981">错误后可恢复：107 次</text>
   </g>
   <g id="card-528">
-    <rect x="414" y="186" width="310" height="150" fill="#F2F5FA"/>
-    <rect x="414" y="186" width="4" height="150" fill="#EF4444"/>
-    <text x="444" y="216" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">OpenClaw 5.28</text>
-    <text x="444" y="248" font-family="Microsoft YaHei, Arial, sans-serif" font-size="40" font-weight="700" fill="#EF4444">60.3</text>
-    <text x="514" y="248" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">/ 61.2 / 59.7</text>
-    <text x="444" y="280" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">三次任务平均分 0.6144</text>
-    <text x="444" y="306" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#EF4444">错误后可恢复：0 次</text>
+    <rect x="80" y="322" width="540" height="120" fill="#F2F5FA"/>
+    <rect x="80" y="322" width="4" height="120" fill="#EF4444"/>
+    <text x="110" y="352" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">OpenClaw 5.28</text>
+    <text x="110" y="392" font-family="Microsoft YaHei, Arial, sans-serif" font-size="40" font-weight="700" fill="#EF4444">60.3</text>
+    <text x="210" y="392" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">/ 61.2 / 59.7</text>
+    <text x="330" y="366" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">三次任务平均分 0.6144</text>
+    <text x="330" y="392" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#EF4444">错误后可恢复：0 次</text>
   </g>
   <g id="delta">
-    <rect x="80" y="360" width="644" height="56" fill="#1E3A8A"/>
-    <text x="110" y="396" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">版本升级未带来收益：平均分下降 6.3 分（0.6774 → 0.6144）</text>
+    <rect x="80" y="458" width="540" height="56" fill="#1E3A8A"/>
+    <text x="110" y="494" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">版本升级未带来收益：平均分下降 6.3 分</text>
   </g>
-  <g id="why-title">
-    <rect x="80" y="440" width="4" height="28" fill="#2563EB"/>
-    <text x="100" y="462" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">根因分析 · 为什么 5.28 分数更低</text>
+  <g id="attach-placeholder">
+    <rect x="80" y="530" width="540" height="120" fill="#FFFFFF" stroke="#93C5FD" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="110" y="560" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">分析附件 · 待附 Excel（3 份）</text>
+    <text x="110" y="590" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">PawBench_4.14.xlsx — 4.14 得分分析</text>
+    <text x="110" y="616" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">PawBench_5.28.xlsx — 5.28 得分分析</text>
+    <text x="110" y="642" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">PawBench_4.14_VS_5.28.xlsx — 得分对比分析</text>
   </g>
   <g id="why-1">
-    <rect x="80" y="478" width="310" height="94" fill="#F2F5FA"/>
-    <text x="110" y="504" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">① 输出流截断 15.8×</text>
-    <text x="110" y="530" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">partialArgs 截断：137 → 2,160</text>
-    <text x="110" y="552" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">5.28 架构调整后高频发生</text>
+    <rect x="660" y="186" width="540" height="200" fill="#1E3A8A"/>
+    <text x="690" y="216" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">① 错误恢复机制变化 · 核心</text>
+    <text x="690" y="246" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#FFFFFF">4.14 出错后由模型自发重试：错误 137 次中恢复 107 次（78.1%）</text>
+    <text x="690" y="272" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#FFFFFF">5.28 一旦会话执行过工具（hadPotentialSideEffects），出错即永久禁止重试</text>
+    <text x="690" y="298" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#FFFFFF">官方 issue：#97877 · #68310 · #97966 · #100669</text>
   </g>
   <g id="why-2">
-    <rect x="414" y="478" width="310" height="94" fill="#F2F5FA"/>
-    <text x="444" y="504" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">② 截断后不重试</text>
-    <text x="444" y="530" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">4.14 重试至多 5 次成功恢复</text>
-    <text x="444" y="552" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">5.28 失败即放弃（恢复 0 次）</text>
-  </g>
-  <g id="why-3">
-    <rect x="80" y="586" width="310" height="94" fill="#F2F5FA"/>
-    <text x="110" y="612" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">③ 错误类型三分</text>
-    <text x="110" y="638" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">timed out / aborted / Context</text>
-    <text x="110" y="660" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">overflow 各约 30%（4.14 未见）</text>
-  </g>
-  <g id="why-4">
-    <rect x="414" y="586" width="310" height="94" fill="#F2F5FA"/>
-    <text x="444" y="612" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">④ 官方证据确认</text>
-    <text x="444" y="638" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">openclaw/openclaw #87571 确认</text>
-    <text x="444" y="660" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">截断 tool call 不重试的架构缺陷</text>
+    <rect x="660" y="402" width="540" height="200" fill="#F2F5FA"/>
+    <text x="690" y="432" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">② LLM 输出提前终止</text>
+    <text x="690" y="462" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">慢响应 / 流中断为主因（timeout 2.7–13.1 分钟分散，同一任务时好时坏）</text>
+    <text x="690" y="488" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#1A1A2E">maxTokens 截断为辅：5.28 不识别 length，截断的 toolCall 仍被执行</text>
+    <text x="690" y="514" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">官方 issue：#63210 · #97140（v2026.6.10 修复）· #70033</text>
   </g>
   <g id="footer">
-    <text x="80" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">数据来源：PawBench 实测（同 LLM QWen35-397b）· 分析 penclaw-4.14-vs-5.28-analysis.md · 官方 PR #87571</text>
+    <text x="80" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">数据来源：PawBench 实测（同 LLM QWen35-397b）· 分析 openclaw-4.14-vs-5.28-analysis.md · 官方 issue openclaw/openclaw #97877 / #97140</text>
     <text x="1200" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">13 / 14</text>
   </g>
 </svg>

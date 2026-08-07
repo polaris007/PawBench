@@ -125,7 +125,9 @@
 
 ## 5. timeout 根因分析
 
-### 5.1 timeout 任务的特征
+### 5.1 timeout 时间分布的关键发现
+
+**关键发现：timeout 时间分布非常分散**
 
 | 任务 | 5.28 timeout 耗时 | 5.28 行数 | 4.14 行数 | 4.14 耗时 |
 |:----|:---------------:|:--------:|:--------:|:--------:|
@@ -134,6 +136,11 @@
 | task_meeting_gov_controversy | 167.5s (2.8min) | 16行 | 7行 | 25.2s (0.4min) |
 | energy-market-pricing | 160.6s (2.7min) | 10行 | 40行 | 1140.5s (19.0min) |
 | task_csv_temp_decades | 128.3s (2.1min) | 4行 | 15行 | 169.9s (2.8min) |
+
+**分散的 timeout 时间（2.7min, 2.8min, 2.9min, 13.1min）说明**：
+- ❌ **不是固定的 `task_timeout_s` 配置**（否则应该都在 1800s 或某个固定值）
+- ❌ **不是 openclaw gateway 的 hard timeout**（否则应该更一致，如都在 30 分钟）
+- ✅ **是流式输出在生成过程中被动态截断**
 
 ### 5.2 timeout 前的最后一个 tool 调用
 
@@ -147,7 +154,16 @@
 | energy-market-pricing | exec | ✅ | 无 |
 | task_csv_temp_decades | read | ✅ | 无 |
 
-### 5.3 output tokens 对比
+### 5.3 长耗时任务的通过率
+
+**528 中有 113 个任务执行时间 > 2 分钟，但只有 18 个通过（16% 通过率）**
+
+最长的任务（838s = 14 分钟）也失败了，说明：
+- timeout **不是在一个固定的短时间**（如 30 秒）发生
+- 而是在**任务执行到某个点时突然发生**
+- 这个"某个点"与**输出流的长度**相关，而不是与**时间**相关
+
+### 5.4 output tokens 对比：关键证据
 
 | 指标 | 4.14 | 5.28 | 差异 |
 |:----|:---:|:---:|:---:|
@@ -155,17 +171,35 @@
 | max completion_tokens | 18,165 | 12,090 | 414 多 50% |
 | output > 1000 tokens 的任务 | 83/150 (55%) | 62/150 (41%) | 414 多 14 个 |
 
-**528 的 output 量显著少于 414**，说明 528 的 LLM 输出被提前截断。
+**528 的 output tokens 显著少于 414**，说明 528 的 LLM 输出被提前截断。
 
-### 5.4 根因分析：openclaw 配置 vs LLM 输出
+### 5.5 完整证据链
+
+```
+528:
+LLM 开始生成输出 → 流被截断 (partialArgs) → 
+  tool 调用只有 partial 参数 → 
+  tool 执行失败 (errorMessage: "request timed out") → 
+  模型不重试 → 任务失败
+
+414:
+LLM 开始生成输出 → 流被截断 (partialArgs) → 
+  tool 调用只有 partial 参数 → 
+  tool 执行失败 (errorMessage: "terminated") → 
+  模型重试 (最多 5 次) → 
+  最终生成完整 content → 任务成功
+```
+
+### 5.6 根因分析：openclaw 配置 vs LLM 输出
 
 **结论：timeout 是流式输出被截断的结果，而不是原因。**
 
 证据链：
-1. 528 有 2,160 次 `partialArgs`，说明**输出流在生成过程中频繁被截断**
-2. 截断后 tool 调用**只有 partial 参数，没有完整 content**
+1. **528 有 2,160 次 `partialArgs`**，是 414 的 15.8 倍 → **输出流在生成过程中频繁被截断**
+2. 截断后 tool 调用**只有 partial 参数，没有完整 content** → **tool 调用失败**
 3. tool 调用失败，返回 `error`（errorMessage 中显示 "request timed out"）
 4. 528 的模型遇到 error 后**不重试**，直接结束对话
+5. **528 的 completion_tokens 比 414 少 64%** → **LLM 输出被提前截断**
 
 **这个截断更可能来自 LLM 输出侧的机制，而不是 openclaw 配置。**
 
@@ -174,11 +208,27 @@
 - 外层还有 `timeout 1800s`（30分钟）的 shell timeout
 - 任务的实际执行时间（2.7-13.1分钟）**远低于这两个 timeout**
 - `partialArgs` 的出现表明是**输出流被截断**，而不是连接超时
+- **timeout 时间分布分散**（2.7min 到 13.1min），不符合固定 timeout 配置的特征
 
-**可能的原因：**
-1. LLM provider 侧的输出 token 限制（如单次输出不超过 4096 tokens）
-2. LLM 模型的大 Context 窗口管理机制（触发了 Context overflow，已在 528 中发现此错误类型）
-3. openclaw gateway 的 stream 缓冲区限制
+**可能的截断机制（按可能性排序）：**
+
+1. **LLM provider 的输出 token limit**（最可能）
+   - 单次输出可能有 token 上限（如 4096 tokens）
+   - 达到上限后，stream 被强制截断
+   - 表现为 `partialArgs` 和 `completion_tokens` 减少
+
+2. **LLM 模型的 Context overflow 保护**
+   - 528 频繁出现 `Context overflow: estimated context size exceeds safe threshold during tool loop`
+   - 这是 414 中从未出现的错误类型
+   - 说明 528 的 context 管理策略更激进
+
+3. **openclaw gateway 的 stream 缓冲区限制**
+   - stream 缓冲区可能有大小限制
+   - 超过限制后，输出被截断
+
+4. **网络代理的 connection timeout**（可能性较低）
+   - 如果是网络 timeout，应该看到更一致的 timeout 时间
+   - 但实际分布非常分散（2.7min 到 13.1min）
 
 ---
 

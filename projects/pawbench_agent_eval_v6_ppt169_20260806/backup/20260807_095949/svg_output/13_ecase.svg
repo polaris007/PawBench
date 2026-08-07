@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content">
+  <g id="bg"><rect width="1280" height="720" fill="#FFFFFF"/></g>
+  <g id="section-marker">
+    <rect x="0" y="0" width="12" height="720" fill="#1E3A8A"/>
+    <text x="40" y="80" font-family="Microsoft YaHei, Arial, sans-serif" font-size="64" font-weight="700" fill="#1E3A8A" opacity="0.15">13</text>
+  </g>
+  <g id="header">
+    <rect x="80" y="60" width="60" height="3" fill="#1E3A8A"/>
+    <text x="80" y="100" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" font-weight="700" fill="#1A1A2E">实战评测案例 · OpenClaw 4.14 vs 5.28</text>
+  </g>
+  <g id="subtitle">
+    <text x="80" y="130" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#64748B">同一 LLM（QWen35-397b）× 同一任务集 — 「Agent 框架迭代」效果可量化验证</text>
+  </g>
+  <g id="result-title">
+    <rect x="80" y="150" width="4" height="28" fill="#1E3A8A"/>
+    <text x="100" y="172" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">评测结果 · 得分对比</text>
+  </g>
+  <g id="card-414">
+    <rect x="80" y="186" width="310" height="150" fill="#F2F5FA"/>
+    <rect x="80" y="186" width="4" height="150" fill="#10B981"/>
+    <text x="110" y="216" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">OpenClaw 4.14</text>
+    <text x="110" y="248" font-family="Microsoft YaHei, Arial, sans-serif" font-size="40" font-weight="700" fill="#10B981">68.1</text>
+    <text x="180" y="248" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">/ 66.0 / 70.3</text>
+    <text x="110" y="280" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">三次任务平均分 0.6774</text>
+    <text x="110" y="306" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">错误后可恢复：107 次</text>
+  </g>
+  <g id="card-528">
+    <rect x="414" y="186" width="310" height="150" fill="#F2F5FA"/>
+    <rect x="414" y="186" width="4" height="150" fill="#EF4444"/>
+    <text x="444" y="216" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">OpenClaw 5.28</text>
+    <text x="444" y="248" font-family="Microsoft YaHei, Arial, sans-serif" font-size="40" font-weight="700" fill="#EF4444">60.3</text>
+    <text x="514" y="248" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">/ 61.2 / 59.7</text>
+    <text x="444" y="280" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">三次任务平均分 0.6144</text>
+    <text x="444" y="306" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#EF4444">错误后可恢复：0 次</text>
+  </g>
+  <g id="delta">
+    <rect x="80" y="360" width="644" height="56" fill="#1E3A8A"/>
+    <text x="110" y="396" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">版本升级未带来收益：平均分下降 6.3 分（0.6774 → 0.6144）</text>
+  </g>
+  <g id="why-title">
+    <rect x="80" y="440" width="4" height="28" fill="#2563EB"/>
+    <text x="100" y="462" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E">根因分析 · 为什么 5.28 分数更低</text>
+  </g>
+  <g id="why-1">
+    <rect x="80" y="478" width="310" height="94" fill="#1E3A8A"/>
+    <text x="110" y="504" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">① 错误处理框架变化 · 核心</text>
+    <text x="110" y="530" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#FFFFFF">4.14 错误后重试至多 5 次，78.1% 恢复</text>
+    <text x="110" y="552" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#FFFFFF">5.28 失败即放弃（恢复 0 次）</text>
+  </g>
+  <g id="why-2">
+    <rect x="414" y="478" width="310" height="94" fill="#F2F5FA"/>
+    <text x="444" y="504" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">② LLM 输出提前终止</text>
+    <text x="444" y="530" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">completion_tokens 少 64%（2147→1311）</text>
+    <text x="444" y="552" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">timeout 分散于 LLM 输出阶段</text>
+  </g>
+  <g id="why-3">
+    <rect x="80" y="586" width="310" height="94" fill="#F2F5FA"/>
+    <text x="110" y="612" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">③ Context 管理更激进</text>
+    <text x="110" y="638" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">工具循环估算上下文超安全阈值即终止生成</text>
+    <text x="110" y="660" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">新增 Context overflow 错误（4.14 从未出现）</text>
+  </g>
+  <g id="why-4">
+    <rect x="414" y="586" width="310" height="94" fill="#F2F5FA"/>
+    <text x="444" y="612" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">④ 截断调用被误执行</text>
+    <text x="444" y="638" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">截断的 tool call 未丢弃，仍以残缺参数执行</text>
+    <text x="444" y="660" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">执行后副作用守卫禁止重试（无法补救）</text>
+  </g>
+  <g id="footer">
+    <text x="80" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">数据来源：PawBench 实测（同 LLM QWen35-397b）· 分析 penclaw-4.14-vs-5.28-analysis.md · 官方 PR #87571 / #97140</text>
+    <text x="1200" y="690" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#64748B">13 / 14</text>
+  </g>
+</svg>

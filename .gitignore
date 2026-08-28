@@ -26,6 +26,7 @@ results/
 examples/
 #harness
 .claude/
+.opencode/
 .ruff_cache
 .attribution/
 analysis/

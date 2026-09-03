@@ -5,4 +5,4 @@ docker build \
   --build-arg HTTP_PROXY=$HTTP_PROXY \
   --build-arg HTTPS_PROXY=$HTTPS_PROXY \
   --build-arg ALL_PROXY=$ALL_PROXY \
- -f docker/Dockerfile.pawbench-openclaw -t pawbench-openclaw:8.1 .
+ -f docker/Dockerfile.pawbench-openclaw -t pawbench-openclaw:5.28 .

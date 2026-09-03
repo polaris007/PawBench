@@ -12,7 +12,7 @@
 FROM node:22-slim
 
 # ── Pinned agent version ───────────────────────────────────────────────────────
-ARG OPENCLAW_VERSION=2026.8.1
+ARG OPENCLAW_VERSION=2026.5.28
 
 # ── System packages ────────────────────────────────────────────────────────────
 #   - python3 / pip    : grading scripts, task setup scripts
@@ -140,16 +140,11 @@ RUN openclaw config set agents.defaults.model.primary qwen/qwen3.6-plus 2>/dev/n
 # gateway on "ready" leaves them unfinished.  We wait until every staged
 # install has completed (staging count ≤ installed count) plus a 3 s safety
 # margin for the last plugin's final log flush.
-#
-# NOTE: gateway log lines carry ANSI colour codes between the "[gateway]"
-# prefix and "ready", so grepping the full literal "[gateway] ready" never
-# matches and the warm-up loop would burn all 120 iterations.  Match on
-# " ready" instead.
 RUN bash -c '\
   openclaw gateway --no-daemon >/tmp/gw_warmup.log 2>&1 & \
   GW_PID=$! ; \
   for i in $(seq 1 120); do \
-    if grep -q " ready" /tmp/gw_warmup.log 2>/dev/null; then \
+    if grep -q "\[gateway\] ready" /tmp/gw_warmup.log 2>/dev/null; then \
       S=$(grep -c "staging" /tmp/gw_warmup.log 2>/dev/null || echo 0); \
       I=$(grep -c "installed" /tmp/gw_warmup.log 2>/dev/null || echo 0); \
       [ "$S" -gt 0 ] && [ "$S" -le "$I" ] && break; \

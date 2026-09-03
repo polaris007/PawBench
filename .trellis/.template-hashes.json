@@ -89,6 +89,20 @@
     ".trellis/scripts/init_developer.py": "0943f1c240993649ab89b91a2c5b379e84daa8c53b35f0490774bff05a552873",
     ".trellis/scripts/task.py": "f3a728b8f77e2f507ccbb490c0f284595e8afef9c57ca9b945a630123f148e33",
     ".trellis/scripts/__init__.py": "1242be5b972094c2e141aecbe81a4efd478f6534e3d5e28306374e6a18fcf46c",
-    ".trellis/workflow.md": "1447158c66cbbf011257c1eae2dfd456d42b7022667f36074ffdafee003459c4"
+    ".trellis/workflow.md": "1447158c66cbbf011257c1eae2dfd456d42b7022667f36074ffdafee003459c4",
+    ".trellis/scripts/common/__pycache__/active_task.cpython-312.pyc": "6b35b1aa6481cd3db3ef73572cb99de5a652044f2c467bf241b7893294118b5a",
+    ".trellis/scripts/common/__pycache__/config.cpython-312.pyc": "11a536a315daccbf3e8635c5c1d3cd6c041db5b999940f86207ced79ea222122",
+    ".trellis/scripts/common/__pycache__/developer.cpython-312.pyc": "6fd7e196b86150487b18739566f341a63d631cccd7a4c7683773d2991a54166b",
+    ".trellis/scripts/common/__pycache__/git.cpython-312.pyc": "892944d314aaf121082f43acb9c9c65fc0f3d21ff9a8fe9af53eb8ceff4f39a2",
+    ".trellis/scripts/common/__pycache__/git_context.cpython-312.pyc": "9e92d52d5aeb79f564b35af0ec8f899f80f713bc12edfdf6a0203d5e3d88fe6b",
+    ".trellis/scripts/common/__pycache__/io.cpython-312.pyc": "0904cde226aa9090b47f871c0faca9ba01f97c06f35a64d0e26a1fbd76a74148",
+    ".trellis/scripts/common/__pycache__/packages_context.cpython-312.pyc": "e6c73b0f1bdf5f26d4e0b34010ca90e37fdb7ffbc8fcbcbb1bfca0408f1fde3f",
+    ".trellis/scripts/common/__pycache__/paths.cpython-312.pyc": "392b1751825a923fcc9544315f92b9758f829ccca695ae9ad4303bd15281eca4",
+    ".trellis/scripts/common/__pycache__/session_context.cpython-312.pyc": "789f246868c13c182d234b48eacc0192bae4e499866ab1aa880aac7772fc112f",
+    ".trellis/scripts/common/__pycache__/tasks.cpython-312.pyc": "9e1b487fa1afe62aad68da23f4745e5d28e4ee1a2bf25d11351bad710cd6ad27",
+    ".trellis/scripts/common/__pycache__/trellis_config.cpython-312.pyc": "634e37e681bf55985253b8df46bc0d0870bafcdb4dcaeff955d69978986b6e96",
+    ".trellis/scripts/common/__pycache__/types.cpython-312.pyc": "c4e8140e786e0a886adde8be5089e2381cff87456f2c4ff432e1a5ff0ef99fa8",
+    ".trellis/scripts/common/__pycache__/workflow_phase.cpython-312.pyc": "e949a339ea503edb5fc263a4a5ed109caf3d0215ede092ccacc945fbb5b9652e",
+    ".trellis/scripts/common/__pycache__/__init__.cpython-312.pyc": "b8d775215a7d33a2b6b6b59fd3bba570e552416ca17e2e50f3ebaaeaf74f7931"
   }
 }

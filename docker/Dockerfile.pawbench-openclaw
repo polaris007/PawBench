@@ -146,7 +146,7 @@ RUN openclaw config set agents.defaults.model.primary qwen/qwen3.6-plus 2>/dev/n
 # matches and the warm-up loop would burn all 120 iterations.  Match on
 # " ready" instead.
 RUN bash -c '\
-  openclaw gateway --no-daemon >/tmp/gw_warmup.log 2>&1 & \
+  openclaw gateway >/tmp/gw_warmup.log 2>&1 & \
   GW_PID=$! ; \
   for i in $(seq 1 120); do \
     if grep -q " ready" /tmp/gw_warmup.log 2>/dev/null; then \

@@ -14,7 +14,7 @@ docker build -f docker/Dockerfile.pawbench-openclaw -t openclaw-pawbench:latest 
 
 | # | 问题 | 正确做法 |
 |---|------|----------|
-| 1 | `openclaw gateway` 启动与 CLI 连接都需要**显式 token**,否则连接被拒 | 启动加 `--token`,后续所有 `openclaw` CLI 调用也带同一个 `--token` |
+| 1 | 2026.8.x 起 gateway 强制鉴权,客户端无凭据会在建 websocket 前被拒 | 启动 `gateway` 加 `--token`;**客户端命令(`agent`/`agents`/`browser`)在 8.1 没有 `--token` 参数**(传了会报 unknown option),统一用 `export OPENCLAW_GATEWAY_TOKEN=...`(2026.5.x 也认这个变量) |
 | 2 | 日志里搜不到 `[gateway] ready`,因为 `[gateway]` 和 `ready` 之间夹着 **ANSI 颜色码** | 只搜 `" ready"`(含前导空格),不要搜完整串 `"[gateway] ready"` |
 | 3 | 交互终端下 `python3 -c "多行脚本..."` 常因引号/换行转义问题直接失败 | 把配置脚本用 heredoc 写成 `.py` 文件再执行 |
 
@@ -221,18 +221,18 @@ kill "$(cat /tmp/gw.pid 2>/dev/null)" 2>/dev/null; pkill -9 -f 'openclaw gateway
 
 ## 6. 第四步:端到端验证
 
-**所有 `openclaw` CLI 调用都必须带与 gateway 一致的 `--token`**:
+**前提:`export OPENCLAW_GATEWAY_TOKEN=...`(与启动 gateway 的 `--token` 一致)。注意 8.1 的 `agent`/`agents`/`browser` 命令不接受 `--token` 参数,凭据一律走环境变量:**
 
 ```bash
 # 1. 确认 gateway 里注册的 agent 列表
-openclaw agents list --token "$OPENCLAW_GATEWAY_TOKEN"
+openclaw agents list
 
 # 2. 确认默认模型配置
 openclaw config get agents.defaults.model.primary
 
 # 3. 发送一条冒烟消息(等价于评测 runner 的调用方式)
 cd /app/working/workspaces/default
-timeout 300 openclaw agent --token "$OPENCLAW_GATEWAY_TOKEN" \
+timeout 300 openclaw agent \
   --message '请只回复两个字母:OK' 2>&1 | tail -20
 ```
 
@@ -241,7 +241,7 @@ timeout 300 openclaw agent --token "$OPENCLAW_GATEWAY_TOKEN" \
 浏览器能力(可选)验证:
 
 ```bash
-openclaw browser doctor --token "$OPENCLAW_GATEWAY_TOKEN"
+openclaw browser doctor
 ```
 
 ---
@@ -272,7 +272,7 @@ python run_bench.py --agent openclaw --model "custom/你的模型名"
 | 现象 | 原因与处理 |
 |------|-----------|
 | **401 Incorrect API key** | 占位凭据没清干净,或顺序不对。必须**先删 auth-profiles 再启 gateway**(见第 3、5 步);内置 qwen 插件会在 gateway 启动时加载烘焙 profile 并覆盖正确配置 |
-| **CLI 连接被拒 / 无响应** | CLI 调用没带 `--token`,或与启动 gateway 时用的 token 不一致 |
+| **CLI 连接被拒 / 无响应** | 未 `export OPENCLAW_GATEWAY_TOKEN`,或其值与启动 gateway 的 `--token` 不一致。注意 8.1 的 `agent`/`agents`/`browser` 命令**不接受 `--token` 参数** |
 | **gateway 启动后 20 秒左右崩溃** | bonjour 插件(mDNS 组播)在 Docker 默认 bridge 网络下不被支持。启动前务必 `export OPENCLAW_DISABLE_BONJOUR=1` |
 | **首次 CLI 调用卡住 1~2 分钟** | openclaw 在安装插件运行时依赖,属正常现象(镜像已预热,通常数秒内完成),不要提前 kill |
 | **grep 搜不到 ready 日志** | ANSI 颜色码插在 `[gateway]` 与 `ready` 之间,改搜 `" ready"` |

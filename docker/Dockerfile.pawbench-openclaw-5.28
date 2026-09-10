@@ -141,7 +141,7 @@ RUN openclaw config set agents.defaults.model.primary qwen/qwen3.6-plus 2>/dev/n
 # install has completed (staging count ≤ installed count) plus a 3 s safety
 # margin for the last plugin's final log flush.
 RUN bash -c '\
-  openclaw gateway --no-daemon >/tmp/gw_warmup.log 2>&1 & \
+  openclaw gateway >/tmp/gw_warmup.log 2>&1 & \
   GW_PID=$! ; \
   for i in $(seq 1 120); do \
     if grep -q "\[gateway\] ready" /tmp/gw_warmup.log 2>/dev/null; then \

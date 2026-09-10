@@ -2,6 +2,8 @@
 """Docker environment implementation for OpenJudge agent evaluation framework."""
 
 import asyncio
+import os
+import shlex
 import subprocess
 from pathlib import Path
 from typing import Any, Dict, Optional
@@ -50,6 +52,16 @@ class DockerEnvironment(BaseEnvironment):
 
         cmd = ["docker", "run", "-d", "--name", self.name]
         cmd.extend(["--security-opt", "seccomp=unconfined"])
+
+        # Optional extra docker-run flags via PAWBENCH_DOCKER_RUN_EXTRA_ARGS
+        # (e.g. "--pids-limit=-1 --ulimit nproc=65535:65535 --cpuset-cpus=0-7").
+        # Node inside openclaw spawns ~nproc V8 platform worker threads at
+        # startup and aborts with "uv_thread_create" assertions when the host
+        # imposes tight cgroup-pids / nproc limits; these flags lift the caps
+        # for the benchmark container without touching the daemon defaults.
+        extra_args = os.environ.get("PAWBENCH_DOCKER_RUN_EXTRA_ARGS", "").strip()
+        if extra_args:
+            cmd.extend(shlex.split(extra_args))
 
         # Add volume mounts
         for host_path, container_path in self.volumes.items():

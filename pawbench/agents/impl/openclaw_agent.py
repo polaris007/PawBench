@@ -261,6 +261,18 @@ class OpenClawAgent(ContainerAgent):
             auth_profiles_content,
         )
 
+        # 2026.8.x replaced the legacy per-agent auth-profiles.json with a
+        # SQLite auth store; a leftover legacy JSON next to it makes every
+        # ``openclaw agent`` call fail with AUTH_PROFILE_MIGRATION_REQUIRED
+        # until migrated.  ``doctor --fix`` is the official migration command
+        # (imports/archives the legacy file) and an idempotent no-op on
+        # 2026.4/5.x — so run it unconditionally for cross-version compat.
+        await environment.execute_command(
+            "export OPENCLAW_DISABLE_BONJOUR=1 && "
+            "openclaw doctor --fix 2>&1 | tail -5 || true",
+            timeout=180,
+        )
+
         # Point openclaw's global default workspace at the benchmark path so
         # the ACPX runtime routes all file I/O there.  ``agents add --workspace``
         # only sets per-agent metadata; this config key controls where write/read
@@ -380,11 +392,19 @@ class OpenClawAgent(ContainerAgent):
 
     async def _wait_gateway_ready(
         self, environment: BaseEnvironment, *, port: int = _GATEWAY_PORT
-    ) -> None:
+    ) -> bool:
+        """Wait until the gateway port accepts TCP connections.
+
+        120 s budget: on an image whose build-time plugin pre-warm failed,
+        the first gateway start installs plugin runtime deps on the fly
+        (60-120 s), which a bare 45 s wait would cut short — the caller would
+        then proceed into the task and fail later with a confusing
+        ECONNREFUSED instead of a clear error.
+        """
         wait_cmd = (
             f'python3 -c "'
             "import socket, time; "
-            f"deadline=time.time()+45; ok=False\n"
+            f"deadline=time.time()+120; ok=False\n"
             "while time.time()<deadline:\n"
             f"  s=socket.socket(); s.settimeout(0.3)\n"
             f"  try: s.connect(('127.0.0.1',{port})); ok=True; break\n"
@@ -394,7 +414,8 @@ class OpenClawAgent(ContainerAgent):
             f"    except Exception: pass\n"
             "print('GATEWAY_READY' if ok else 'GATEWAY_NOT_READY')\""
         )
-        await environment.execute_command(wait_cmd, timeout=55)
+        r = await environment.execute_command(wait_cmd, timeout=130)
+        return "GATEWAY_READY" in (r.get("stdout") or "")
 
     async def _start_gateway(
         self,
@@ -415,7 +436,18 @@ class OpenClawAgent(ContainerAgent):
             "echo $! >/tmp/openclaw_gateway.pid || true",
             timeout=10,
         )
-        await self._wait_gateway_ready(environment)
+        ready = await self._wait_gateway_ready(environment)
+        if not ready:
+            # Fail the task with the gateway log tail instead of letting it
+            # proceed and die later with an opaque ECONNREFUSED transcript.
+            log_tail = await environment.execute_command(
+                "tail -60 /tmp/openclaw_gateway.log 2>/dev/null || true",
+                timeout=10,
+            )
+            raise RuntimeError(
+                f"openclaw gateway did not become ready on port {_GATEWAY_PORT} "
+                f"within 120s. Gateway log tail:\n{log_tail.get('stdout') or ''}"
+            )
 
     async def _configure_openclaw_json(
         self,
@@ -964,6 +996,14 @@ class OpenClawAgent(ContainerAgent):
                     },
                 }, indent=2),
             )
+            # Same legacy-JSON migration requirement as in setup(): on 8.1 the
+            # per-agent SQLite store refuses to serve while this retired file
+            # sits next to it.  doctor --fix migrates/archives it.
+            await environment.execute_command(
+                "export OPENCLAW_DISABLE_BONJOUR=1 && "
+                "openclaw doctor --fix 2>&1 | tail -5 || true",
+                timeout=180,
+            )
             await environment.write_file(
                 "/tmp/patch_gateway_mode.py",
                 "import json, os\n"
@@ -1220,6 +1260,10 @@ for src_dir in /root/.openclaw/workspace ~/.openclaw/workspace; do
 done
 # Copy openclaw.json for post-run config inspection
 cp /root/.openclaw/openclaw.json "$DEST/openclaw.json" 2>/dev/null || true
+# Copy the gateway log for post-run diagnostics (startup crashes, auth
+# failures, plugin dep installs).  backend._collect_log_text() also reads
+# workspace/openclaw_gateway.log for anomaly detection.
+cp /tmp/openclaw_gateway.log "$DEST/openclaw_gateway.log" 2>/dev/null || true
 """
         await environment.execute_command(_SYNC_CMD, timeout=30)
 

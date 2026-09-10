@@ -5,6 +5,7 @@ import json
 import os
 import shlex
 import time
+import uuid
 from typing import Any, Dict, List
 
 from pawbench.agents.base import ContainerAgent
@@ -32,6 +33,37 @@ class OpenClawAgent(ContainerAgent):
         model = self.config.get("model", "dashscope/qwen3.6-plus")
         slug = model.replace("/", "-").replace(".", "-").lower()
         return f"bench-{slug}"
+
+    def _gateway_token(self) -> str:
+        """Shared gateway auth token for this task container.
+
+        OpenClaw 2026.8.x mandates an explicit shared secret: the gateway must
+        be started with ``--token`` and every gateway-client CLI call
+        (``agent``, ``agents list/add/delete``, ``browser doctor``) must pass
+        the same ``--token`` — otherwise the client aborts before opening the
+        websocket with "gateway agent requires credentials...".
+
+        OpenClaw 2026.5.x already accepts ``--token`` (global
+        ExplicitGatewayAuth), so always passing it keeps one code path working
+        on both versions.  The token is generated once per agent instance (= one
+        task container) and reused by setup() and run(); an explicit
+        ``gateway_token`` agent-config value or ``OPENCLAW_GATEWAY_TOKEN`` env
+        var takes precedence when provided.
+        """
+        tok = getattr(self, "_gw_token", "")
+        if tok:
+            return tok
+        tok = (
+            str(self.config.get("gateway_token") or "").strip()
+            or os.environ.get("OPENCLAW_GATEWAY_TOKEN", "").strip()
+            or f"pawbench-{uuid.uuid4().hex[:16]}"
+        )
+        self._gw_token = tok
+        return tok
+
+    def _gateway_token_opt(self) -> str:
+        """CLI fragment ``--token <tok>`` for gateway-client commands."""
+        return f"--token {shlex.quote(self._gateway_token())}"
 
     def _openclaw_model_id(self, model_identifier: str) -> str:
         """Translate a pawbench model identifier to an openclaw model identifier.
@@ -175,7 +207,7 @@ class OpenClawAgent(ContainerAgent):
         # reuse the cached deps and complete in < 1 s.
         await environment.execute_command(
             f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
-            f"openclaw agents delete {shlex.quote(agent_id)} --force 2>/dev/null || true",
+            f"openclaw agents delete {shlex.quote(agent_id)} --force {self._gateway_token_opt()} 2>/dev/null || true",
             timeout=600,
         )
         add_result = await environment.execute_command(
@@ -183,7 +215,7 @@ class OpenClawAgent(ContainerAgent):
             f"openclaw agents add {shlex.quote(agent_id)} "
             f"--model {shlex.quote(openclaw_model)} "
             f"--workspace {shlex.quote(AGENT_WORKSPACE)} "
-            "--non-interactive",
+            f"--non-interactive {self._gateway_token_opt()}",
             timeout=600,
         )
         if add_result.get("returncode", 1) != 0:
@@ -238,9 +270,13 @@ class OpenClawAgent(ContainerAgent):
             "import json, os\n"
             "p = '/root/.openclaw/openclaw.json'\n"
             "d = json.load(open(p)) if os.path.exists(p) else {}\n"
-            "d.setdefault('gateway', {})['mode'] = 'local'\n"
+            "g = d.setdefault('gateway', {})\n"
+            "g['mode'] = 'local'\n"
+            "a = g.setdefault('auth', {})\n"
+            "a['mode'] = 'token'\n"
+            f"a['token'] = {json.dumps(self._gateway_token())}\n"
             "json.dump(d, open(p, 'w'), indent=2)\n"
-            "print('gateway.mode ensured')\n",
+            "print('gateway.mode+auth ensured')\n",
         )
         await environment.execute_command(
             "python3 /tmp/patch_gateway_mode.py",
@@ -348,10 +384,13 @@ class OpenClawAgent(ContainerAgent):
         api_key: str,
         provider_str: str,
     ) -> None:
+        # 2026.8.x mandates an explicit shared secret: start the gateway with
+        # --token and pass the same token to every gateway-client CLI call.
+        # 2026.5.x accepts --token too, so this is a no-op there.
         await environment.execute_command(
             self._make_key_env(provider_str, api_key)
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
-            "nohup openclaw gateway >/tmp/openclaw_gateway.log 2>&1 & "
+            f"nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 & "
             "echo $! >/tmp/openclaw_gateway.pid || true",
             timeout=10,
         )
@@ -568,6 +607,14 @@ class OpenClawAgent(ContainerAgent):
                 # agents add may drop this field when rewriting openclaw.json;
                 # ensure it is always present after our patch.
                 + "d.setdefault('gateway', {}).setdefault('mode', 'local')\n"
+                # ── gateway.auth (required since openclaw 2026.8.x) ────────
+                # 8.1 mandates an explicit shared secret for gateway websocket
+                # clients; 5.28 accepts the same --token, so writing it here
+                # keeps one code path working on both versions.
+                + "gw = d.setdefault('gateway', {})\n"
+                + "auth = gw.setdefault('auth', {})\n"
+                + "auth['mode'] = 'token'\n"
+                + f"auth['token'] = {json.dumps(self._gateway_token())}\n"
                 # ── agents.defaults ───────────────────────────────────────
                 + "agents_cfg = d.setdefault('agents', {}).setdefault('defaults', {})\n"
                 f"agents_cfg['model'] = {{'primary': {json.dumps(primary)}}}\n"
@@ -757,14 +804,14 @@ class OpenClawAgent(ContainerAgent):
             self._make_key_env(provider_str_strict, api_key)
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
             "rm -f /tmp/openclaw_gateway.log && "
-            "nohup openclaw gateway >/tmp/openclaw_gateway.log 2>&1 & "
+            f"nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 & "
             "echo $! >/tmp/openclaw_gateway.pid || true",
             timeout=10,
         )
 
         wait_cmd = (
             "for i in $(seq 1 60); do "
-            "  if openclaw browser doctor 2>&1 | "
+            f"  if openclaw browser doctor {self._gateway_token_opt()} 2>&1 | "
             "     grep -q 'OK gateway: browser control endpoint reachable'; then "
             "    echo GATEWAY_READY; exit 0; "
             "  fi; "
@@ -862,7 +909,7 @@ class OpenClawAgent(ContainerAgent):
         env_prefix = self._make_key_env(provider_str, api_key)
         check_result = await environment.execute_command(
             f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
-            f"openclaw agents list 2>&1 || true",
+            f"openclaw agents list {self._gateway_token_opt()} 2>&1 || true",
             timeout=600,
         )
         check_output = (check_result.get("stdout") or "") + (check_result.get("stderr") or "")
@@ -878,7 +925,7 @@ class OpenClawAgent(ContainerAgent):
                 f"openclaw agents add {shlex.quote(agent_id)} "
                 f"--model {shlex.quote(openclaw_model)} "
                 f"--workspace {shlex.quote(AGENT_WORKSPACE)} "
-                "--non-interactive",
+                f"--non-interactive {self._gateway_token_opt()}",
                 timeout=600,
             )
             # Overwrite placeholder auth-profiles baked in by agents add.
@@ -901,9 +948,13 @@ class OpenClawAgent(ContainerAgent):
                 "import json, os\n"
                 "p = '/root/.openclaw/openclaw.json'\n"
                 "d = json.load(open(p)) if os.path.exists(p) else {}\n"
-                "d.setdefault('gateway', {})['mode'] = 'local'\n"
+                "g = d.setdefault('gateway', {})\n"
+                "g['mode'] = 'local'\n"
+                "a = g.setdefault('auth', {})\n"
+                "a['mode'] = 'token'\n"
+                f"a['token'] = {json.dumps(self._gateway_token())}\n"
                 "json.dump(d, open(p, 'w'), indent=2)\n"
-                "print('gateway.mode ensured')\n",
+                "print('gateway.mode+auth ensured')\n",
             )
             await environment.execute_command(
                 "python3 /tmp/patch_gateway_mode.py",
@@ -937,6 +988,7 @@ class OpenClawAgent(ContainerAgent):
             self._make_key_env(provider_str, api_key)
             + f"cd {shlex.quote(AGENT_WORKSPACE)} && "
             f"timeout {inner_timeout}s openclaw agent "
+            f"{self._gateway_token_opt()} "
             f"--agent {shlex.quote(agent_id)} --session-id {session_id} "
             f"{thinking_args}--message {escaped} "
             f"2>&1 | tee /tmp/openclaw_output.txt || true"
@@ -1156,7 +1208,7 @@ cp /root/.openclaw/openclaw.json "$DEST/openclaw.json" 2>/dev/null || true
         if not os.environ.get("PAWBENCH_KEEP_CONTAINER"):
             agent_id = self._agent_id()
             await environment.execute_command(
-                f"openclaw agents delete {shlex.quote(agent_id)} --force 2>/dev/null || true",
+                f"openclaw agents delete {shlex.quote(agent_id)} --force {self._gateway_token_opt()} 2>/dev/null || true",
                 timeout=60,
             )
         await environment.execute_command(

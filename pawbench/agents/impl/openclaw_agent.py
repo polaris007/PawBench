@@ -448,14 +448,19 @@ class OpenClawAgent(ContainerAgent):
         # plain ``nohup … &`` gateway dies with the session (observed: empty
         # /tmp/openclaw_gateway.log + "did not become ready" in bench runs,
         # while the same command works in a ``docker run -it`` main session).
-        # setsid detaches into a new session/process group that survives the
-        # exec teardown.
+        # setsid detaches into a new session/process group — but the detach
+        # is a fork that takes a moment; if the exec session exits instantly
+        # (echo $! then exit) the group teardown can still reap the child
+        # before it detaches.  ``sleep 2`` keeps the session alive until the
+        # gateway is safely in its own session (repro-verified: instant-exit
+        # spawn dies with an empty log, sleep-3 spawn reaches ready in ~6s).
         await environment.execute_command(
             self._make_key_env(provider_str, api_key)
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
             f"setsid nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 < /dev/null & "
-            "echo $! >/tmp/openclaw_gateway.pid || true",
-            timeout=10,
+            "echo $! >/tmp/openclaw_gateway.pid || true; "
+            "sleep 2; true",
+            timeout=15,
         )
         ready = await self._wait_gateway_ready(environment)
         if not ready:
@@ -879,8 +884,8 @@ class OpenClawAgent(ContainerAgent):
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
             "rm -f /tmp/openclaw_gateway.log && "
             f"setsid nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 < /dev/null & "
-            "echo $! >/tmp/openclaw_gateway.pid || true",
-            timeout=10,
+            "echo $! >/tmp/openclaw_gateway.pid || true; sleep 2; true",
+            timeout=15,
         )
 
         wait_cmd = (

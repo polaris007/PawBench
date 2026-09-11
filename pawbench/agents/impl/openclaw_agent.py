@@ -442,10 +442,18 @@ class OpenClawAgent(ContainerAgent):
         # so it authenticates via gateway.auth in openclaw.json + the
         # OPENCLAW_GATEWAY_TOKEN env exported by _make_key_env (both versions
         # resolve config/env the same way).
+        # ``setsid`` is REQUIRED here (not just nohup): this runs inside a
+        # ``docker exec bash -c`` session, and when that session exits Docker
+        # kills the whole process GROUP — nohup only shields SIGHUP, so a
+        # plain ``nohup … &`` gateway dies with the session (observed: empty
+        # /tmp/openclaw_gateway.log + "did not become ready" in bench runs,
+        # while the same command works in a ``docker run -it`` main session).
+        # setsid detaches into a new session/process group that survives the
+        # exec teardown.
         await environment.execute_command(
             self._make_key_env(provider_str, api_key)
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
-            f"nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 & "
+            f"setsid nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 < /dev/null & "
             "echo $! >/tmp/openclaw_gateway.pid || true",
             timeout=10,
         )
@@ -870,7 +878,7 @@ class OpenClawAgent(ContainerAgent):
             self._make_key_env(provider_str_strict, api_key)
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
             "rm -f /tmp/openclaw_gateway.log && "
-            f"nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 & "
+            f"setsid nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 < /dev/null & "
             "echo $! >/tmp/openclaw_gateway.pid || true",
             timeout=10,
         )

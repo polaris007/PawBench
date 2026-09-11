@@ -256,22 +256,35 @@ class OpenClawAgent(ContainerAgent):
                 }
             },
         }, indent=2)
-        await environment.write_file(
-            f"/root/.openclaw/agents/{agent_id_lower}/agent/auth-profiles.json",
-            auth_profiles_content,
+        # Per-agent credential handling, version-aware:
+        #   * 2026.8.x keeps credentials in a per-agent SQLite store
+        #     (openclaw-agent.sqlite) and REFUSES every ``openclaw agent``
+        #     call with AUTH_PROFILE_MIGRATION_REQUIRED while a legacy
+        #     auth-profiles.json sits next to it.  The official migration
+        #     (``openclaw doctor --fix``) can hang for minutes installing
+        #     plugin deps on an un-pre-warmed image (observed: 3x 180s
+        #     timeouts), so on 8.x we simply DELETE the legacy file (agents
+        #     add may copy the image-baked placeholder here) — the real API
+        #     key is already in openclaw.json
+        #     (models.providers.<p>.apiKey + auth=api-key).
+        #   * 2026.4/5.x still read auth-profiles.json with priority over
+        #     openclaw.json, so the image-baked placeholder
+        #     (sk-build-placeholder) MUST be overwritten with the real key.
+        sqlite_check = await environment.execute_command(
+            f"test -f /root/.openclaw/agents/{agent_id_lower}/agent/openclaw-agent.sqlite "
+            "&& echo SQLITE_STORE || echo NO_SQLITE",
+            timeout=10,
         )
-
-        # 2026.8.x replaced the legacy per-agent auth-profiles.json with a
-        # SQLite auth store; a leftover legacy JSON next to it makes every
-        # ``openclaw agent`` call fail with AUTH_PROFILE_MIGRATION_REQUIRED
-        # until migrated.  ``doctor --fix`` is the official migration command
-        # (imports/archives the legacy file) and an idempotent no-op on
-        # 2026.4/5.x — so run it unconditionally for cross-version compat.
-        await environment.execute_command(
-            "export OPENCLAW_DISABLE_BONJOUR=1 && "
-            "openclaw doctor --fix 2>&1 | tail -5 || true",
-            timeout=180,
-        )
+        if "SQLITE_STORE" in (sqlite_check.get("stdout") or ""):
+            await environment.execute_command(
+                f"rm -f /root/.openclaw/agents/{agent_id_lower}/agent/auth-profiles.json",
+                timeout=10,
+            )
+        else:
+            await environment.write_file(
+                f"/root/.openclaw/agents/{agent_id_lower}/agent/auth-profiles.json",
+                auth_profiles_content,
+            )
 
         # Point openclaw's global default workspace at the benchmark path so
         # the ACPX runtime routes all file I/O there.  ``agents add --workspace``
@@ -981,29 +994,38 @@ class OpenClawAgent(ContainerAgent):
                 "--non-interactive",
                 timeout=600,
             )
-            # Overwrite placeholder auth-profiles baked in by agents add.
-            _provider_for_auth = self._openclaw_model_id(model_identifier).split("/")[0]
-            await environment.write_file(
-                f"/root/.openclaw/agents/{agent_id.lower()}/agent/auth-profiles.json",
-                json.dumps({
-                    "version": 1,
-                    "profiles": {
-                        f"{_provider_for_auth}:default": {
-                            "type": "api_key",
-                            "provider": _provider_for_auth,
-                            "key": api_key,
-                        }
-                    },
-                }, indent=2),
+            # Per-agent credential handling, version-aware — same logic as
+            # setup(): on 8.x (SQLite store present) the legacy JSON is
+            # rejected with AUTH_PROFILE_MIGRATION_REQUIRED and doctor --fix
+            # can hang for minutes on plugin deps, so delete the JSON and
+            # rely on openclaw.json's provider apiKey; on 4/5.x overwrite the
+            # image-baked placeholder with the real key.
+            _agent_dir_lower = f"/root/.openclaw/agents/{agent_id.lower()}/agent"
+            _sqlite_check = await environment.execute_command(
+                f"test -f {_agent_dir_lower}/openclaw-agent.sqlite "
+                "&& echo SQLITE_STORE || echo NO_SQLITE",
+                timeout=10,
             )
-            # Same legacy-JSON migration requirement as in setup(): on 8.1 the
-            # per-agent SQLite store refuses to serve while this retired file
-            # sits next to it.  doctor --fix migrates/archives it.
-            await environment.execute_command(
-                "export OPENCLAW_DISABLE_BONJOUR=1 && "
-                "openclaw doctor --fix 2>&1 | tail -5 || true",
-                timeout=180,
-            )
+            if "SQLITE_STORE" in (_sqlite_check.get("stdout") or ""):
+                await environment.execute_command(
+                    f"rm -f {_agent_dir_lower}/auth-profiles.json",
+                    timeout=10,
+                )
+            else:
+                _provider_for_auth = self._openclaw_model_id(model_identifier).split("/")[0]
+                await environment.write_file(
+                    f"{_agent_dir_lower}/auth-profiles.json",
+                    json.dumps({
+                        "version": 1,
+                        "profiles": {
+                            f"{_provider_for_auth}:default": {
+                                "type": "api_key",
+                                "provider": _provider_for_auth,
+                                "key": api_key,
+                            }
+                        },
+                    }, indent=2),
+                )
             await environment.write_file(
                 "/tmp/patch_gateway_mode.py",
                 "import json, os\n"

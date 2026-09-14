@@ -176,7 +176,6 @@ RUN OPENCLAW_DISABLE_BONJOUR=1 timeout 120 \
 # that was held by the (long-gone) build-time process — causing an infinite
 # hang.  Deleting the lock files here ensures the image is clean.
 RUN find /root/.openclaw/plugin-runtime-deps -name '*.lock' -delete 2>/dev/null; \
-    find /root/.npm/_cacache -name '*.lock' -delete 2>/dev/null; \
     rm -rf /tmp/openclaw 2>/dev/null; true
 
 # ── ossutil（运行时从 OSS 拉单任务）────────────────────────────────────────────

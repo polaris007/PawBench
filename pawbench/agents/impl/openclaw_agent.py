@@ -179,18 +179,6 @@ class OpenClawAgent(ContainerAgent):
             timeout=10,
         )
 
-        # Clear stale runtime-deps / npm-cache lock files left by killed
-        # openclaw processes (a killed holder leaves the lock behind and the
-        # next process waits on it forever — observed as ``npm view`` hanging
-        # minutes past its 3.5s timeout at gateway startup).  Mirrors the
-        # Dockerfile cleanup for the runtime case.
-        await environment.execute_command(
-            "find /root/.openclaw/plugin-runtime-deps -name '*.lock' -delete 2>/dev/null; "
-            "find /root/.npm/_cacache -name '*.lock' -delete 2>/dev/null; "
-            "rm -rf /root/.openclaw/state/*.sqlite-wal /root/.openclaw/state/*.sqlite-shm 2>/dev/null; true",
-            timeout=10,
-        )
-
         model_identifier = self.config.get("model", "dashscope/qwen3.6-plus")
         model_config = get_model_config(model_identifier)
         api_key = self._resolve_api_key(model_config)
@@ -428,17 +416,15 @@ class OpenClawAgent(ContainerAgent):
     ) -> bool:
         """Wait until the gateway port accepts TCP connections.
 
-        300 s budget: on an image whose build-time plugin pre-warm failed,
-        the first gateway start resolves missing plugin/provider packages via
-        npm (e.g. ``npm view @openclaw/qwen-provider …``) — 2-5 minutes on a
-        restricted network.  A shorter wait cuts that off mid-install and the
-        caller would restart a gateway that keeps dying on the same npm round
-        trip, surfacing later as an opaque ECONNREFUSED.
+        120 s budget: with the qwen-provider npm trigger removed, a healthy
+        gateway is up in seconds; anything beyond ~2 minutes means a real
+        startup failure, surfaced below as a hard error with the gateway log
+        tail instead of a confusing ECONNREFUSED later.
         """
         wait_cmd = (
             f'python3 -c "'
             "import socket, time; "
-            f"deadline=time.time()+300; ok=False\n"
+            f"deadline=time.time()+120; ok=False\n"
             "while time.time()<deadline:\n"
             f"  s=socket.socket(); s.settimeout(0.3)\n"
             f"  try: s.connect(('127.0.0.1',{port})); ok=True; break\n"
@@ -448,7 +434,7 @@ class OpenClawAgent(ContainerAgent):
             f"    except Exception: pass\n"
             "print('GATEWAY_READY' if ok else 'GATEWAY_NOT_READY')\""
         )
-        r = await environment.execute_command(wait_cmd, timeout=310)
+        r = await environment.execute_command(wait_cmd, timeout=130)
         return "GATEWAY_READY" in (r.get("stdout") or "")
 
     async def _start_gateway(
@@ -478,17 +464,19 @@ class OpenClawAgent(ContainerAgent):
         await environment.execute_command(
             self._make_key_env(provider_str, api_key)
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
-            # Stale state locks brick the gateway before it writes even one
-            # log line: bench containers observed an ``openclaw`` main proc
-            # spinning at ~99% CPU alongside a
-            # sqlite-readonly-location.worker.js, zero log bytes, no listener
-            # — agents add had been writing /root/.openclaw/state/openclaw.sqlite
-            # seconds earlier, and the leftover WAL/lock makes the startup
-            # reader wait forever (same family as the plugin-runtime-deps
-            # futex hang documented in Dockerfile.pawbench-openclaw).
-            "rm -f /root/.openclaw/state/openclaw.sqlite-wal "
-            "      /root/.openclaw/state/openclaw.sqlite-shm "
-            "      /root/.openclaw/state/*.lock 2>/dev/null || true; "
+            # Kill the qwen-provider npm trigger at the source: 8.1 maps
+            # provider "qwen" (aliases qwencloud/modelstudio/dashscope) to the
+            # external npm package @openclaw/qwen-provider, and IMPLIES the
+            # plugin whenever QWEN_API_KEY / MODELSTUDIO_API_KEY /
+            # DASHSCOPE_API_KEY is set in the gateway process env
+            # (official-external-plugin-catalog.ts
+            # resolveOfficialExternalProviderPluginIdsForEnv).  backend.py
+            # injects DASHSCOPE_API_KEY into EVERY bench container, so every
+            # bench gateway start tries ``npm install`` and stalls pre-ready
+            # on registries it cannot reach.  The model key lives in
+            # openclaw.json (apiKey + auth=api-key early-exit path), so these
+            # env vars are pure trigger here — unset them for the gateway.
+            "unset DASHSCOPE_API_KEY QWEN_API_KEY MODELSTUDIO_API_KEY; "
             f"setsid nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 < /dev/null & "
             "echo $! >/tmp/openclaw_gateway.pid || true; "
             "sleep 2; true",
@@ -504,7 +492,7 @@ class OpenClawAgent(ContainerAgent):
             )
             raise RuntimeError(
                 f"openclaw gateway did not become ready on port {_GATEWAY_PORT} "
-                f"within 300s. Gateway log tail:\n{log_tail.get('stdout') or ''}"
+                f"within 120s. Gateway log tail:\n{log_tail.get('stdout') or ''}"
             )
 
     async def _configure_openclaw_json(
@@ -929,6 +917,7 @@ class OpenClawAgent(ContainerAgent):
             self._make_key_env(provider_str_strict, api_key)
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
             "rm -f /tmp/openclaw_gateway.log && "
+            "unset DASHSCOPE_API_KEY QWEN_API_KEY MODELSTUDIO_API_KEY; "
             f"setsid nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 < /dev/null & "
             "echo $! >/tmp/openclaw_gateway.pid || true; sleep 2; true",
             timeout=15,

@@ -238,8 +238,18 @@ class BenchmarkRunner:
                 print(f"    ↻ retry {attempt}/{self.max_retries} for {task.task_id}")
             last = await self._run_one(task, cfg)
             execution_failed = last.status in ("error",) or last.timed_out
-            anomaly_error = last.anomaly.get("has_error", False)
-            triggered_ids = {i["id"] for i in last.anomaly.get("items", [])}
+            triggered_items = last.anomaly.get("items", [])
+            triggered_ids = {i["id"] for i in triggered_items}
+            # A scored run (score > 0) demonstrably produced gradable
+            # artifacts; transcript brevity alone is then a false positive
+            # (e.g. OpenClaw 8.x keeps session JSONLs outside the copied
+            # sessions dir, so extraction undercounts) and must not trigger
+            # retries — each retry is a full paid re-run of the task.
+            ignorable = {"SHORT_TRANSCRIPT"} if last.score > 0 else set()
+            anomaly_error = any(
+                i.get("id") not in ignorable and i.get("severity") == "error"
+                for i in triggered_items
+            )
             rate_limit_hit = bool(triggered_ids & self._RATE_LIMIT_ANOMALY_IDS)
             if not execution_failed and not anomaly_error and not rate_limit_hit:
                 return last

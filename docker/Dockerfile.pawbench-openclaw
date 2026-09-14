@@ -142,14 +142,15 @@ RUN openclaw config set agents.defaults.model.primary qwen/qwen3.6-plus 2>/dev/n
 # margin for the last plugin's final log flush.
 #
 # NOTE: gateway log lines carry ANSI colour codes between the "[gateway]"
-# prefix and "ready", so grepping the full literal "[gateway] ready" never
-# matches and the warm-up loop would burn all 120 iterations.  Match on
-# " ready" instead.
+# prefix and "ready" (sometimes between the space and "ready" itself), so
+# grepping "[gateway] ready" — or even " ready" — never matches and the
+# warm-up loop burns all 120 iterations.  Strip ANSI escapes first, then
+# match the full literal.
 RUN bash -c '\
   openclaw gateway >/tmp/gw_warmup.log 2>&1 & \
   GW_PID=$! ; \
   for i in $(seq 1 120); do \
-    if grep -q " ready" /tmp/gw_warmup.log 2>/dev/null; then \
+    if sed "s/\x1b\[[0-9;]*m//g" /tmp/gw_warmup.log 2>/dev/null | grep -q "\[gateway\] ready"; then \
       S=$(grep -c "staging" /tmp/gw_warmup.log 2>/dev/null || echo 0); \
       I=$(grep -c "installed" /tmp/gw_warmup.log 2>/dev/null || echo 0); \
       [ "$S" -gt 0 ] && [ "$S" -le "$I" ] && break; \
@@ -181,6 +182,7 @@ RUN OPENCLAW_DISABLE_BONJOUR=1 timeout 120 \
 # that was held by the (long-gone) build-time process — causing an infinite
 # hang.  Deleting the lock files here ensures the image is clean.
 RUN find /root/.openclaw/plugin-runtime-deps -name '*.lock' -delete 2>/dev/null; \
+    find /root/.npm/_cacache -name '*.lock' -delete 2>/dev/null; \
     rm -rf /tmp/openclaw 2>/dev/null; true
 
 # ── ossutil（运行时从 OSS 拉单任务）────────────────────────────────────────────

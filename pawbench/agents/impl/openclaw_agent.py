@@ -99,18 +99,26 @@ class OpenClawAgent(ContainerAgent):
         expanded = aliases.get(model_identifier.strip(), model_identifier)
 
         parts = expanded.split("/", 1)
-        if len(parts) == 2:
-            provider_str = parts[0].lower()
-            model_name = parts[1]
-            if provider_str == "dashscope":
-                return f"qwen/{model_name}"
-            if provider_str == "custom":
-                base_url = self.config.get("base_url") or os.environ.get("CUSTOM_BASE_URL", "")
-                if base_url:
-                    from urllib.parse import urlparse
-                    hostname = urlparse(base_url).hostname or "custom"
-                    openclaw_provider = "custom-" + hostname.replace(".", "-")
-                    return f"{openclaw_provider}/{model_name}"
+        if len(parts) == 1:
+            # Bare model name (e.g. "qwen35-397b-chat-nothink"): every other
+            # runner path (setup/provider/patch) falls back to provider
+            # "openai" for these, so qualify explicitly to match
+            # agents.defaults.model.primary exactly.  A bare name forces 8.1
+            # to GUESS the provider from the NAME — a "qwen" substring
+            # triggers external @openclaw/qwen-provider npm resolution that
+            # stalls the gateway before its first log line.
+            return f"openai/{expanded}"
+        provider_str = parts[0].lower()
+        model_name = parts[1]
+        if provider_str == "dashscope":
+            return f"qwen/{model_name}"
+        if provider_str == "custom":
+            base_url = self.config.get("base_url") or os.environ.get("CUSTOM_BASE_URL", "")
+            if base_url:
+                from urllib.parse import urlparse
+                hostname = urlparse(base_url).hostname or "custom"
+                openclaw_provider = "custom-" + hostname.replace(".", "-")
+                return f"{openclaw_provider}/{model_name}"
         return expanded
 
     def _resolve_api_key(self, model_config=None) -> str:
@@ -168,6 +176,18 @@ class OpenClawAgent(ContainerAgent):
             "rm -f /root/.openclaw/auth-profiles.json "
             "      /root/.openclaw/auth/profiles.json "
             "      /root/.openclaw/auth/*.json 2>/dev/null || true",
+            timeout=10,
+        )
+
+        # Clear stale runtime-deps / npm-cache lock files left by killed
+        # openclaw processes (a killed holder leaves the lock behind and the
+        # next process waits on it forever — observed as ``npm view`` hanging
+        # minutes past its 3.5s timeout at gateway startup).  Mirrors the
+        # Dockerfile cleanup for the runtime case.
+        await environment.execute_command(
+            "find /root/.openclaw/plugin-runtime-deps -name '*.lock' -delete 2>/dev/null; "
+            "find /root/.npm/_cacache -name '*.lock' -delete 2>/dev/null; "
+            "rm -rf /root/.openclaw/state/*.sqlite-wal /root/.openclaw/state/*.sqlite-shm 2>/dev/null; true",
             timeout=10,
         )
 
@@ -408,16 +428,17 @@ class OpenClawAgent(ContainerAgent):
     ) -> bool:
         """Wait until the gateway port accepts TCP connections.
 
-        120 s budget: on an image whose build-time plugin pre-warm failed,
-        the first gateway start installs plugin runtime deps on the fly
-        (60-120 s), which a bare 45 s wait would cut short — the caller would
-        then proceed into the task and fail later with a confusing
-        ECONNREFUSED instead of a clear error.
+        300 s budget: on an image whose build-time plugin pre-warm failed,
+        the first gateway start resolves missing plugin/provider packages via
+        npm (e.g. ``npm view @openclaw/qwen-provider …``) — 2-5 minutes on a
+        restricted network.  A shorter wait cuts that off mid-install and the
+        caller would restart a gateway that keeps dying on the same npm round
+        trip, surfacing later as an opaque ECONNREFUSED.
         """
         wait_cmd = (
             f'python3 -c "'
             "import socket, time; "
-            f"deadline=time.time()+120; ok=False\n"
+            f"deadline=time.time()+300; ok=False\n"
             "while time.time()<deadline:\n"
             f"  s=socket.socket(); s.settimeout(0.3)\n"
             f"  try: s.connect(('127.0.0.1',{port})); ok=True; break\n"
@@ -427,7 +448,7 @@ class OpenClawAgent(ContainerAgent):
             f"    except Exception: pass\n"
             "print('GATEWAY_READY' if ok else 'GATEWAY_NOT_READY')\""
         )
-        r = await environment.execute_command(wait_cmd, timeout=130)
+        r = await environment.execute_command(wait_cmd, timeout=310)
         return "GATEWAY_READY" in (r.get("stdout") or "")
 
     async def _start_gateway(
@@ -457,6 +478,17 @@ class OpenClawAgent(ContainerAgent):
         await environment.execute_command(
             self._make_key_env(provider_str, api_key)
             + "export OPENCLAW_DISABLE_BONJOUR=1 && "
+            # Stale state locks brick the gateway before it writes even one
+            # log line: bench containers observed an ``openclaw`` main proc
+            # spinning at ~99% CPU alongside a
+            # sqlite-readonly-location.worker.js, zero log bytes, no listener
+            # — agents add had been writing /root/.openclaw/state/openclaw.sqlite
+            # seconds earlier, and the leftover WAL/lock makes the startup
+            # reader wait forever (same family as the plugin-runtime-deps
+            # futex hang documented in Dockerfile.pawbench-openclaw).
+            "rm -f /root/.openclaw/state/openclaw.sqlite-wal "
+            "      /root/.openclaw/state/openclaw.sqlite-shm "
+            "      /root/.openclaw/state/*.lock 2>/dev/null || true; "
             f"setsid nohup openclaw gateway {self._gateway_token_opt()} >/tmp/openclaw_gateway.log 2>&1 < /dev/null & "
             "echo $! >/tmp/openclaw_gateway.pid || true; "
             "sleep 2; true",
@@ -472,7 +504,7 @@ class OpenClawAgent(ContainerAgent):
             )
             raise RuntimeError(
                 f"openclaw gateway did not become ready on port {_GATEWAY_PORT} "
-                f"within 120s. Gateway log tail:\n{log_tail.get('stdout') or ''}"
+                f"within 300s. Gateway log tail:\n{log_tail.get('stdout') or ''}"
             )
 
     async def _configure_openclaw_json(
@@ -745,12 +777,26 @@ class OpenClawAgent(ContainerAgent):
                 # "auto-enabled plugins for openai/qwen3.6-plus"), which
                 # overrides our qwen/ provider and routes DashScope calls with
                 # wrong auth / quota paths.
+                #
+                # 2026.8.x addition: ALWAYS drop every provider entry except
+                # ours and ALWAYS disable the qwen extension, regardless of
+                # provider path.  8.1 resolves a missing provider driver from
+                # npm at gateway startup (observed in bench containers:
+                # ``npm view @openclaw/qwen-provider`` serially stalling for
+                # minutes pre-first-log on a slow registry).  The image-baked
+                # qwen/dashscope entries (placeholder key) trigger exactly
+                # that even when the task routes via "openai" — previously
+                # this block only ran on the dashscope path.  Nothing in the
+                # bench flow uses the qwen provider, so dropping it is safe;
+                # the per-path openai-plugin handling below is preserved.
+                + "pe = d.setdefault('plugins', {}).setdefault('entries', {})\n"
+                + "pe['qwen'] = {'enabled': False}\n"
+                + f"ours = {json.dumps(openclaw_provider)}\n"
+                + "for stale in list(providers.keys()):\n"
+                + "    if stale != ours:\n"
+                + "        providers.pop(stale, None)\n"
                 + (
-                    "pe = d.setdefault('plugins', {}).setdefault('entries', {})\n"
-                    "pe['qwen'] = {'enabled': False}\n"
                     "pe['openai'] = {'enabled': False}\n"
-                    "for stale in ('openai', 'dashscope'):\n"
-                    "    providers.pop(stale, None)\n"
                     if provider_str in ("dashscope", "qwen") else ""
                 )
                 # ── commands: enable native skills ────────────────────────

@@ -1105,6 +1105,8 @@ class OpenClawAgent(ContainerAgent):
 
         escaped = shlex.quote(instruction)
         session_id = f"pawbench-{int(time.time() * 1000)}"
+        # Stashed for post_run_collect()'s sqlite transcript export.
+        self._run_session_id = session_id
 
         inner_timeout = int(self.config.get("task_timeout_s") or 1800)
 
@@ -1311,6 +1313,58 @@ class OpenClawAgent(ContainerAgent):
         every known openclaw workspace location into AGENT_WORKSPACE before the
         backend snapshots it for grading.
         """
+        # Export helper: dump one session's transcript_events rows (ordered by
+        # seq) from the 8.x per-agent SQLite store into legacy JSONL lines.
+        # Read-only open (mode=ro, WAL-safe); never raises — on any failure it
+        # prints SQLITE_*_SKIP and exits 0 so collection can never fail a task.
+        # Falls back to the latest session when the requested id has no rows
+        # (8.x may normalise the --session-id we passed).
+        _EXPORT_SCRIPT = (
+            "import sqlite3, sys\n"
+            "db_path, session_id, out_path = sys.argv[1], sys.argv[2], sys.argv[3]\n"
+            "try:\n"
+            "    con = sqlite3.connect('file:%s?mode=ro' % db_path, uri=True, timeout=10)\n"
+            "except Exception as e:\n"
+            "    print('SQLITE_OPEN_SKIP: %s' % e)\n"
+            "    raise SystemExit(0)\n"
+            "try:\n"
+            "    rows = con.execute(\n"
+            "        'select event_json from transcript_events '\n"
+            "        'where session_id=? order by seq', (session_id,)).fetchall()\n"
+            "    if not rows:\n"
+            "        latest = con.execute(\n"
+            "            'select session_id from transcript_events group by session_id '\n"
+            "            'order by max(created_at) desc limit 1').fetchall()\n"
+            "        if latest:\n"
+            "            session_id = latest[0][0]\n"
+            "            rows = con.execute(\n"
+            "                'select event_json from transcript_events '\n"
+            "                'where session_id=? order by seq', (session_id,)).fetchall()\n"
+            "            print('SESSION_FALLBACK: %s' % session_id)\n"
+            "    if not rows:\n"
+            "        print('SESSION_EMPTY')\n"
+            "        raise SystemExit(0)\n"
+            "    n = 0\n"
+            "    f = open(out_path, 'w', encoding='utf-8')\n"
+            "    try:\n"
+            "        for (ev,) in rows:\n"
+            "            if not ev:\n"
+            "                continue\n"
+            "            f.write(ev if ev.endswith(chr(10)) else ev + chr(10))\n"
+            "            n += 1\n"
+            "    finally:\n"
+            "        f.close()\n"
+            "    print('EXPORTED %d events session=%s' % (n, session_id))\n"
+            "except Exception as e:\n"
+            "    print('SQLITE_EXPORT_SKIP: %s' % e)\n"
+            "    raise SystemExit(0)\n"
+            "finally:\n"
+            "    try:\n"
+            "        con.close()\n"
+            "    except Exception:\n"
+            "        pass\n"
+        )
+        await environment.write_file("/tmp/export_openclaw_transcript.py", _EXPORT_SCRIPT)
         _SYNC_CMD = rf"""
 DEST={AGENT_WORKSPACE}
 mkdir -p "$DEST/output"
@@ -1334,8 +1388,31 @@ cp /root/.openclaw/openclaw.json "$DEST/openclaw.json" 2>/dev/null || true
 # failures, plugin dep installs).  backend._collect_log_text() also reads
 # workspace/openclaw_gateway.log for anomaly detection.
 cp /tmp/openclaw_gateway.log "$DEST/openclaw_gateway.log" 2>/dev/null || true
+# Export this run's transcript from the 8.x per-agent SQLite store when no
+# legacy session JSONL was copied above (8.x keeps transcripts in
+# agents/<id>/agent/openclaw-agent.sqlite:transcript_events instead of
+# agents/<id>/sessions/*.jsonl, so without this the transcript is just the
+# stdout tail and SHORT_TRANSCRIPT misfires).  The export reuses the exact
+# legacy line format, so transcript.py parses it unchanged; 5.28-style runs
+# that already copied files skip this entirely.
+if ! ls "$DEST/sessions/"*.jsonl >/dev/null 2>&1; then
+  AGENTDB="/root/.openclaw/agents/REPLACEME_AGENTID/agent/openclaw-agent.sqlite"
+  if [ -f "$AGENTDB" ]; then
+    python3 /tmp/export_openclaw_transcript.py "$AGENTDB" "REPLACEME_SESSION" \
+      "$DEST/sessions/REPLACEME_SESSION.jsonl" 2>&1 | tail -2 || true
+  fi
+fi
 """
-        await environment.execute_command(_SYNC_CMD, timeout=30)
+        # Fill the export placeholders (agent dir + this run's session id).
+        # _run_session_id is stashed by run(); fall back to a constant so the
+        # sqlite fallback (latest session) still applies on odd paths.
+        agent_id_lower = self._agent_id().lower()
+        run_session_id = getattr(self, "_run_session_id", "") or "pawbench-unknown"
+        sync_cmd = (
+            _SYNC_CMD.replace("REPLACEME_AGENTID", agent_id_lower)
+                     .replace("REPLACEME_SESSION", run_session_id)
+        )
+        await environment.execute_command(sync_cmd, timeout=30)
 
     async def teardown(self, environment: BaseEnvironment) -> None:
         # 当 PAWBENCH_KEEP_CONTAINER=1 时保留 agent 数据，方便事后排查

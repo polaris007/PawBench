@@ -435,11 +435,7 @@ class PawBenchBackend(BenchmarkBackend):
             "log_text": log_text,
         }
 
-        task_labels = {
-            k: task.frontmatter.get(k)
-            for k in ("scenario", "capabilities", "complexity", "modality", "environment")
-            if task.frontmatter.get(k) is not None
-        }
+        task_labels = extract_task_labels(task.frontmatter)
 
         judge_api_key = agent_config.get("judge_api_key") or api_key
         judge_base_url = agent_config.get("judge_base_url") or base_url
@@ -526,6 +522,33 @@ class PawBenchBackend(BenchmarkBackend):
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
+
+_LABEL_KEYS = ("scenario", "capabilities", "complexity", "modality", "environment")
+
+
+def extract_task_labels(frontmatter: Any) -> dict[str, Any]:
+    """Extract taxonomy labels from a task's YAML front-matter.
+
+    The dataset stores all taxonomy under a nested ``labels:`` mapping (e.g.
+    ``labels: {complexity: L3, capabilities: [...]}``).  Legacy tasks may
+    instead carry the same values as top-level keys.  Prefer the nested value
+    and fall back to the top-level key only when the nested one is absent/None.
+    Keys whose resolved value is None are omitted.
+    """
+    if not isinstance(frontmatter, dict):
+        return {}
+    nested = frontmatter.get("labels")
+    if not isinstance(nested, dict):
+        nested = {}
+    labels: dict[str, Any] = {}
+    for key in _LABEL_KEYS:
+        value = nested.get(key)
+        if value is None:
+            value = frontmatter.get(key)
+        if value is not None:
+            labels[key] = value
+    return labels
+
 
 def _extract_usage_from_transcript(
     transcript: list,

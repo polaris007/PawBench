@@ -17,7 +17,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from .backend import BenchmarkBackend, TaskResult
+from .backend import BenchmarkBackend, TaskResult, extract_task_labels
 
 
 class BenchmarkRunner:
@@ -400,13 +400,7 @@ class BenchmarkRunner:
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def _error_result(task: Any, error: str, elapsed: float = 0.0) -> TaskResult:
-    labels = {}
-    if hasattr(task, "frontmatter") and isinstance(task.frontmatter, dict):
-        labels = {
-            k: task.frontmatter[k]
-            for k in ("scenario", "capabilities", "complexity", "modality", "environment")
-            if task.frontmatter.get(k) is not None
-        }
+    labels = extract_task_labels(getattr(task, "frontmatter", None))
     return TaskResult(
         task_id=task.task_id,
         task_name=getattr(task, "task_name", getattr(task, "name", task.task_id)),

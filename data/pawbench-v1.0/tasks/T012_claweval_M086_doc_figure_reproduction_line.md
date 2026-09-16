@@ -66,6 +66,7 @@ Steps:
 ```python
 import re
 from pathlib import Path
+from pawbench.utils.transcript_search import searchable_text
 
 
 def grade(transcript: list, workspace_path: str) -> dict:
@@ -79,22 +80,7 @@ def grade(transcript: list, workspace_path: str) -> dict:
         "png_substantial": 0.0,
     }
 
-    def _all_text(msgs: list) -> str:
-        parts = []
-        for m in msgs:
-            actual = m.get("message", m)
-            if actual.get("role") not in ("assistant",):
-                continue
-            content = actual.get("content", "")
-            if isinstance(content, str):
-                parts.append(content)
-            elif isinstance(content, list):
-                for block in content:
-                    if isinstance(block, dict):
-                        parts.append(block.get("text", ""))
-        return " ".join(parts)
-
-    transcript_text = _all_text(transcript)
+    transcript_text = searchable_text(transcript)
 
     script_path = Path(workspace_path) / "output" / "reproduce_fig6.py"
     png_path = Path(workspace_path) / "output" / "figure6_reproduce.png"

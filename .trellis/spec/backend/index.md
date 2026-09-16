@@ -20,6 +20,7 @@ This directory contains guidelines for backend development. Fill in each file wi
 | [Quality Guidelines](./quality-guidelines.md) | Code standards, forbidden patterns | To fill |
 | [Logging Guidelines](./logging-guidelines.md) | Structured logging, log levels | To fill |
 | [Task Taxonomy Labels](./task-taxonomy-labels.md) | How task labels are read (nested `labels:` first, top-level fallback) | Active |
+| [Grading Transcript Search](./grading-transcript-search.md) | How automated grading collects searchable transcript text (shared `searchable_text` helper) | Active |
 
 ---
 

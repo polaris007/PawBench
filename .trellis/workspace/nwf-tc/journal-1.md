@@ -63,3 +63,25 @@ Fixed false negatives in file_read auto-grading: OpenClaw 8.1 read PDFs but scor
 ### Status
 
 [OK] **Completed**
+
+
+## Session 3: Support OpenClaw 2026.9.1 multi-version harness
+
+**Date**: 2026-09-23
+**Task**: Support OpenClaw 2026.9.1 multi-version harness
+**Branch**: `nwf-main`
+
+### Summary
+
+Added multi-version OpenClaw support: sessions-scope wipe (JSONL+SQLite), shared doctor --fix (timeout 300) on NO_SQLITE auth path, dynamic version probe, Dockerfile ARG 2026.9.1 + doctor pre-warm, buildimage.sh version arg; 14-check unittest suite; openclaw-multi-version code-spec; 166 PASS grading regression.
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `19cf771` | (see git log) |
+| `8eaf0d1` | (see git log) |
+
+### Status
+
+[OK] **Completed**

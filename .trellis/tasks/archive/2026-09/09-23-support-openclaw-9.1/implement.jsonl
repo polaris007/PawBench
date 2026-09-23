@@ -1,0 +1,5 @@
+{"file": ".trellis/spec/backend/index.md", "reason": "Backend spec index — orient before editing openclaw_agent.py"}
+{"file": ".trellis/spec/backend/grading-transcript-search.md", "reason": "searchable_text contract this task must not change (C2/AC6)"}
+{"file": ".trellis/tasks/09-23-support-openclaw-9.1/prd.md", "reason": "Requirements R1-R6, constraints C1-C5 (npm pin out of scope; no version ladders), AC1-AC8"}
+{"file": ".trellis/tasks/09-23-support-openclaw-9.1/design.md", "reason": "Chosen auth strategy (JSON+doctor migrate), sessions/-scoped wipe contract, Docker file/tag layout, dynamic version probe, rejected alternatives"}
+{"file": ".trellis/tasks/09-23-support-openclaw-9.1/implement.md", "reason": "Ordered steps 1-7 with validation commands, rollback points, and explicit non-goals"}

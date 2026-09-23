@@ -1,0 +1,6 @@
+{"file": ".trellis/spec/backend/index.md", "reason": "Backend quality conventions for reviewing agent harness changes"}
+{"file": ".trellis/spec/backend/grading-transcript-search.md", "reason": "Confirm no grading-side drift after harness edits (C2)"}
+{"file": ".trellis/tasks/09-23-support-openclaw-9.1/prd.md", "reason": "Cross-check every AC1-AC8 has evidence; C1-C5 and user-owned docker/Dockerfile.pawbench-openclaw-8.1 respected"}
+{"file": ".trellis/tasks/09-23-support-openclaw-9.1/design.md", "reason": "Verify implementation matches chosen strategies and rejected alternatives were not implemented"}
+{"file": ".trellis/tasks/09-23-support-openclaw-9.1/implement.md", "reason": "All steps completed or explicitly deferred (Step 7 smoke may be handed to user); non-goals list"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Wipe/auth changes span Docker image layer and agent runtime layer — cross-layer checklist"}

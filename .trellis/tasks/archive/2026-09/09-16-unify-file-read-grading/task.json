@@ -1,0 +1,28 @@
+{
+  "id": "unify-file-read-grading",
+  "name": "unify-file-read-grading",
+  "title": "Unify file_read grading to scan tool calls across claweval tasks",
+  "description": "",
+  "status": "completed",
+  "dev_type": null,
+  "scope": null,
+  "package": null,
+  "priority": "P2",
+  "creator": "nwf-tc",
+  "assignee": "nwf-tc",
+  "createdAt": "2026-09-16",
+  "completedAt": "2026-09-23",
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {
+    "description": "Fix automated file_read across 28 claweval tasks so tool-call-based file reads count, not just assistant prose"
+  }
+}

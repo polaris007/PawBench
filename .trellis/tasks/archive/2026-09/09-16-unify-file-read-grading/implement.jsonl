@@ -1,0 +1,3 @@
+{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "28 duplicated _all_text copies are centralized into one helper; reuse/dedup guidance governs the change"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Transcript event shape flows across layers (agent parser -> searchable_text -> per-task regex); the contract must hold at each boundary"}

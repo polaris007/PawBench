@@ -1,0 +1,207 @@
+# docker/Dockerfile.pawbench-openclaw
+#
+# PawBench evaluation image for the OpenClaw agent.
+# Self-contained: installs openclaw + all system deps, then pre-configures
+# openclaw for Alibaba Dashscope (qwen3.6-plus) so the benchmark runner can
+# inject the real API key at task-runtime without hitting the interactive wizard.
+#
+# Build:
+#   docker build -f docker/Dockerfile.pawbench-openclaw -t openclaw-pawbench:latest .
+#
+# The default image tag matches PawBenchBackend.OPENCLAW_DEFAULT_IMAGE.
+FROM node:22-slim
+
+# ── Pinned agent version ───────────────────────────────────────────────────────
+ARG OPENCLAW_VERSION=2026.8.1
+
+# ── System packages ────────────────────────────────────────────────────────────
+#   - python3 / pip    : grading scripts, task setup scripts
+#   - git curl wget    : common in task setup.sh scripts
+#   - jq               : JSON processing in task shell scripts
+#   - sqlite3          : some tasks query SQLite databases
+#   - build-essential  : compile native npm modules
+#   - Chromium + libs  : openclaw browser plugin uses playwright-core;
+#                        pre-installing system Chromium avoids runtime download
+#   - X11 / Xvfb/XFCE4: required for gui_*_zh screenshot tasks
+#   - Chinese fonts    : correct rendering in GUI and screenshot tasks
+# 覆盖 APT 源（替换为国内镜像）
+COPY docker/debian.sources /etc/apt/sources.list.d/debian.sources
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        python3 python3-pip python3-venv openssh-client \
+        git curl wget ca-certificates gnupg \
+        build-essential \
+        jq sqlite3 ripgrep \
+        chromium \
+        chromium-sandbox \
+        libx11-xcb1 \
+        libxcomposite1 \
+        libxdamage1 \
+        libxext6 \
+        libxfixes3 \
+        libxi6 \
+        libxtst6 \
+        libnss3 \
+        libglib2.0-0 \
+        libdrm2 \
+        libgbm1 \
+        libasound2 \
+        fonts-liberation \
+        xvfb \
+        xfce4 \
+        xfce4-terminal \
+        xfce4-taskmanager \
+        dbus \
+        dbus-x11 \
+        scrot \
+        fonts-wqy-zenhei \
+        fonts-wqy-microhei \
+        net-tools \
+        vim \
+        strace \
+    && rm -rf /var/lib/apt/lists/*
+
+# Allow Chromium to run as root inside the container
+RUN sed -i 's/^CHROMIUM_FLAGS=""/CHROMIUM_FLAGS="--no-sandbox"/' \
+        /usr/bin/chromium 2>/dev/null || true
+
+# Point openclaw's playwright at the system Chromium (avoids runtime download)
+ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+ENV COPAW_RUNNING_IN_CONTAINER=1
+
+# ── openclaw agent ────────────────────────────────────────────────────────────
+RUN npm install -g "openclaw@${OPENCLAW_VERSION}"
+
+# ── Python packages pre-installed for PawBench task scripts ──────────────────
+# Remove PEP 668 externally-managed marker to allow pip system-wide install
+# inside the container (Debian Bookworm / Python 3.11+ ships this by default).
+RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.12/EXTERNALLY-MANAGED 2>/dev/null || true
+RUN pip3 install --no-cache-dir --break-system-packages \
+    -i https://mirrors.aliyun.com/pypi/simple/ \
+    requests \
+    pyyaml \
+    pandas \
+    numpy \
+    matplotlib \
+    Pillow \
+    scikit-learn \
+    python-docx \
+    yfinance \
+    certifi \
+    fastapi \
+    uvicorn \
+    httpx \
+    openai \
+    oss2 \
+    pytest
+
+# ── Pre-create workspace directories ──────────────────────────────────────────
+RUN mkdir -p /app/working/workspaces/default/output \
+             /app/working/workspaces/default/sessions \
+             /root/.openclaw/agents/main/agent
+
+# ── Pre-configure openclaw for Alibaba Dashscope (qwen-standard endpoint) ────
+# Run onboard with a placeholder key to generate the full config structure.
+# The real DASHSCOPE_API_KEY is injected at runtime by the benchmark runner
+# (openclaw_agent.py clears baked auth profiles and patches openclaw.json each task).
+RUN QWEN_API_KEY=sk-build-placeholder \
+    openclaw onboard \
+        --accept-risk \
+        --non-interactive \
+        --auth-choice qwen-standard-api-key-cn \
+    2>&1 | tail -5 || true
+
+# ── Patch config: workspace path + default model ──────────────────────────────
+RUN openclaw config set agents.defaults.model.primary qwen/qwen3.6-plus 2>/dev/null || true && \
+    openclaw config set agents.defaults.workspace /app/working/workspaces/default 2>/dev/null || true && \
+    openclaw config set tools.profile default 2>/dev/null || true && \
+    openclaw config set gateway.mode local 2>/dev/null || true
+
+# ── Pre-warm the openclaw gateway and CLI plugin runtime ─────────────────────
+# Fully installs all bundled plugin runtime deps at image build time so that
+# concurrent gateway + CLI invocations at eval time never need to install them,
+# eliminating the ENOTEMPTY rename/rmdir race (PluginLoadFailureError).
+#
+# Root cause of the race: when two openclaw processes (gateway background +
+# CLI foreground) start concurrently in a fresh container, both attempt to
+# install the same plugin runtime deps via a temp-dir + atomic rename pattern.
+# The second rename fails with ENOTEMPTY because the first already created the
+# destination directory.  Pre-installing here makes the dest dirs exist in the
+# image layer; at runtime, openclaw skips installation for existing dirs.
+#
+# The old "| head -5" killed the gateway after only 5 lines of output —
+# well before the "[gateway] ready" log line that signals completion of plugin
+# dep installation (~8 s).  This left the deps uninstalled, reproducing the race.
+#
+# The "ready" log line only means the HTTP/WS listener is up; plugin runtime
+# dependencies (acpx, amazon-bedrock, anthropic-vertex, browser, etc.) are
+# installed asynchronously after that and can take 30-90 s more.  Killing the
+# gateway on "ready" leaves them unfinished.  We wait until every staged
+# install has completed (staging count ≤ installed count) plus a 3 s safety
+# margin for the last plugin's final log flush.
+#
+# NOTE: gateway log lines carry ANSI colour codes between the "[gateway]"
+# prefix and "ready" (sometimes between the space and "ready" itself), so
+# grepping "[gateway] ready" — or even " ready" — never matches and the
+# warm-up loop burns all 120 iterations.  Strip ANSI escapes first, then
+# match the full literal.
+RUN bash -c '\
+  openclaw gateway >/tmp/gw_warmup.log 2>&1 & \
+  GW_PID=$! ; \
+  for i in $(seq 1 120); do \
+    if sed "s/\x1b\[[0-9;]*m//g" /tmp/gw_warmup.log 2>/dev/null | grep -q "\[gateway\] ready"; then \
+      S=$(grep -c "staging" /tmp/gw_warmup.log 2>/dev/null || echo 0); \
+      I=$(grep -c "installed" /tmp/gw_warmup.log 2>/dev/null || echo 0); \
+      [ "$S" -gt 0 ] && [ "$S" -le "$I" ] && break; \
+    fi; \
+    sleep 1; \
+  done; \
+  sleep 3; \
+  kill $GW_PID 2>/dev/null; wait $GW_PID 2>/dev/null; \
+  echo "=== gateway pre-warm result ===" ; \
+  grep -E "ready|error|fail|WARN|installed" /tmp/gw_warmup.log | head -20 || true'
+# Pre-warm the CLI plugin bootstrap path via `agents add` (not `agents list`).
+# The openclaw CLI (agents add, agent --message) runs
+# ensureCliPluginRegistryLoaded independently of the gateway, but the full
+# set of CLI-side plugins is only installed when there is an actual agent
+# with a model binding — `agents list` is too lightweight to trigger them all.
+RUN OPENCLAW_DISABLE_BONJOUR=1 timeout 120 \
+    openclaw agents add warmup-agent \
+        --model qwen/qwen3.6-plus \
+        --workspace /tmp/warmup-ws \
+        --non-interactive \
+    2>&1 | tail -5 || true; \
+    OPENCLAW_DISABLE_BONJOUR=1 openclaw agents delete warmup-agent --force 2>/dev/null || true; \
+    rm -rf /tmp/warmup-ws 2>/dev/null; true
+
+# ── Clean up stale runtime-deps lock files ──────────────────────────────────
+# The pre-warm steps above create plugin-runtime-deps/*/.openclaw-runtime-deps.lock
+# files that persist in the image layer.  When a new container starts, any
+# openclaw CLI invocation finds the lock file and tries to acquire a futex
+# that was held by the (long-gone) build-time process — causing an infinite
+# hang.  Deleting the lock files here ensures the image is clean.
+RUN find /root/.openclaw/plugin-runtime-deps -name '*.lock' -delete 2>/dev/null; \
+    rm -rf /tmp/openclaw 2>/dev/null; true
+
+# ── ossutil（运行时从 OSS 拉单任务）────────────────────────────────────────────
+RUN curl -fsSL https://gosspublic.alicdn.com/ossutil/1.7.18/ossutil64 \
+    -o /usr/local/bin/ossutil && chmod +x /usr/local/bin/ossutil
+
+# ── copawbench runner 代码（供 main.sh 调用）────────────────────────────────────
+COPY pawbench/         /opt/copawbench/pawbench/
+COPY run_bench.py      /opt/copawbench/run_bench.py
+COPY requirements.txt  /opt/copawbench/requirements.txt
+RUN pip3 install --no-cache-dir --break-system-packages \
+    -i https://mirrors.aliyun.com/pypi/simple/ \
+    -r /opt/copawbench/requirements.txt
+ENV PYTHONPATH=/opt/copawbench
+
+# ── Smoke-tests ───────────────────────────────────────────────────────────────
+RUN ossutil --version
+RUN cd /opt/copawbench && python3 -c "import pawbench; print('pawbench runner OK')"
+RUN openclaw --version 2>/dev/null || echo "openclaw ${OPENCLAW_VERSION} installed"
+RUN node --version && npm --version
+RUN chromium --version 2>/dev/null || chromium-browser --version 2>/dev/null || echo "[warn] chromium not found"
+RUN python3 -c "import requests, yaml, pandas, numpy; print('Python deps OK')"
+RUN openclaw config get agents.defaults.model.primary 2>/dev/null || echo "[warn] could not verify model config"

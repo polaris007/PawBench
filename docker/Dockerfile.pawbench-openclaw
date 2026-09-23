@@ -12,7 +12,7 @@
 FROM node:22-slim
 
 # ── Pinned agent version ───────────────────────────────────────────────────────
-ARG OPENCLAW_VERSION=2026.8.1
+ARG OPENCLAW_VERSION=2026.9.1
 
 # ── System packages ────────────────────────────────────────────────────────────
 #   - python3 / pip    : grading scripts, task setup scripts
@@ -117,6 +117,13 @@ RUN openclaw config set agents.defaults.model.primary qwen/qwen3.6-plus 2>/dev/n
     openclaw config set agents.defaults.workspace /app/working/workspaces/default 2>/dev/null || true && \
     openclaw config set tools.profile default 2>/dev/null || true && \
     openclaw config set gateway.mode local 2>/dev/null || true
+
+# ── Pre-warm doctor --fix (auth-profile migration + plugin deps) ──────────────
+# Migrates the baked placeholder auth state (JSON → per-agent SQLite) at build
+# time so the first runtime doctor (openclaw_agent._run_doctor_fix) is
+# idempotent and cheap.  Must run before gateway warm-up and before the
+# runtime-deps lock cleanup below.
+RUN OPENCLAW_DISABLE_BONJOUR=1 openclaw doctor --fix 2>&1 | tail -5 || true
 
 # ── Pre-warm the openclaw gateway and CLI plugin runtime ─────────────────────
 # Fully installs all bundled plugin runtime deps at image build time so that

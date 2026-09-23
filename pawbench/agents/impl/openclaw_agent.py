@@ -3,6 +3,7 @@
 
 import json
 import os
+import re
 import shlex
 import time
 import uuid
@@ -20,9 +21,12 @@ _GATEWAY_PORT = 18789
 class OpenClawAgent(ContainerAgent):
     """OpenClaw agent for pawbench evaluation.
 
-    Runs tasks via ``openclaw agent --message``.  Pre-built image
-    ``copawbench-openclaw:latest`` already has openclaw 2026.4.24 installed;
-    the slow-path installs from npm when only a plain base image is used.
+    Runs tasks via ``openclaw agent --message``.  Pre-built multi-version
+    images (``pawbench-openclaw:5.28`` / ``:8.1`` / ``:9.1``) ship the
+    matching openclaw release — select one via ``--docker-image`` /
+    ``agent_config["docker_image"]``; ``version`` probes the container at
+    setup/run.  The slow-path installs from npm when only a plain base
+    image is used.
     """
 
     def __init__(self, name: str = "openclaw", **kwargs: Any):
@@ -33,6 +37,69 @@ class OpenClawAgent(ContainerAgent):
         model = self.config.get("model", "dashscope/qwen3.6-plus")
         slug = model.replace("/", "-").replace(".", "-").lower()
         return f"bench-{slug}"
+
+    @staticmethod
+    def _session_wipe_command(agent_id_lower: str) -> str:
+        """``rm`` command clearing conversation state under ``sessions/`` only.
+
+        Covers the JSONL store (≤8.1 primary) and the SQLite store
+        (9.1 primary, ``*.sqlite`` / ``*.db`` + WAL sidecars).  Scoped
+        strictly to ``agents/<id>/sessions/`` so the per-agent auth store
+        ``agents/<id>/agent/openclaw-agent.sqlite`` is never touched.
+        """
+        base = f"/root/.openclaw/agents/{agent_id_lower}/sessions"
+        return (
+            f"rm -f {base}/*.jsonl "
+            f"{base}/*.jsonl.lock "
+            f"{base}/sessions.json "
+            f"{base}/*.sqlite "
+            f"{base}/*.sqlite-wal "
+            f"{base}/*.sqlite-shm "
+            f"{base}/*.db "
+            "2>/dev/null || true"
+        )
+
+    async def _run_doctor_fix(
+        self,
+        environment: BaseEnvironment,
+        *,
+        env_prefix: str = "",
+        timeout: int = 300,
+    ) -> None:
+        """Shared ``openclaw doctor --fix`` entry point (timeout ≥ 300 s).
+
+        One implementation for every call site: auth-profile JSON→SQLite
+        migration on the no-sqlite path (9.1 fails closed with
+        AUTH_PROFILE_MIGRATION_REQUIRED until migrated) and the
+        browser-plugin dep install in ``_stabilise_gateway_plugins``.
+        Idempotent and a no-op for the gate on 4/5.x images.
+        """
+        await environment.execute_command(
+            f"export OPENCLAW_DISABLE_BONJOUR=1 && {env_prefix}"
+            "openclaw doctor --fix 2>&1 | tail -5 || true",
+            timeout=timeout,
+        )
+
+    @staticmethod
+    def _parse_version_output(text: str) -> str:
+        """Extract the first ``YYYY.x.y`` token from ``openclaw --version``."""
+        m = re.search(r"\d{4}\.\d+\.\d+", text or "")
+        return m.group(0) if m else ""
+
+    async def _detect_version(self, environment: BaseEnvironment) -> str:
+        """Probe ``openclaw --version`` once per container; cache the result."""
+        cached = getattr(self, "_detected_version", "")
+        if cached:
+            return cached
+        r = await environment.execute_command(
+            "openclaw --version 2>/dev/null || true",
+            timeout=15,
+        )
+        ver = self._parse_version_output(
+            (r.get("stdout") or "") + " " + (r.get("stderr") or "")
+        )
+        self._detected_version = ver
+        return ver
 
     def _gateway_token(self) -> str:
         """Shared gateway auth token for this task container.
@@ -293,6 +360,11 @@ class OpenClawAgent(ContainerAgent):
                 f"/root/.openclaw/agents/{agent_id_lower}/agent/auth-profiles.json",
                 auth_profiles_content,
             )
+            # NO_SQLITE path: 9.1 fails closed with
+            # AUTH_PROFILE_MIGRATION_REQUIRED until doctor migrates the JSON
+            # we just wrote into the auth SQLite — converge before any agent
+            # turn.  No-op for the gate on 4/5.x.
+            await self._run_doctor_fix(environment, env_prefix=env_prefix)
 
         # Point openclaw's global default workspace at the benchmark path so
         # the ACPX runtime routes all file I/O there.  ``agents add --workspace``
@@ -356,6 +428,8 @@ class OpenClawAgent(ContainerAgent):
             f"rm -f {shlex.quote(AGENT_WORKSPACE)}/BOOTSTRAP.md",
             timeout=10,
         )
+
+        await self._detect_version(environment)
 
     # ── openclaw.json configuration ───────────────────────────────────────────
 
@@ -851,10 +925,7 @@ class OpenClawAgent(ContainerAgent):
             "openclaw config set plugins.entries.bonjour.enabled false 2>&1 | tail -2 || true",
             timeout=90,
         )
-        await environment.execute_command(
-            "openclaw doctor --fix 2>&1 | tail -5 || true",
-            timeout=180,
-        )
+        await self._run_doctor_fix(environment)
 
     async def _ensure_gateway(self, environment: BaseEnvironment, *, api_key: str = "", provider_str: str = "openai") -> None:
         port = _GATEWAY_PORT
@@ -1003,13 +1074,14 @@ class OpenClawAgent(ContainerAgent):
         agent_id = self._agent_id()
         agent_id_lower = agent_id.lower()
 
+        if not getattr(self, "_detected_version", ""):
+            await self._detect_version(environment)
+
         # Wipe sessions from any previous run so openclaw starts a fresh
-        # conversation for this task.
+        # conversation for this task (JSONL + SQLite stores; auth SQLite
+        # under agents/<id>/agent/ is out of scope — see the helper).
         await environment.execute_command(
-            f"rm -f /root/.openclaw/agents/{agent_id_lower}/sessions/*.jsonl "
-            f"/root/.openclaw/agents/{agent_id_lower}/sessions/*.jsonl.lock "
-            f"/root/.openclaw/agents/{agent_id_lower}/sessions/sessions.json "
-            "2>/dev/null || true",
+            self._session_wipe_command(agent_id_lower),
             timeout=15,
         )
 
@@ -1074,6 +1146,9 @@ class OpenClawAgent(ContainerAgent):
                         },
                     }, indent=2),
                 )
+                # Same NO_SQLITE convergence as setup(): migrate JSON → auth
+                # SQLite via doctor before any agent turn (no-op on 4/5.x).
+                await self._run_doctor_fix(environment, env_prefix=env_prefix)
             await environment.write_file(
                 "/tmp/patch_gateway_mode.py",
                 "import json, os\n"
@@ -1429,4 +1504,7 @@ fi
 
     @property
     def version(self) -> str:
-        return "2026.4.24"
+        override = str(self.config.get("openclaw_version") or "").strip()
+        if override:
+            return override
+        return getattr(self, "_detected_version", "") or "unknown"

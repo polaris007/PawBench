@@ -41,3 +41,25 @@ PawBench CLI label-dimension report read taxonomy from dirty top-level front-mat
 ### Next Steps
 
 - Re-run the OpenClaw 8.1 evaluation to confirm the on-screen Label-Dimension Report now agrees with summary.passed over all 150 tasks
+
+
+## Session 2: Unify file_read grading to scan tool calls
+
+**Date**: 2026-09-23
+**Task**: Unify file_read grading to scan tool calls
+**Branch**: `nwf-main`
+
+### Summary
+
+Fixed false negatives in file_read auto-grading: OpenClaw 8.1 read PDFs but scored 0 because graders only scanned assistant text. Added pawbench/utils/transcript_search.py (shared searchable_text scanning assistant text + toolCall name/args + toolResult, ignoring user) and migrated 28 claweval tasks (additive-only; regexes/weights untouched; T030 safety gate intact; 10 carrier files untouched). Added scripts/verify_file_read_grading.py (166 stdlib checks green) and spec .trellis/spec/backend/grading-transcript-search.md.
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `197742d` | (see git log) |
+| `cede37f` | (see git log) |
+
+### Status
+
+[OK] **Completed**

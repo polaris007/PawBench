@@ -85,3 +85,25 @@ Added multi-version OpenClaw support: sessions-scope wipe (JSONL+SQLite), shared
 ### Status
 
 [OK] **Completed**
+
+
+## Session 4: OpenClaw SQLite session DB 归档支持
+
+**Date**: 2026-09-28
+**Task**: OpenClaw SQLite session DB 归档支持
+**Branch**: `nwf-main`
+
+### Summary
+
+OpenClaw 8.1+/9.1 不再写 session jsonl，session 记录存于 WAL 模式的 per-agent SQLite（agents/<id>/agent/openclaw-agent.sqlite）。post_run_collect() 新增备份：容器内 sqlite3 只读打开 + Connection.backup() 生成合并 WAL 的自包含单文件，pragma journal_mode=delete 归一化头，落盘 workspace/sessions/openclaw-agent.sqlite（经 save_workspace 归档到 results/workspaces/<task_id>/）。_wait_for_session_flush() 增加 transcript_events 轮询提前返回。check 修复 3 缺陷：WAL 头归档、flush 超时竞态（15→25s）、备份从 _SYNC_CMD 拆出并 try/except 隔离（防止翻转 TaskResult）。spec 新增 §3.6 归档契约 + Common Mistake 2。验证：py_compile/test_openclaw_compat 14/14/verify_file_read_grading 166 PASS；9.1 镜像冒烟待用户 Docker 环境执行
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `af6ca92` | (see git log) |
+| `278c041` | (see git log) |
+
+### Status
+
+[OK] **Completed**

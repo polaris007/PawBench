@@ -8,8 +8,8 @@
 
 <!-- @@@auto:current-status -->
 - **Active File**: `journal-1.md`
-- **Total Sessions**: 3
-- **Last Active**: 2026-09-23
+- **Total Sessions**: 4
+- **Last Active**: 2026-09-28
 <!-- @@@/auto:current-status -->
 
 ---
@@ -19,7 +19,7 @@
 <!-- @@@auto:active-documents -->
 | File | Lines | Status |
 |------|-------|--------|
-| `journal-1.md` | ~87 | Active |
+| `journal-1.md` | ~109 | Active |
 <!-- @@@/auto:active-documents -->
 
 ---
@@ -29,6 +29,7 @@
 <!-- @@@auto:session-history -->
 | # | Date | Title | Commits | Branch |
 |---|------|-------|---------|--------|
+| 4 | 2026-09-28 | OpenClaw SQLite session DB 归档支持 | `af6ca92`, `278c041` | `nwf-main` |
 | 3 | 2026-09-23 | Support OpenClaw 2026.9.1 multi-version harness | `19cf771`, `8eaf0d1` | `nwf-main` |
 | 2 | 2026-09-23 | Unify file_read grading to scan tool calls | `197742d`, `cede37f` | `nwf-main` |
 | 1 | 2026-09-15 | Fix CLI label report reading nested task labels | `2a91d7c` | `nwf-main` |

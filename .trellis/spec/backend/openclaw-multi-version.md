@@ -127,11 +127,48 @@ lazy _detect_version (if unset)
 → _ensure_gateway
 → agents list / re-add + auth reconcile (doctor on NO_SQLITE)
 → agent --message
-→ session flush / collect (unchanged)
+→ _wait_for_session_flush (jsonl polling; sqlite transcript_events polling on 9.1)
+→ post_run_collect (JSONL export for grading + SQLite DB archive, see 3.6)
 ```
 
 Wipe before gateway liveness so a held SQLite handle is resolved by the
 existing restart path, not by deleting around a live gateway.
+
+### 3.6 Session DB archive (post_run_collect backup)
+
+```python
+# pawbench/agents/impl/openclaw_agent.py — _BACKUP_SCRIPT runs in-container
+# via /tmp/backup_openclaw_db.py <src> <dst>; _BACKUP_CMD wraps the calls.
+src = sqlite3.connect("file:<src>?mode=ro", uri=True, timeout=10)  # ro: gateway may hold the DB
+dst = sqlite3.connect("<dst>")
+src.backup(dst)                       # merges -wal content into a standalone copy
+dst.execute("pragma journal_mode=delete")  # normalize WAL header (see Wrong/Correct)
+```
+
+- Sources: canonical `agents/<id>/agent/openclaw-agent.sqlite` → archived as
+  `AGENT_WORKSPACE/sessions/openclaw-agent.sqlite`; plus every
+  `agents/<id>/sessions/*.sqlite` (basename kept, `openclaw-agent.sqlite`
+  name skipped to avoid clobbering the canonical archive). Missing files are
+  skipped silently (4/5.x has no SQLite store).
+- Destination `journal_mode=delete` normalization is **mandatory**:
+  `Connection.backup()` copies the source header verbatim, leaving the
+  archive WAL-flagged; a WAL-flagged file requires a writable directory on
+  every open (SQLite creates `-shm`), so read-only media opens fail with
+  "attempt to write a readonly database".
+- The backup command runs **outside** `_SYNC_CMD` as its own
+  `execute_command` wrapped in `try/except` + `logging.warning`: backend.py
+  converts any `post_run_collect` exception into `status=error, score=0`, so
+  archival must be exception-isolated. `_SYNC_CMD` itself stays byte-stable
+  (the JSONL grading export path must not move).
+- Flush-wait `_wait_for_session_flush(session_id=...)` polls
+  `transcript_events` (count + max(created_at) stable across two 1s polls →
+  `SESSION_READY_SQLITE`); its `execute_command` timeout (25s) must exceed
+  script deadline (12s) + sqlite busy timeout (5s) — docker.py **raises**
+  `TimeoutError` into `run()` otherwise, flipping the task to error.
+- Archived via `save_workspace: true` → `results/workspaces/<task_id>/sessions/`.
+  Note: the per-agent DB doubles as the auth store; the archive may contain
+  credentials (same exposure class as the already-archived `openclaw.json`
+  apiKey). `save_workspace` is opt-in.
 
 ## 4. Validation & Error Matrix
 
@@ -146,6 +183,9 @@ existing restart path, not by deleting around a live gateway.
 | SQLITE_STORE path + auth JSON present | delete JSON; do not also doctor-migrate |
 | NO_SQLITE path on 4/5.x after doctor | JSON remains source; no migration expected |
 | Docker unavailable in dev env | static gates + user-run `./buildimage.sh` smoke (AC escape hatch) |
+| backup appended into `_SYNC_CMD` (single command) | forbidden — one locked store exceeding the shared timeout flips TaskResult to error |
+| archived sqlite left WAL-flagged (no `journal_mode=delete`) | forbidden — archive unreadable from read-only media |
+| flush-wait `execute_command` timeout ≤ script deadline + busy timeout | forbidden — docker.py raises `TimeoutError` into `run()` → `status=error` |
 
 ## 5. Good / Base / Bad Cases
 
@@ -173,9 +213,17 @@ existing restart path, not by deleting around a live gateway.
   contract.
 - **Static** — `python3 -m py_compile pawbench/agents/impl/openclaw_agent.py`;
   `bash -n buildimage.sh`; Dockerfile `OPENCLAW_VERSION` matches target.
+- **Backup script (extract embedded text, run against temp WAL db)** — writer
+  held open with rows only in `-wal`: backup copy contains all rows, header
+  normalized (openable read-only), no `-wal`/`-shm` residue; missing source →
+  `SQLITE_BACKUP_SKIP` exit 0; re-run over existing destination idempotent.
+  `_SYNC_CMD` rendered string byte-identical to pre-change HEAD.
 - **Image smoke (when Docker available)** — `./buildimage.sh 9.1`; one task
   against `:9.1` and one against `:8.1`; assert session isolation and
-  `Agent.version`.
+  `Agent.version`; with `save_workspace: true`, host-side
+  `sqlite3 results/workspaces/<task_id>/sessions/openclaw-agent.sqlite
+  "select count(*) from transcript_events where session_id='<run session>'"`
+  returns non-zero.
 
 ## 7. Wrong vs Correct
 
@@ -201,6 +249,35 @@ else:
     await self._run_doctor_fix(environment, env_prefix=env_prefix)  # timeout=300
 ```
 
+#### Wrong — cp a WAL database (loses data) / ship a WAL-flagged archive
+
+```bash
+cp /root/.openclaw/agents/<id>/agent/openclaw-agent.sqlite "$DEST/sessions/"
+# newest transactions may still live only in -wal → archive misses the run's
+# final events; cp of the trio is not atomic either.
+```
+
+```python
+src.backup(dst)  # and nothing else
+# dst keeps the WAL header (bytes 18/19 = 2/2) → opening it from read-only
+# media fails: "attempt to write a readonly database"
+```
+
+#### Correct — backup API + journal_mode normalization + exception isolation
+
+```python
+src = sqlite3.connect("file:%s?mode=ro" % s, uri=True, timeout=10)
+dst = sqlite3.connect(d)
+try:
+    src.backup(dst)                       # standalone copy, -wal merged
+    dst.execute("pragma journal_mode=delete")  # header → rollback-journal mode
+except Exception as e:
+    print("SQLITE_BACKUP_SKIP: %s" % e)   # never fail the task
+```
+
+Wrapped in its own `execute_command` (60s) + outer `try/except` in
+`post_run_collect`, separate from `_SYNC_CMD`.
+
 ---
 
 ## Common Mistake
@@ -216,3 +293,20 @@ during plugin install.
 **Prevention**: wipe via `_session_wipe_command` (session SQLite globs);
 always pair NO_SQLITE JSON write with `_run_doctor_fix`; keep doctor through
 the shared helper (≥300s) and pre-warm `doctor --fix` in the Dockerfile.
+
+## Common Mistake 2 — archived SQLite unreadable or backup flips the task
+
+**Symptom**: 9.1 run "succeeds" but `results/workspaces/<task_id>/sessions/`
+has no sqlite (or a truncated one); or the sqlite exists but tools report
+"attempt to write a readonly database" / miss the final assistant turn; or a
+random task turns `status=error` right after collection.
+
+**Cause**: the per-agent DB is WAL-mode with the gateway holding a live
+connection — plain `cp` of the main file misses `-wal`-resident events;
+`Connection.backup()` alone preserves the WAL header (archive demands a
+writable directory); and a backup failure/timeout inside the shared
+`_SYNC_CMD` raises into `backend.py`, which zeroes the TaskResult.
+
+**Prevention**: backup API (read-only source) + `pragma journal_mode=delete`
+on the destination + `SQLITE_BACKUP_SKIP`-style swallow + run as a separate
+exception-isolated command, never inside `_SYNC_CMD`.

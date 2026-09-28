@@ -1,0 +1,1 @@
+{"file": ".trellis/spec/backend/openclaw-multi-version.md", "reason": "OpenClaw 5.28–9.1 多版本契约：session wipe 范围（含 SQLite store）、版本探测、per-agent DB 路径约定，post_run_collect 备份步骤必须遵守同一套路径与版本兼容规则；错误处理遵循现有 _EXPORT_SCRIPT 的静默跳过 + 日志模式"}

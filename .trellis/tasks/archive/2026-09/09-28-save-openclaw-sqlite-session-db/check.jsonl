@@ -1,0 +1,1 @@
+{"file": ".trellis/spec/backend/openclaw-multi-version.md", "reason": "验证备份步骤在 4/5.x（无 sqlite）、8.x、9.1（WAL sqlite）三种布局下的行为不回归，路径契约与 spec 一致"}

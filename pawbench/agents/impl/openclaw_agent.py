@@ -1012,16 +1012,26 @@ class OpenClawAgent(ContainerAgent):
         environment: BaseEnvironment,
         *,
         agent_id_lower: str,
+        session_id: str = "",
     ) -> None:
         """Best-effort wait for OpenClaw to finish writing session artifacts.
 
         OpenClaw may return from CLI before trajectory/session files are fully
         flushed. Poll briefly for a recent ``model.completed`` event with a
         non-empty ``messagesSnapshot`` to reduce short-transcript races.
+
+        On 8.1+/9.1 layouts there is no session JSONL to wait for (session
+        records land in the per-agent SQLite store), so also poll
+        ``transcript_events`` for this run's session and return early once
+        row count and max(created_at) are stable across two consecutive
+        probes. Layouts without the DB keep the JSONL behaviour unchanged;
+        every sqlite failure falls through to the deadline logic below.
         """
         wait_script = (
-            "import glob, json, os, time\n"
+            "import glob, json, os, sqlite3, time\n"
             f"sessions_dir = '/root/.openclaw/agents/{agent_id_lower}/sessions'\n"
+            f"agent_db = '/root/.openclaw/agents/{agent_id_lower}/agent/openclaw-agent.sqlite'\n"
+            f"target_session = {session_id!r}\n"
             "deadline = time.time() + 12\n"
             "def has_completed_snapshot(path):\n"
             "    try:\n"
@@ -1041,6 +1051,24 @@ class OpenClawAgent(ContainerAgent):
             "        snap = (obj.get('data') or {}).get('messagesSnapshot')\n"
             "        return isinstance(snap, list) and len(snap) > 0\n"
             "    return False\n"
+            "def sqlite_snapshot():\n"
+            "    # (row_count, max_created_at) for the target session, or None\n"
+            "    # when the store is unavailable (pre-8.1 layouts, missing file,\n"
+            "    # locked db, older schema without transcript_events).\n"
+            "    if not target_session or not os.path.exists(agent_db):\n"
+            "        return None\n"
+            "    try:\n"
+            "        con = sqlite3.connect('file:%s?mode=ro' % agent_db, uri=True, timeout=5)\n"
+            "        try:\n"
+            "            row = con.execute(\n"
+            "                'select count(*), max(created_at) from transcript_events '\n"
+            "                'where session_id=?', (target_session,)).fetchone()\n"
+            "            return (row[0], row[1])\n"
+            "        finally:\n"
+            "            con.close()\n"
+            "    except Exception:\n"
+            "        return None\n"
+            "prev = None\n"
             "while time.time() < deadline:\n"
             "    traj = sorted(glob.glob(os.path.join(sessions_dir, '*.trajectory.jsonl')), key=os.path.getmtime, reverse=True)\n"
             "    if traj and has_completed_snapshot(traj[0]):\n"
@@ -1051,13 +1079,22 @@ class OpenClawAgent(ContainerAgent):
             "    if plain and os.path.getsize(plain[0]) > 0:\n"
             "        print('SESSION_READY_PLAIN')\n"
             "        raise SystemExit(0)\n"
+            "    snap = sqlite_snapshot()\n"
+            "    if snap is not None and snap[0] > 0 and snap == prev:\n"
+            "        print('SESSION_READY_SQLITE')\n"
+            "        raise SystemExit(0)\n"
+            "    prev = snap\n"
             "    time.sleep(1)\n"
             "print('SESSION_NOT_READY')\n"
         )
         await environment.write_file("/tmp/wait_openclaw_session.py", wait_script)
+        # 25s kill margin: the script's own deadline is 12s, but a sqlite
+        # probe against a locked store can busy-wait its full 5s timeout and
+        # the loop sleeps 1s afterwards, so worst case is ~18.5s. exec at 15s
+        # would raise TimeoutError (docker env) and fail the task outright.
         await environment.execute_command(
             "python3 /tmp/wait_openclaw_session.py",
-            timeout=15,
+            timeout=25,
         )
 
     # ── run ───────────────────────────────────────────────────────────────────
@@ -1223,10 +1260,13 @@ class OpenClawAgent(ContainerAgent):
         )
 
         # Reduce race where session files are copied before OpenClaw flushes the
-        # final model.completed event.
+        # final model.completed event. On sqlite-only layouts (9.1) this polls
+        # transcript_events for this run's session instead of waiting out the
+        # full deadline.
         await self._wait_for_session_flush(
             environment,
             agent_id_lower=agent_id_lower,
+            session_id=session_id,
         )
 
         # Copy openclaw session files into workspace/sessions/ so that
@@ -1440,6 +1480,55 @@ class OpenClawAgent(ContainerAgent):
             "        pass\n"
         )
         await environment.write_file("/tmp/export_openclaw_transcript.py", _EXPORT_SCRIPT)
+        # Backup helper: archive the session SQLite store itself as one
+        # self-contained file. Connection.backup() merges any pending WAL
+        # content into the copy (a plain `cp` of just the .sqlite would miss
+        # the latest transactions still sitting in -wal). Destination
+        # sidecars are cleared first — backing up over an existing non-empty
+        # db can fail or merge oddly — and again afterwards, since the backup
+        # leaves empty -wal/-shm residue next to the copy while the data
+        # itself is fully checkpointed into the main file. backup() also
+        # copies the source header verbatim, so the copy would stay
+        # WAL-flagged and demand a writable directory (to create -shm) on
+        # every open; PRAGMA journal_mode=delete rewrites the header to
+        # rollback-journal mode, making the archive openable read-only
+        # anywhere with zero sidecar files. Never raises; on any failure
+        # prints SQLITE_BACKUP_SKIP and exits 0, mirroring _EXPORT_SCRIPT.
+        _BACKUP_SCRIPT = (
+            "import os, sqlite3, sys\n"
+            "src, dst = sys.argv[1], sys.argv[2]\n"
+            "try:\n"
+            "    for stale in (dst, dst + '-wal', dst + '-shm'):\n"
+            "        try:\n"
+            "            if os.path.exists(stale):\n"
+            "                os.remove(stale)\n"
+            "        except Exception:\n"
+            "            pass\n"
+            "    src_con = sqlite3.connect('file:%s?mode=ro' % src, uri=True, timeout=10)\n"
+            "    try:\n"
+            "        dst_con = sqlite3.connect(dst)\n"
+            "        try:\n"
+            "            src_con.backup(dst_con)\n"
+            "            try:\n"
+            "                dst_con.execute('pragma journal_mode=delete')\n"
+            "            except Exception:\n"
+            "                pass\n"
+            "        finally:\n"
+            "            dst_con.close()\n"
+            "        for residue in (dst + '-wal', dst + '-shm'):\n"
+            "            try:\n"
+            "                if os.path.exists(residue):\n"
+            "                    os.remove(residue)\n"
+            "            except Exception:\n"
+            "                pass\n"
+            "        print('SQLITE_BACKUP_OK %s' % dst)\n"
+            "    finally:\n"
+            "        src_con.close()\n"
+            "except Exception as e:\n"
+            "    print('SQLITE_BACKUP_SKIP: %s' % e)\n"
+            "    raise SystemExit(0)\n"
+        )
+        await environment.write_file("/tmp/backup_openclaw_db.py", _BACKUP_SCRIPT)
         _SYNC_CMD = rf"""
 DEST={AGENT_WORKSPACE}
 mkdir -p "$DEST/output"
@@ -1487,7 +1576,50 @@ fi
             _SYNC_CMD.replace("REPLACEME_AGENTID", agent_id_lower)
                      .replace("REPLACEME_SESSION", run_session_id)
         )
+        # Grading-critical: workspace + transcript sync only (unchanged 30s
+        # ceiling). The DB archival below is deliberately a SEPARATE command
+        # so slow/locked sqlite stores can never delay (or time out — which
+        # raises and flips the task to status=error) the graded collection.
         await environment.execute_command(sync_cmd, timeout=30)
+        # Archive the session SQLite DB itself (8.1+/9.1 keep session records
+        # there instead of .jsonl) so it survives the container and can be
+        # inspected with sqlite3 / DB Browser afterwards. The backup helper
+        # merges WAL content into one self-contained file under sessions/ —
+        # extract_transcript() already skips that directory (and non-text
+        # suffixes), so the copy never enters the graded transcript.
+        # Best-effort only, on every layer: 4/5.x images have no DB here and
+        # the bash guards skip silently; the helper never raises; and the
+        # command itself is wrapped so NO failure path (including a 60s
+        # timeout on a locked store) can change TaskResult.
+        _BACKUP_CMD = f"""
+mkdir -p {AGENT_WORKSPACE}/sessions
+AGENTDB="/root/.openclaw/agents/REPLACEME_AGENTID/agent/openclaw-agent.sqlite"
+if [ -f "$AGENTDB" ]; then
+  python3 /tmp/backup_openclaw_db.py "$AGENTDB" \\
+    "{AGENT_WORKSPACE}/sessions/openclaw-agent.sqlite" 2>&1 | tail -2 || true
+fi
+# Suffixed/shared session stores under sessions/*.sqlite are rare; keep
+# their basenames when present without clobbering the canonical archive.
+for f in /root/.openclaw/agents/REPLACEME_AGENTID/sessions/*.sqlite; do
+  [ -f "$f" ] || continue
+  b=$(basename "$f")
+  [ "$b" = "openclaw-agent.sqlite" ] && continue
+  python3 /tmp/backup_openclaw_db.py "$f" "{AGENT_WORKSPACE}/sessions/$b" 2>&1 | tail -2 || true
+done
+"""
+        backup_cmd = _BACKUP_CMD.replace("REPLACEME_AGENTID", agent_id_lower)
+        try:
+            # 60s ceiling: each backup can spend its full 10s connect timeout
+            # on a busy store before the helper's own SKIP path bails out.
+            await environment.execute_command(backup_cmd, timeout=60)
+        except Exception:
+            # Never let archival flip TaskResult (PRD: backup failures only
+            # log). The graded workspace was already synced above.
+            import logging
+            logging.getLogger(__name__).warning(
+                "openclaw sqlite backup command failed (task result unaffected)",
+                exc_info=True,
+            )
 
     async def teardown(self, environment: BaseEnvironment) -> None:
         # 当 PAWBENCH_KEEP_CONTAINER=1 时保留 agent 数据，方便事后排查
